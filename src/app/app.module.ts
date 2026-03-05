@@ -68,7 +68,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FocusOnEnterDirective } from './directives/focus-on-enter.directive';
 
-import { BsDropdownModule, TypeaheadModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { PurchaseReturnComponent } from './components/dashboard/sales/purchase-return/purchase-return.component';
 import { PurchaseReturnViewComponent } from './components/dashboard/sales/purchase-return/purchase-return-view/purchase-return-view.component';
