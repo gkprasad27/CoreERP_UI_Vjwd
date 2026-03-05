@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Static } from '../../enums/common/static';
 import { SnackBar, StatusCodes } from '../../enums/common/common';
-import { String } from 'typescript-string-operations';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiConfigService } from '../../services/api-config.service';

@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
-import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';
@@ -17,7 +19,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
@@ -613,7 +615,7 @@ export class CreateStockTransferComponent implements OnInit {
                 }
               }
 
-              doc.autoTable({
+              autoTable(doc, {
                 body: [
                   [{ content: 'StockTransfer' + ' Report', colSpan: 2, rowSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }],
                 ],
@@ -644,7 +646,7 @@ export class CreateStockTransferComponent implements OnInit {
               ];
 
               headerRows = headerRows.filter(arr => arr != "");
-              doc.autoTable({
+              autoTable(doc, {
                 margin: { top: 10 },
                 columnStyles: {
                   1: { halign: 'right' }
@@ -652,7 +654,11 @@ export class CreateStockTransferComponent implements OnInit {
                 body: headerRows,
                 theme: 'plain'
               })
-              doc.autoTable(columns, rows, { startY: doc.autoTable.previous.finalY + 5 });
+              autoTable(doc, {
+                head: [columns],
+                body: rows,
+                startY: (doc as any).lastAutoTable.finalY + 5
+              });
 
               let footerRows = [];
               for (var i: number = 0; i < this.footerData.length; i++) {
@@ -676,10 +682,10 @@ export class CreateStockTransferComponent implements OnInit {
                   updatedFooterRows.push(temp);
                 })
               }
-              doc.autoTable({
+              autoTable(doc, {
                 body: updatedFooterRows,
                 theme: 'plain',
-                startY: doc.autoTable.previous.finalY + 10
+                startY: (doc as any).lastAutoTable.finalY + 10
               })
               doc.save('StockTransfer' + 'Report.pdf');
             }

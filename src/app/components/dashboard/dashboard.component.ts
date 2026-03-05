@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnInit, Input} from '@angular/core';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
 import { ApiConfigService } from '../../services/api-config.service';

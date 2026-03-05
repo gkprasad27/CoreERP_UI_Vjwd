@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
-import { String } from 'typescript-string-operations';
+
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { isNullOrUndefined } from 'util';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 //import { StatusCodes, SnackBar } from '../../../../enums/common/common';

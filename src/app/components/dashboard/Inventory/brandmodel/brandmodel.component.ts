@@ -1,13 +1,13 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { String } from 'typescript-string-operations';
+
 @Component({
   selector: 'app-brandmodel',
   templateUrl: './brandmodel.component.html',

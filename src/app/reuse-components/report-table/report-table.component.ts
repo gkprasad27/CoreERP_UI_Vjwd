@@ -1,10 +1,13 @@
-import { String } from 'typescript-string-operations';
+
 import {
   Component, OnInit, ViewChild, Input, OnChanges,
   ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -16,12 +19,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject, pipe } from 'rxjs';
 import { take, takeUntil, map } from 'rxjs/operators';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpParams } from '@angular/common/http';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
 import { ReportsInnerTableComponent } from '../reports-inner-table/reports-inner-table.component';
@@ -38,9 +41,9 @@ import { style } from '@angular/animations';
   styleUrls: ['./report-table.component.scss']
 })
 export class ReportTableComponent implements OnInit, OnChanges {
-  selectedDate = {start : moment().add(-1, 'day'), end: moment().add(0, 'day')};
-  GetBankPAccountLedgerListArray=[];
-  GetProductListArray=[];
+  selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };
+  GetBankPAccountLedgerListArray = [];
+  GetProductListArray = [];
   public tableMultiCtrl: FormControl = new FormControl();
   public filteredTableMulti: ReplaySubject<any> = new ReplaySubject<any>(1);
 
@@ -80,18 +83,18 @@ export class ReportTableComponent implements OnInit, OnChanges {
   ];
   AccountLedgers = [];
   ReportBranches = [];
-  ReportPGList=[];
-  ReportSGList=[];
+  ReportPGList = [];
+  ReportSGList = [];
   Products = [];
 
   tableHeaders: any = [];
-  SearchCriteria=[
-    {id:'username',parameter:'User Name'},
-    {id:'branchCode',parameter:'Branch Code'},
-    {id:'shiftId',parameter:'Shift Id'},
-    {id:'userId',parameter:'User Id'}
+  SearchCriteria = [
+    { id: 'username', parameter: 'User Name' },
+    { id: 'branchCode', parameter: 'Branch Code' },
+    { id: 'shiftId', parameter: 'Shift Id' },
+    { id: 'userId', parameter: 'User Id' }
   ];
-  search =[];
+  search = [];
   ReportsType = [
     { id: '1', reportName: 'Product Price List All Branch Report' },
     { id: '2', reportName: 'Product Price List By Branch Report' }
@@ -103,16 +106,16 @@ export class ReportTableComponent implements OnInit, OnChanges {
   ClosingBalanceReportType = [
     { id: '1', reportName: 'Credit' },
     { id: '2', reportName: 'Debit' },
-    { id: '3', reportName: 'Both'}
+    { id: '3', reportName: 'Both' }
   ];
-  FourColumnReportType=[
-    {id:'1', reportName:'FourColumn Cash Book By Branch'},
-    {id:'2', reportName:'FourColumn Cash Book COnsolidate'}
+  FourColumnReportType = [
+    { id: '1', reportName: 'FourColumn Cash Book By Branch' },
+    { id: '2', reportName: 'FourColumn Cash Book COnsolidate' }
   ];
-  GroupName=[
-    {id:'Spares',parameter:'Spares'},
-    {id:'Lubes',parameter:'Lubes'},
-    {id:'Fuels',parameter:'Fuels'}
+  GroupName = [
+    { id: 'Spares', parameter: 'Spares' },
+    { id: 'Lubes', parameter: 'Lubes' },
+    { id: 'Fuels', parameter: 'Fuels' }
   ];
   constructor(
     private formBuilder: FormBuilder,
@@ -129,25 +132,25 @@ export class ReportTableComponent implements OnInit, OnChanges {
     this.user = JSON.parse(localStorage.getItem('user'));
 
     this.dateForm = this.formBuilder.group({
-      selected:[null],
+      selected: [null],
       formDate: ['', Validators.required],
       toDate: ['', Validators.required],
       selectedReport: [''],
       selectedAccountLedger: [''],
       selectedBranch: [],
       selectedProduct: [],
-      selectedCriteria:[''],
-      vehicleRegNo:[null],
-      search:[null],
-      selectedReportType:[''],
-      selectedTrialReportType:[''],
-      selectedClosingReportType:[''],
+      selectedCriteria: [''],
+      vehicleRegNo: [null],
+      search: [null],
+      selectedReportType: [''],
+      selectedTrialReportType: [''],
+      selectedClosingReportType: [''],
       fromAccountLedger: [''],
       toAccountLedger: [''],
-      RO:[null],
-      selectedFourColumnReportType:[''],
-      selectedGroupName:[''],
-      selectedSupplierGroup:['']
+      RO: [null],
+      selectedFourColumnReportType: [''],
+      selectedGroupName: [''],
+      selectedSupplierGroup: ['']
     }, { validator: this.checkDates });
 
     activatedRoute.params.subscribe(params => {
@@ -184,11 +187,11 @@ export class ReportTableComponent implements OnInit, OnChanges {
 
   }
 
-  checkCheckBoxvalue(event){
+  checkCheckBoxvalue(event) {
     this.dateForm.patchValue({
-      RO:event.checked
+      RO: event.checked
     })
- }
+  }
 
   saveChanges() {
     this.columnDefinitions = this.filterColData.slice(0);
@@ -278,7 +281,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
 
   getProductsList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductListUrl = String.Join('/', this.apiConfigService.getStockProducts, value);
+      const getProductListUrl = String.Join('');
       this.apiService.apiGetRequest(getProductListUrl).subscribe(
         response => {
           const res = response.body;
@@ -301,7 +304,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
 
   getBankPAccountLedgerList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getBankPAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerList, value);
+      const getBankPAccountLedgerListUrl = String.Join('');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -374,18 +377,18 @@ export class ReportTableComponent implements OnInit, OnChanges {
       selectedAccountLedger: this.dateForm.get('selectedAccountLedger').value,
       selectedBranch: this.dateForm.get('selectedBranch').value,
       selectedProduct: this.dateForm.get('selectedProduct').value,
-      vehicleRegNo:this.dateForm.get('vehicleRegNo').value,
-      selectedCriteria:this.dateForm.get('selectedCriteria').value,
-      search:this.dateForm.get('search').value,
-      selectedReportType:this.dateForm.get('selectedReportType').value,
-      selectedTrialReportType:this.dateForm.get('selectedTrialReportType').value,
-      selectedClosingReportType:this.dateForm.get('selectedClosingReportType').value,
+      vehicleRegNo: this.dateForm.get('vehicleRegNo').value,
+      selectedCriteria: this.dateForm.get('selectedCriteria').value,
+      search: this.dateForm.get('search').value,
+      selectedReportType: this.dateForm.get('selectedReportType').value,
+      selectedTrialReportType: this.dateForm.get('selectedTrialReportType').value,
+      selectedClosingReportType: this.dateForm.get('selectedClosingReportType').value,
       fromAccountLedger: this.dateForm.get('fromAccountLedger').value,
       toAccountLedger: this.dateForm.get('toAccountLedger').value,
       RO: this.dateForm.get('RO').value,
-      selectedFourColumnReportType:this.dateForm.get('selectedFourColumnReportType').value,
-      selectedGroupName:this.dateForm.get('selectedGroupName').value,
-      selectedSupplierGroup:this.dateForm.get('selectedSupplierGroup').value,
+      selectedFourColumnReportType: this.dateForm.get('selectedFourColumnReportType').value,
+      selectedGroupName: this.dateForm.get('selectedGroupName').value,
+      selectedSupplierGroup: this.dateForm.get('selectedSupplierGroup').value,
     })
     this.params = new HttpParams();
     this.params = this.params.append('UserID', 'admin');//this.user.userName);
@@ -395,8 +398,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
     this.params = this.params.append('ledgerCode', this.dateForm.value.selectedAccountLedger);
     this.params = this.params.append('branchCode', this.dateForm.value.selectedBranch);
     this.params = this.params.append('productCode', this.dateForm.value.selectedProduct);
-    this.params = this.params.append('selectedCriteria',this.dateForm.value.selectedCriteria);
-    this.params = this.params.append('search',this.dateForm.value.search);
+    this.params = this.params.append('selectedCriteria', this.dateForm.value.selectedCriteria);
+    this.params = this.params.append('search', this.dateForm.value.search);
     this.params = this.params.append('vehicleRegNo', this.dateForm.value.vehicleRegNo);
     this.params = this.params.append('reportType', this.dateForm.value.selectedReportType);
     this.params = this.params.append('TrialreportType', this.dateForm.value.selectedTrialReportType);
@@ -405,25 +408,24 @@ export class ReportTableComponent implements OnInit, OnChanges {
     this.params = this.params.append('toLedgerCode', this.dateForm.value.toAccountLedger);
     this.params = this.params.append('RO', this.dateForm.value.RO);
     this.params = this.params.append('fourColumnreportType', this.dateForm.value.selectedFourColumnReportType);
-    this.params = this.params.append('GroupName',this.dateForm.value.selectedGroupName);
-    this.params = this.params.append('SupplierGroup',this.dateForm.value.selectedSupplierGroup);
-    if(this.dateForm.value.selectedCriteria=="shiftId")
-    {
+    this.params = this.params.append('GroupName', this.dateForm.value.selectedGroupName);
+    this.params = this.params.append('SupplierGroup', this.dateForm.value.selectedSupplierGroup);
+    if (this.dateForm.value.selectedCriteria == "shiftId") {
       this.params = this.params.append('shiftId', this.dateForm.value.search);
     }
-    if(this.routeParam=='Shift' && this.dateForm.value.selectedCriteria=='branchCode'){
-      this.reportsService.branchCode=this.dateForm.value.search;
-      this.reportsService.dynamicData.url=`${this.apiConfigService.getDefaultShiftReport}/${this.reportsService.branchCode}`;
+    if (this.routeParam == 'Shift' && this.dateForm.value.selectedCriteria == 'branchCode') {
+      this.reportsService.branchCode = this.dateForm.value.search;
+      this.reportsService.dynamicData.url = `${this.apiConfigService.getDefaultShiftReport}/${this.reportsService.branchCode}`;
     }
-    if(this.routeParam=='Shift' && this.dateForm.value.selectedCriteria!='branchCode'){
-      this.reportsService.branchCode=this.dateForm.value.search;
-      this.reportsService.dynamicData.url=`${this.apiConfigService.getDefaultShiftReport}/${null}`;
+    if (this.routeParam == 'Shift' && this.dateForm.value.selectedCriteria != 'branchCode') {
+      this.reportsService.branchCode = this.dateForm.value.search;
+      this.reportsService.dynamicData.url = `${this.apiConfigService.getDefaultShiftReport}/${null}`;
     }
     // else
     // {
     //    this.params = this.params.append('vehicleRegNo', this.dateForm.value.vehicleRegNo);
     // }
-    
+
     this.generateTable.emit(this.params);
 
     this.dateForm.controls['formDate'].setValue(new Date(this.dateForm.controls['formDate'].value));
@@ -512,107 +514,9 @@ export class ReportTableComponent implements OnInit, OnChanges {
   }
 
   exportToPdf() {
-    if(this.routeParam=='Product Wise Monthly Purchase'||this.routeParam=='BranchWise Monthly SalesByLiters'||this.routeParam=='ProductMonthWise PurchaseLtrs'){
+    if (this.routeParam == 'Product Wise Monthly Purchase' || this.routeParam == 'BranchWise Monthly SalesByLiters' || this.routeParam == 'ProductMonthWise PurchaseLtrs') {
       let doc = new jsPDF('l', 'cm', 'a3');
-    
-    let columns = []; //["ID", "Name", "Country"];
-    for (const key in this.tableData[0]) {
-      columns.push(key);
-    }
-    let rows = [];
-    for (var i: number = 0; i < this.dataSource.filteredData.length; i++) {
-      rows[i] = [];
-      let j = 0;
-      for (const key in this.tableData[0]) {
-        rows[i][j] = this.dataSource.filteredData[i][key];
-        j++;
-      }
-    }
 
-    doc.autoTable({
-      body: [
-        [{ content: this.routeParam + ' Report', colSpan: 3, rowSpan: 1, styles: { halign: 'center', fontStyle: 'bold' } }],
-      ],
-      theme: 'plain'
-    });
-    let pipe = new DatePipe('en-US');
-    let currentDate = new Date();
-
-    let headerRows = [];
-    for (var i: number = 0; i < this.tableHeaders.length; i++) {
-      headerRows[i] = [];
-      let j = 0;
-      for (const key in this.tableHeaders[0]) {
-        headerRows[i][j] = this.tableHeaders[i][key];
-        j++;
-      }
-    }
-
-    headerRows = [
-      headerRows[0] ? headerRows[0].concat(headerRows[1]) : "",
-      headerRows[2] ? headerRows[2].concat(headerRows[3]) : "",
-      headerRows[4] ? headerRows[4].concat(headerRows[5]) : "",
-      headerRows[6] ? headerRows[6].concat(headerRows[7]) : "",
-      headerRows[8] ? headerRows[8].concat(headerRows[9]) : "",
-      headerRows[10] ? headerRows[10].concat(headerRows[11]) : "",
-      headerRows[12] ? headerRows[12].concat(headerRows[13]) : "",
-      headerRows[14] ? headerRows[14].concat(headerRows[15]) : ""
-    ];
-
-    headerRows = headerRows.filter(arr => arr != "");
-
-
-
-    doc.autoTable({
-      margin: { top: 3 },
-      columnStyles: {
-        1: { halign: 'right' }
-      },
-      body: headerRows,
-      theme: 'plain',
-    })
-    
-    
-
-    doc.autoTable(columns, rows, { startY: doc.autoTable.previous.finalY + 2, styles: { font: 'Tahoma',fontSize: 10}, theme: 'plain' });
-     
-
-    let footerRows = [];
-    
-    for (var i: number = 0; i < this.footerData.length; i++) {
-      footerRows[i] = [];
-      let j = 0;
-      for (const key in this.footerData[0]) {
-        footerRows[i][j] = this.footerData[i][key];
-        j++;
-      }
-    }
-
-    let updatedFooterRows = [];
-
-    if (footerRows && footerRows.length) {
-      footerRows.forEach((ft) => {
-        let temp = [];
-        ft.forEach(data => {
-          if (data != "") {
-            temp.push(data);
-          }
-        });
-        updatedFooterRows.push(temp);
-      })
-    }
-
-    doc.autoTable({
-      body: updatedFooterRows,
-      theme: 'plain',
-      startY: doc.autoTable.previous.finalY + 2
-    })
-    doc.save(this.routeParam + 'Report.pdf');
-    }
-    
-    if(this.routeParam=='Four Column Cash Book'){
-      let doc = new jsPDF('p', 'in', [1008, 792]);
-    
       let columns = []; //["ID", "Name", "Country"];
       for (const key in this.tableData[0]) {
         columns.push(key);
@@ -626,8 +530,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
           j++;
         }
       }
-  
-      doc.autoTable({
+
+      autoTable(doc, {
         body: [
           [{ content: this.routeParam + ' Report', colSpan: 3, rowSpan: 1, styles: { halign: 'center', fontStyle: 'bold' } }],
         ],
@@ -635,7 +539,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
       });
       let pipe = new DatePipe('en-US');
       let currentDate = new Date();
-  
+
       let headerRows = [];
       for (var i: number = 0; i < this.tableHeaders.length; i++) {
         headerRows[i] = [];
@@ -645,7 +549,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
           j++;
         }
       }
-  
+
       headerRows = [
         headerRows[0] ? headerRows[0].concat(headerRows[1]) : "",
         headerRows[2] ? headerRows[2].concat(headerRows[3]) : "",
@@ -656,12 +560,12 @@ export class ReportTableComponent implements OnInit, OnChanges {
         headerRows[12] ? headerRows[12].concat(headerRows[13]) : "",
         headerRows[14] ? headerRows[14].concat(headerRows[15]) : ""
       ];
-  
+
       headerRows = headerRows.filter(arr => arr != "");
-  
-  
-  
-      doc.autoTable({
+
+
+
+      autoTable(doc, {
         margin: { top: 3 },
         columnStyles: {
           1: { halign: 'right' }
@@ -669,10 +573,20 @@ export class ReportTableComponent implements OnInit, OnChanges {
         body: headerRows,
         theme: 'plain',
       })
-  
-      doc.autoTable(columns, rows, { startY: doc.autoTable.previous.finalY + 2, styles: { font: 'Tahoma',fontSize: 10},columnStyles: {0:{cellWidth: 2},1:{cellWidth:3}}, theme: 'plain'});
-  
+
+      autoTable(doc, {
+        head: [columns],
+        body: rows,
+        startY: (doc as any).lastAutoTable.finalY + 2,
+        styles: {
+          font: 'Tahoma',
+          fontSize: 10
+        },
+        theme: 'plain'
+      });
+
       let footerRows = [];
+
       for (var i: number = 0; i < this.footerData.length; i++) {
         footerRows[i] = [];
         let j = 0;
@@ -681,9 +595,9 @@ export class ReportTableComponent implements OnInit, OnChanges {
           j++;
         }
       }
-  
+
       let updatedFooterRows = [];
-  
+
       if (footerRows && footerRows.length) {
         footerRows.forEach((ft) => {
           let temp = [];
@@ -695,121 +609,231 @@ export class ReportTableComponent implements OnInit, OnChanges {
           updatedFooterRows.push(temp);
         })
       }
-  
-      doc.autoTable({
+
+      autoTable(doc, {
         body: updatedFooterRows,
         theme: 'plain',
-        startY: doc.autoTable.previous.finalY + 2
+        startY: (doc as any).lastAutoTable.finalY + 2
       })
       doc.save(this.routeParam + 'Report.pdf');
+    }
+
+    if (this.routeParam == 'Four Column Cash Book') {
+      let doc = new jsPDF('p', 'in', [1008, 792]);
+
+      let columns = []; //["ID", "Name", "Country"];
+      for (const key in this.tableData[0]) {
+        columns.push(key);
       }
-  
-else{
-  // let doc = new jsPDF('p', 'cm', 'legal');
-  let doc = new jsPDF('p', 'in', [1008, 792]); 
-  let columns = []; //["ID", "Name", "Country"];
-  
-  for (const key in this.tableData[0]) {
-    columns.push(key);
-  }
-  let rows = [];
-  for (var i: number = 0; i < this.dataSource.filteredData.length; i++) {
-    rows[i] = [];
-    let j = 0;
-    for (const key in this.tableData[0]) {
-      rows[i][j] = this.dataSource.filteredData[i][key];
-      j++;
-    }
-  }
-  
-  doc.autoTable({
-    body: [
-      [{ content: this.routeParam + ' Report', colSpan: 3, rowSpan: 1, styles: { halign: 'center', fontStyle: 'bold' } }],
-    ],
-    theme: 'plain'
-  });
-  
-  let pipe = new DatePipe('en-US');
-  let currentDate = new Date();
-
-  let headerRows = [];
-  for (var i: number = 0; i < this.tableHeaders.length; i++) {
-    headerRows[i] = [];
-    let j = 0;
-    for (const key in this.tableHeaders[0]) {
-      headerRows[i][j] = this.tableHeaders[i][key];
-      j++;
-    }
-  }
-
-  headerRows = [
-    headerRows[0] ? headerRows[0].concat(headerRows[1]) : "",
-    headerRows[2] ? headerRows[2].concat(headerRows[3]) : "",
-    headerRows[4] ? headerRows[4].concat(headerRows[5]) : "",
-    headerRows[6] ? headerRows[6].concat(headerRows[7]) : "",
-    headerRows[8] ? headerRows[8].concat(headerRows[9]) : "",
-    headerRows[10] ? headerRows[10].concat(headerRows[11]) : "",
-    headerRows[12] ? headerRows[12].concat(headerRows[13]) : "",
-    headerRows[14] ? headerRows[14].concat(headerRows[15]) : ""
-  ];
-
-  headerRows = headerRows.filter(arr => arr != "");
-
-
-
-  doc.autoTable({
-    margin: { top: 3 },
-    columnStyles: {
-      1: { halign: 'right' }
-    },
-    body: headerRows,
-    theme: 'plain',
-  })
-  
-
-  doc.autoTable(columns, rows, { startY: doc.autoTable.previous.finalY + 1, styles: { font: 'Tahoma',fontSize: 10 }, theme: 'plain'});
-  
-  doc.addPage();
-  var pageCount = doc.internal.getNumberOfPages(); //Total Page Number
-  for(i = 0; i < pageCount; i++) { 
-  doc.setPage(i); 
-  let pageCurrent = doc.internal.getCurrentPageInfo().pageNumber; //Current Page
-  doc.setFontSize(10);
-  doc.text('page: ' + pageCurrent + '/' + pageCount, 10, 10);
-}
-
-  let footerRows = [];
-  for (var i: number = 0; i < this.footerData.length; i++) {
-    footerRows[i] = [];
-    let j = 0;
-    for (const key in this.footerData[0]) {
-      footerRows[i][j] = this.footerData[i][key];
-      j++;
-    }
-  }
-  
-
-  let updatedFooterRows = [];
-
-  if (footerRows && footerRows.length) {
-    footerRows.forEach((ft) => {
-      let temp = [];
-      ft.forEach(data => {
-        if (data != "") {
-          temp.push(data);
+      let rows = [];
+      for (var i: number = 0; i < this.dataSource.filteredData.length; i++) {
+        rows[i] = [];
+        let j = 0;
+        for (const key in this.tableData[0]) {
+          rows[i][j] = this.dataSource.filteredData[i][key];
+          j++;
         }
-      });
-      updatedFooterRows.push(temp);
-    })
-  }
+      }
 
-  doc.autoTable({
-    body: updatedFooterRows,
-    theme: 'plain',
-    startY: doc.autoTable.previous.finalY + 2
-  })
-  doc.save(this.routeParam + 'Report.pdf');
-}
+      autoTable(doc, {
+        body: [
+          [{ content: this.routeParam + ' Report', colSpan: 3, rowSpan: 1, styles: { halign: 'center', fontStyle: 'bold' } }],
+        ],
+        theme: 'plain'
+      });
+      let pipe = new DatePipe('en-US');
+      let currentDate = new Date();
+
+      let headerRows = [];
+      for (var i: number = 0; i < this.tableHeaders.length; i++) {
+        headerRows[i] = [];
+        let j = 0;
+        for (const key in this.tableHeaders[0]) {
+          headerRows[i][j] = this.tableHeaders[i][key];
+          j++;
+        }
+      }
+
+      headerRows = [
+        headerRows[0] ? headerRows[0].concat(headerRows[1]) : "",
+        headerRows[2] ? headerRows[2].concat(headerRows[3]) : "",
+        headerRows[4] ? headerRows[4].concat(headerRows[5]) : "",
+        headerRows[6] ? headerRows[6].concat(headerRows[7]) : "",
+        headerRows[8] ? headerRows[8].concat(headerRows[9]) : "",
+        headerRows[10] ? headerRows[10].concat(headerRows[11]) : "",
+        headerRows[12] ? headerRows[12].concat(headerRows[13]) : "",
+        headerRows[14] ? headerRows[14].concat(headerRows[15]) : ""
+      ];
+
+      headerRows = headerRows.filter(arr => arr != "");
+
+
+
+      autoTable(doc, {
+        margin: { top: 3 },
+        columnStyles: {
+          1: { halign: 'right' }
+        },
+        body: headerRows,
+        theme: 'plain',
+      })
+
+      autoTable(doc, {
+        head: [columns],
+        body: rows,
+        startY: (doc as any).lastAutoTable.finalY + 2,
+        styles: { font: 'Tahoma', fontSize: 10 },
+        columnStyles: {
+          0: { cellWidth: 2 },
+          1: { cellWidth: 3 }
+        },
+        theme: 'plain'
+      });
+
+      let footerRows = [];
+      for (var i: number = 0; i < this.footerData.length; i++) {
+        footerRows[i] = [];
+        let j = 0;
+        for (const key in this.footerData[0]) {
+          footerRows[i][j] = this.footerData[i][key];
+          j++;
+        }
+      }
+
+      let updatedFooterRows = [];
+
+      if (footerRows && footerRows.length) {
+        footerRows.forEach((ft) => {
+          let temp = [];
+          ft.forEach(data => {
+            if (data != "") {
+              temp.push(data);
+            }
+          });
+          updatedFooterRows.push(temp);
+        })
+      }
+
+      autoTable(doc, {
+        body: updatedFooterRows,
+        theme: 'plain',
+        startY: (doc as any).lastAutoTable.finalY + 2
+      })
+      doc.save(this.routeParam + 'Report.pdf');
+    }
+
+    else {
+      // let doc = new jsPDF('p', 'cm', 'legal');
+      let doc = new jsPDF('p', 'in', [1008, 792]);
+      let columns = []; //["ID", "Name", "Country"];
+
+      for (const key in this.tableData[0]) {
+        columns.push(key);
+      }
+      let rows = [];
+      for (var i: number = 0; i < this.dataSource.filteredData.length; i++) {
+        rows[i] = [];
+        let j = 0;
+        for (const key in this.tableData[0]) {
+          rows[i][j] = this.dataSource.filteredData[i][key];
+          j++;
+        }
+      }
+
+      autoTable(doc, {
+        body: [
+          [{ content: this.routeParam + ' Report', colSpan: 3, rowSpan: 1, styles: { halign: 'center', fontStyle: 'bold' } }],
+        ],
+        theme: 'plain'
+      });
+
+      let pipe = new DatePipe('en-US');
+      let currentDate = new Date();
+
+      let headerRows = [];
+      for (var i: number = 0; i < this.tableHeaders.length; i++) {
+        headerRows[i] = [];
+        let j = 0;
+        for (const key in this.tableHeaders[0]) {
+          headerRows[i][j] = this.tableHeaders[i][key];
+          j++;
+        }
+      }
+
+      headerRows = [
+        headerRows[0] ? headerRows[0].concat(headerRows[1]) : "",
+        headerRows[2] ? headerRows[2].concat(headerRows[3]) : "",
+        headerRows[4] ? headerRows[4].concat(headerRows[5]) : "",
+        headerRows[6] ? headerRows[6].concat(headerRows[7]) : "",
+        headerRows[8] ? headerRows[8].concat(headerRows[9]) : "",
+        headerRows[10] ? headerRows[10].concat(headerRows[11]) : "",
+        headerRows[12] ? headerRows[12].concat(headerRows[13]) : "",
+        headerRows[14] ? headerRows[14].concat(headerRows[15]) : ""
+      ];
+
+      headerRows = headerRows.filter(arr => arr != "");
+
+
+
+      autoTable(doc, {
+        margin: { top: 3 },
+        columnStyles: {
+          1: { halign: 'right' }
+        },
+        body: headerRows,
+        theme: 'plain',
+      })
+
+
+      autoTable(doc, {
+        head: [columns],
+        body: rows,
+        startY: (doc as any).lastAutoTable.finalY + 1,
+        styles: { font: 'Tahoma', fontSize: 10 },
+        theme: 'plain'
+      });
+
+      doc.addPage();
+      var pageCount = doc.getNumberOfPages(); //Total Page Number
+      for (i = 0; i < pageCount; i++) {
+        doc.setPage(i);
+        let pageCurrent = doc.getCurrentPageInfo().pageNumber; //Current Page
+        doc.setFontSize(10);
+        doc.text('page: ' + pageCurrent + '/' + pageCount, 10, 10);
+      }
+
+      let footerRows = [];
+      for (var i: number = 0; i < this.footerData.length; i++) {
+        footerRows[i] = [];
+        let j = 0;
+        for (const key in this.footerData[0]) {
+          footerRows[i][j] = this.footerData[i][key];
+          j++;
+        }
+      }
+
+
+      let updatedFooterRows = [];
+
+      if (footerRows && footerRows.length) {
+        footerRows.forEach((ft) => {
+          let temp = [];
+          ft.forEach(data => {
+            if (data != "") {
+              temp.push(data);
+            }
+          });
+          updatedFooterRows.push(temp);
+        })
+      }
+
+      autoTable(doc, {
+        body: updatedFooterRows,
+        theme: 'plain',
+        startY: (doc as any).lastAutoTable.finalY + 2
+      })
+      doc.save(this.routeParam + 'Report.pdf');
+    }
   }
   openDialog(val, row?) {
     if (this.routeParam == 'Shift') {
@@ -871,7 +895,7 @@ else{
                   }, error => {
 
                   });
-                  this.spinner.hide();
+              this.spinner.hide();
             }
           }
         }

@@ -1,10 +1,10 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../../../services/api.service';
 
 import { AlertService } from '../../../../services/alert.service';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';

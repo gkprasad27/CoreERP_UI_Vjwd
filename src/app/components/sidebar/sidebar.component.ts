@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { isNullOrUndefined } from 'util';
-import { String } from 'typescript-string-operations';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -22,7 +22,7 @@ import { String } from 'typescript-string-operations';
 export class SidebarComponent implements OnInit {
 
 
-  expanded: boolean;
+  expanded: boolean = false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: any;
   @Input() depth: number;

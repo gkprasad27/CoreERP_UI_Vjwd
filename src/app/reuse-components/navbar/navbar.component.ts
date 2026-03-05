@@ -3,7 +3,7 @@ import { CommonService } from '../../services/common.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
-import { String } from 'typescript-string-operations';
+
 import { ApiConfigService } from '../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from '../../services/alert.service';

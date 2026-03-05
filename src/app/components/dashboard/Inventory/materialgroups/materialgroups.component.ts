@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from 'src/app/services/common.service';
 
-import { String } from 'typescript-string-operations';
+
 @Component({
   selector: 'app-materialgroups',
   templateUrl: './materialgroups.component.html',

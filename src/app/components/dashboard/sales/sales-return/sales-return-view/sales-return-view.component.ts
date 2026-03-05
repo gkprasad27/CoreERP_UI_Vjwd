@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, NgZone, ChangeDetectorRef } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';

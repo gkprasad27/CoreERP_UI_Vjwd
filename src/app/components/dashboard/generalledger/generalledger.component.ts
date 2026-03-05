@@ -2,7 +2,7 @@ import { Component, ViewChild, ViewEncapsulation, AfterViewInit, OnInit, Input }
 import { ApiService } from '../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { StatusCodes } from '../../../enums/common/common';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';

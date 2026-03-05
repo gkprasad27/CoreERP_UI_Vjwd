@@ -1,4 +1,4 @@
-import { NativeDateAdapter, MatDateFormats } from '@angular/material';
+import { NativeDateAdapter, MatDateFormats } from '@angular/material/core';
 import { Injectable } from "@angular/core";
 @Injectable()
 export class AppDateAdapter extends NativeDateAdapter {

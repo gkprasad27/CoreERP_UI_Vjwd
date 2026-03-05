@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
-import { String } from 'typescript-string-operations';
+
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';

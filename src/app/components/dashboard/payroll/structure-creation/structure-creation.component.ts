@@ -1,9 +1,10 @@
 import { Component, Inject, Optional, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { String } from 'typescript-string-operations';
+
 import { CommonService } from '../../../../services/common.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes } from '../../../../enums/common/common';

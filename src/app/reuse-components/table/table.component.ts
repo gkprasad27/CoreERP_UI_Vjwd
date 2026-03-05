@@ -2,14 +2,18 @@ import {
   Component, OnInit, ViewChild, Input, OnChanges,
   ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy
 } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 @Component({

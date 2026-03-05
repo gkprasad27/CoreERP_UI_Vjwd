@@ -1,11 +1,12 @@
 import { Component, Inject, Optional, OnInit, ViewChild } from '@angular/core';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { AlertService } from '../../../../services/alert.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';

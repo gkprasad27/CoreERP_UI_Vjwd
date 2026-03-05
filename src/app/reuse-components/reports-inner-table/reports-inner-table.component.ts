@@ -1,9 +1,12 @@
-import { String } from 'typescript-string-operations';
+
 import {
   Component, OnInit, ViewChild, Input, OnChanges,
   ChangeDetectorRef, Output, EventEmitter,Optional,Inject, AfterViewInit, OnDestroy
 } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -12,12 +15,13 @@ import { SearchFilterTableComponent } from '../search-filter-table/search-filter
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpParams } from '@angular/common/http';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { Workbook } from 'exceljs';
 import { DatePipe } from '@angular/common';
 import * as fs from 'file-saver';
@@ -232,7 +236,7 @@ export class ReportsInnerTableComponent  {
         j++;
       }
     }
-    doc.autoTable({
+    autoTable(doc, {
       body: [
         [{ content: this.routeParam + ' Report', colSpan: 2, rowSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }],
       ],
@@ -250,12 +254,16 @@ export class ReportsInnerTableComponent  {
         j++;
       }
     }
-    doc.autoTable({
+    autoTable(doc, {
       margin: { top: 10 },
       body:headerRows,
       theme: 'plain'
     })
-    doc.autoTable(columns, rows, { startY: doc.autoTable.previous.finalY+5 });
+    autoTable(doc, {
+      head: [columns],
+      body: rows,
+      startY: (doc as any).lastAutoTable.finalY + 5
+    });
     let footerRows = [];
     for (var i: number = 0; i < this.data.footerData.length; i++) {
       footerRows[i] = [];
@@ -265,10 +273,10 @@ export class ReportsInnerTableComponent  {
         j++;
       }
     }
-    doc.autoTable({
+    autoTable(doc, {
       body:footerRows,
       theme: 'plain',
-      startY:doc.autoTable.previous.finalY + 10
+      startY: (doc as any).lastAutoTable.finalY + 10
     })
     doc.save(this.routeParam + 'Report.pdf');
   }

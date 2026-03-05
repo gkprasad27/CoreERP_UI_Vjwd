@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map, debounceTime } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { String } from 'typescript-string-operations';
+
 import { ApiService } from '../../services/api.service';
 import { StatusCodes } from '../../enums/common/common';
 import { CommonService } from '../../services/common.service';

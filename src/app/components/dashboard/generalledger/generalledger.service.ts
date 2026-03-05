@@ -9,7 +9,7 @@ import {TaxIntegrationComponent } from './taxintegration/taxintegration.componen
 import {CashAccToBranchesComponent } from './cashacctobranches/cashacctobranches.component';
 import {AccToAccClassComponent} from './acctoaccclass/acctoaccclass.component';
 import { VoucherTypesComponent } from './vouchertypes/vouchertypes.component';
-import { String } from 'typescript-string-operations';
+
 import { PartnerTypeComponent } from './partner-type/partner-type.component';
 import { PartnerCreationComponent } from './partner-creation/partner-creation.component';
 import { NoSeriesComponent } from './no-series/no-series.component';
