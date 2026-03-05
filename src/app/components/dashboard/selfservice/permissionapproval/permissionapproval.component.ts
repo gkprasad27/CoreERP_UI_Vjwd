@@ -114,7 +114,7 @@ export class PermissionApprovalsComponent implements OnInit {
   getPermissionRequestApplDetailsList() {
     //debugger;
     const user = JSON.parse(localStorage.getItem('user'));
-    const getPermissionRequestApplDetailsListUrl = String.Join('/', this.apiConfigService.getPermissionrqstApplDetailsList, user.userName);
+    const getPermissionRequestApplDetailsListUrl = ['/', this.apiConfigService.getPermissionrqstApplDetailsList, user.userName].join('/');
     this.apiService.apiGetRequest(getPermissionRequestApplDetailsListUrl)
       .subscribe(
         response => {
@@ -134,7 +134,7 @@ export class PermissionApprovalsComponent implements OnInit {
   save() {
     console.log(this.leaveApprovalList);
     const user = JSON.parse(localStorage.getItem('user'));
-    const registerInvoiceUrl = String.Join('/', this.apiConfigService.RegisterPermissionrqstApprovalDetails);
+    const registerInvoiceUrl = ['/', this.apiConfigService.RegisterPermissionrqstApprovalDetails].join('/');
     const requestObj = { StockissueHdr: this.leaveRequestForm.value, code: user.userName, StockissueDtl: this.leaveApprovalList };
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {

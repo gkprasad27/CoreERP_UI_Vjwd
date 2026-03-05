@@ -135,7 +135,7 @@ export class CreateOilconversionsComponent implements OnInit {
 
   getOilconversionDeatilList(id) {
     //debugger;
-    const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.getOilconversionDeatilList, id);
+    const getInvoiceDeatilListUrl = ['/', this.apiConfigService.getOilconversionDeatilList, id].join('/');
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
@@ -149,7 +149,7 @@ export class CreateOilconversionsComponent implements OnInit {
   }
 
   getCashPaymentBranchesList() {
-    const getCashPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getCashPaymentBranchesList);
+    const getCashPaymentBranchesListUrl = ['/', this.apiConfigService.getCashPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -170,13 +170,13 @@ export class CreateOilconversionsComponent implements OnInit {
     //debugger;
     this.branchFormData.patchValue
       ({
-        oilConversionVchNo: String.Empty
+        oilConversionVchNo: ''
       });
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getoilconversionvocherNo, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getoilconversionvocherNo, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getoilconversionvocherNo, this.branchFormData.get('branchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getoilconversionvocherNo, this.branchFormData.get('branchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -272,7 +272,7 @@ export class CreateOilconversionsComponent implements OnInit {
 
   getProductByProductCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getProductByProductCode);
+      const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
@@ -294,7 +294,7 @@ export class CreateOilconversionsComponent implements OnInit {
   getProductByProductName(value) {
     //debugger;
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName);
+      const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
@@ -314,7 +314,7 @@ export class CreateOilconversionsComponent implements OnInit {
 
   //getProductByProductCode(value) {
   //  if (!isNullOrUndefined(value) && value != '') {
-  //    const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getProductByProductCode, value);
+  //    const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode, value].join('/');
   //    this.apiService.apiGetRequest(getProductByProductCodeUrl).subscribe(
   //      response => {
   //        const res = response.body;
@@ -335,7 +335,7 @@ export class CreateOilconversionsComponent implements OnInit {
   ////Autocomplete code
   //getProductByProductName(value) {
   //  if (!isNullOrUndefined(value) && value != '') {
-  //    const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName, value);
+  //    const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName, value].join('/');
   //    this.apiService.apiGetRequest(getProductByProductNameUrl).subscribe(
   //      response => {
   //        const res = response.body;
@@ -358,8 +358,8 @@ export class CreateOilconversionsComponent implements OnInit {
     //debugger;
     if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
       !isNullOrUndefined(productCode.value) && productCode.value != '') {
-      const getBillingDetailsRcdUrl = String.Join('/', this.apiConfigService.GetProductListsforoilconversionList, productCode.value,
-        this.branchFormData.get('branchCode').value);
+      const getBillingDetailsRcdUrl = ['/', this.apiConfigService.GetProductListsforoilconversionList, productCode.value,
+        this.branchFormData.get('branchCode').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
@@ -458,7 +458,7 @@ export class CreateOilconversionsComponent implements OnInit {
 
   registerOilcoversions() {
     //debugger;
-    const registerInvoiceUrl = String.Join('/', this.apiConfigService.registerOilconversion);
+    const registerInvoiceUrl = ['/', this.apiConfigService.registerOilconversion].join('/');
     const requestObj = { OilcnvsHdr: this.branchFormData.value, OilcnvsDtl: this.dataSource.data };
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {

@@ -59,7 +59,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   getPurchaseInvoiceList() {
-    const getPurchaseInvoiceListUrl = String.Join('/', this.apiConfigService.getPurchaseInvoiceList, this.branchCode.branchCode);
+    const getPurchaseInvoiceListUrl = ['/', this.apiConfigService.getPurchaseInvoiceList, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getPurchaseInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;

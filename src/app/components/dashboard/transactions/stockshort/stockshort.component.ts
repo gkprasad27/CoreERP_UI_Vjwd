@@ -59,7 +59,7 @@ export class StockshortComponent  implements OnInit {
 
   getInvoiceDetails() {
     //debugger;
-    const getInvoiceDetailstUrl = String.Join('/', this.apiConfigService.getStockshortDeatilListLoad, this.branchCode.branchCode);
+    const getInvoiceDetailstUrl = ['/', this.apiConfigService.getStockshortDeatilListLoad, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
@@ -102,7 +102,7 @@ export class StockshortComponent  implements OnInit {
     this.getStockshortList();
   }
   getStockshortList() {
-    const getInvoiceListUrl = String.Join('/', this.apiConfigService.getStockshortList, this.branchCode.branchCode);
+    const getInvoiceListUrl = ['/', this.apiConfigService.getStockshortList, this.branchCode.branchCode].join('/');
 
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {

@@ -76,7 +76,7 @@ export class OpeningBalanceComponent implements OnInit {
   }
  
   getOpeningBalBranchesList() {
-    const getOpeningBalBranchesListUrl = String.Join('/', this.apiConfigService.getObBranchesList);
+    const getOpeningBalBranchesListUrl = ['/', this.apiConfigService.getObBranchesList].join('/');
    this.apiService.apiGetRequest(getOpeningBalBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -92,7 +92,7 @@ export class OpeningBalanceComponent implements OnInit {
   }
 
   getPaymentType() {
-    const getPaymentTypeListUrl = String.Join('/', this.apiConfigService.getPaymentType);
+    const getPaymentTypeListUrl = ['/', this.apiConfigService.getPaymentType].join('/');
    this.apiService.apiGetRequest(getPaymentTypeListUrl).subscribe(
       response => {
         const res = response.body;
@@ -110,9 +110,9 @@ export class OpeningBalanceComponent implements OnInit {
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getObVoucherNo, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getObVoucherNo, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getObVoucherNo, this.modelFormData.get('branchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getObVoucherNo, this.modelFormData.get('branchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -131,7 +131,7 @@ export class OpeningBalanceComponent implements OnInit {
   }
   getBankPAccountLedgerList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getBankPAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerList, value);
+      const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;

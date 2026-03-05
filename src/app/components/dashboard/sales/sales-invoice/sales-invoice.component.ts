@@ -62,7 +62,7 @@ export class SalesInvoiceComponent implements OnInit {
   }
 
   getInvoiceList() {
-    const getInvoiceListUrl = String.Join('/', this.apiConfigService.getInvoiceList, this.branchCode.branchCode);
+    const getInvoiceListUrl = ['/', this.apiConfigService.getInvoiceList, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;

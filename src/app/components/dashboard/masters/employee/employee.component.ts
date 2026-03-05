@@ -121,7 +121,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   // getTableData() {
-  //   const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+  //   const getCompanyUrl = ['/', this.apiConfigService.getCompanysList].join('/');
   //   this.apiService.apiGetRequest(getCompanyUrl)
   //     .subscribe(
   //       response => {
@@ -136,7 +136,7 @@ export class EmployeeComponent implements OnInit {
   //     });
   // }
   getTableData1() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getBranchesList);
+    const getCompanyUrl = ['/', this.apiConfigService.getBranchesList].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -170,7 +170,7 @@ export class EmployeeComponent implements OnInit {
 //Get the Employee list data
 getEmployeeCode(value) {
   if (!isNullOrUndefined(value) && value != '') {
-    const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
+    const getProductByProductCodeUrl = ['/', this.apiConfigService.getEmpCode].join('/');
     this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
       response => {
         const res = response.body;

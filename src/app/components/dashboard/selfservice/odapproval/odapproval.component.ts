@@ -114,7 +114,7 @@ export class odApprovalComponent implements OnInit {
   getOdApplDetailsList() {
     //debugger;
     const user = JSON.parse(localStorage.getItem('user'));
-    const getOdApplDetailsListUrl = String.Join('/', this.apiConfigService.getOdApplDetailsList, user.userName);
+    const getOdApplDetailsListUrl = ['/', this.apiConfigService.getOdApplDetailsList, user.userName].join('/');
     this.apiService.apiGetRequest(getOdApplDetailsListUrl)
       .subscribe(
         response => {
@@ -136,7 +136,7 @@ export class odApprovalComponent implements OnInit {
     //this.dataSource = new MatTableDataSource(res.response['StockissuesDeatilList']);
 
     const user = JSON.parse(localStorage.getItem('user'));
-    const registerInvoiceUrl = String.Join('/', this.apiConfigService.RegisterOdApprovalDetails);
+    const registerInvoiceUrl = ['/', this.apiConfigService.RegisterOdApprovalDetails].join('/');
     const requestObj = { StockissueHdr: this.leaveRequestForm.value, code: user.userName, StockissueDtl: this.leaveApprovalList };
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {

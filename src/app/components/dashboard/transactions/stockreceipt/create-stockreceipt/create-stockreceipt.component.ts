@@ -148,7 +148,7 @@ export class CreateStockreceiptsComponent implements OnInit {
   getStockreceiptDeatilList(id)
   {
     //debugger;
-    const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.getStockreceiptDeatilList, id);
+    const getInvoiceDeatilListUrl = ['/', this.apiConfigService.getStockreceiptDeatilList, id].join('/');
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
@@ -163,7 +163,7 @@ export class CreateStockreceiptsComponent implements OnInit {
 
   getBranchesList()
   {
-    const getCashPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getCashPaymentBranchesList);
+    const getCashPaymentBranchesListUrl = ['/', this.apiConfigService.getCashPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -186,9 +186,9 @@ export class CreateStockreceiptsComponent implements OnInit {
     //debugger;
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getStockissuesreceiptnosList, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getStockissuesreceiptnosList, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getStockissuesreceiptnosList, this.branchFormData.get('fromBranchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getStockissuesreceiptnosList, this.branchFormData.get('fromBranchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -214,10 +214,10 @@ export class CreateStockreceiptsComponent implements OnInit {
     //debugger;
     let gettingtobranchesListUrl;
     if (this.branchFormData.get('fromBranchCode').value == null) {
-      gettingtobranchesListUrl = String.Join('/', this.apiConfigService.GetToBranchesStockreceiptsList);
+      gettingtobranchesListUrl = ['/', this.apiConfigService.GetToBranchesStockreceiptsList].join('/');
     }
     else {
-      gettingtobranchesListUrl = String.Join('/', this.apiConfigService.gettingtobranchesListforstockreceipt, this.branchFormData.get('fromBranchCode').value);
+      gettingtobranchesListUrl = ['/', this.apiConfigService.gettingtobranchesListforstockreceipt, this.branchFormData.get('fromBranchCode').value].join('/');
     }
     this.apiService.apiGetRequest(gettingtobranchesListUrl).subscribe(
       response => {
@@ -325,7 +325,7 @@ export class CreateStockreceiptsComponent implements OnInit {
 
   getProductByProductCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getProductByProductCode);
+      const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
@@ -348,7 +348,7 @@ export class CreateStockreceiptsComponent implements OnInit {
   {
     //debugger;
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName);
+      const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
@@ -369,7 +369,7 @@ export class CreateStockreceiptsComponent implements OnInit {
   //getProductByProductName(value) {
   //  debugger;
   //  if (!isNullOrUndefined(value) && value != '') {
-  //    const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName, value);
+  //    const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName, value].join('/');
   //    this.apiService.apiGetRequest(getProductByProductNameUrl).subscribe(
   //      response => {
   //        const res = response.body;
@@ -393,8 +393,8 @@ export class CreateStockreceiptsComponent implements OnInit {
     //debugger;
     if (!isNullOrUndefined(this.branchFormData.get('fromBranchCode').value) && this.branchFormData.get('fromBranchCode').value != '' &&
       !isNullOrUndefined(productCode.value) && productCode.value != '') {
-      const getBillingDetailsRcdUrl = String.Join('/', this.apiConfigService.GetProductListsforStockreceipts, productCode.value,
-        this.branchFormData.get('fromBranchCode').value);
+      const getBillingDetailsRcdUrl = ['/', this.apiConfigService.GetProductListsforStockreceipts, productCode.value,
+        this.branchFormData.get('fromBranchCode').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
@@ -486,7 +486,7 @@ export class CreateStockreceiptsComponent implements OnInit {
 
   registerStackreceipts() {
     //debugger;
-    const registerStackreceiptsUrl = String.Join('/', this.apiConfigService.registerStockreceipts);
+    const registerStackreceiptsUrl = ['/', this.apiConfigService.registerStockreceipts].join('/');
     const requestObj = { StackreceiptsHdr: this.branchFormData.value, StackreceiptsDetail: this.dataSource.data };
     this.apiService.apiPostRequest(registerStackreceiptsUrl, requestObj).subscribe(
       response => {

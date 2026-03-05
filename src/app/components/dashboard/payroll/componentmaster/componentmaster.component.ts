@@ -93,7 +93,7 @@ this.getConfigurationList();
   }
 
   getConfigurationList() {
-    const getConfigurationList = String.Join('/', this.apiConfigService.getConfigurationList);
+    const getConfigurationList = ['/', this.apiConfigService.getConfigurationList].join('/');
     this.apiService.apiGetRequest(getConfigurationList)
       .subscribe(
         response => {

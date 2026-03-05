@@ -54,7 +54,7 @@ export class ReportsComponent implements OnInit {
   }
   generateTableEvent(value) {
     this.spinner.show();
-    const getUrl = String.Join('/', this.tableUrl.url);
+    const getUrl = ['/', this.tableUrl.url].join('/');
 
     this.apiService.apiGetRequest(getUrl,value)
       .subscribe(
@@ -78,7 +78,7 @@ export class ReportsComponent implements OnInit {
   }
   getTableData() {
     this.spinner.show();
-    const getUrl = String.Join('/', this.tableUrl.url);
+    const getUrl = ['/', this.tableUrl.url].join('/');
 
     this.apiService.apiGetRequest(getUrl)
       .subscribe(

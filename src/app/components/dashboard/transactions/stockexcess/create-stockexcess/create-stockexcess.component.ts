@@ -113,7 +113,7 @@ export class CreateStockExcessComponent implements OnInit {
   }
 
   getStockExcessDetailsList(id) {
-    const getStockExcessDetailsListUrl = String.Join('/', this.apiConfigService.getStockExcessDetailsList, id);
+    const getStockExcessDetailsListUrl = ['/', this.apiConfigService.getStockExcessDetailsList, id].join('/');
     this.apiService.apiGetRequest(getStockExcessDetailsListUrl).subscribe(
       response => {
         const res = response.body;
@@ -142,7 +142,7 @@ export class CreateStockExcessComponent implements OnInit {
 
 
   getStockExcessBranchesList() {
-    const getStockExcessBranchesListUrl = String.Join('/', this.apiConfigService.getStockExcessBranchesList);
+    const getStockExcessBranchesListUrl = ['/', this.apiConfigService.getStockExcessBranchesList].join('/');
     this.apiService.apiGetRequest(getStockExcessBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -160,9 +160,9 @@ export class CreateStockExcessComponent implements OnInit {
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getstockexcessNo, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getstockexcessNo, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getstockexcessNo, this.branchFormData.get('branchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getstockexcessNo, this.branchFormData.get('branchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -181,7 +181,7 @@ export class CreateStockExcessComponent implements OnInit {
   }
 
   getStockExcessCostCentersList() {
-    const getStockExcessCostCentersListUrl = String.Join('/', this.apiConfigService.getStockExcessCostCentersList);
+    const getStockExcessCostCentersListUrl = ['/', this.apiConfigService.getStockExcessCostCentersList].join('/');
     this.apiService.apiGetRequest(getStockExcessCostCentersListUrl).subscribe(
       response => {
         const res = response.body;
@@ -272,7 +272,7 @@ export class CreateStockExcessComponent implements OnInit {
 
   getProductByProductCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getProductByProductCode);
+      const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
@@ -307,7 +307,7 @@ export class CreateStockExcessComponent implements OnInit {
 
 getProductByProductName(value) {
   if (!isNullOrUndefined(value) && value != '') {
-    const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName);
+    const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
     this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
       response => {
         const res = response.body;
@@ -329,8 +329,8 @@ getProductByProductName(value) {
     //debugger;
     if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
       !isNullOrUndefined(productCode.value) && productCode.value != '') {
-      const getBillingDetailsRcdUrl = String.Join('/', this.apiConfigService.getProductListsforStockexcessList, productCode.value,
-        this.branchFormData.get('branchCode').value);
+      const getBillingDetailsRcdUrl = ['/', this.apiConfigService.getProductListsforStockexcessList, productCode.value,
+        this.branchFormData.get('branchCode').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
@@ -406,7 +406,7 @@ getProductByProductName(value) {
     this.branchFormData.patchValue({
       stockExcessMasterId: 0
     });
-    const registerStockexcessUrl = String.Join('/', this.apiConfigService.registerStockexcess);
+    const registerStockexcessUrl = ['/', this.apiConfigService.registerStockexcess].join('/');
     const requestObj = { StockexcessHdr: this.branchFormData.value, StockexcessDtl: data };
     this.apiService.apiPostRequest(registerStockexcessUrl, requestObj).subscribe(
       response => {

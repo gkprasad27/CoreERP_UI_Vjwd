@@ -85,7 +85,7 @@ export class PackageconversionComponent implements OnInit {
     //this.GetouttcodeproductList();
   }
   GetInputcodeproductList() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getInputcodeproductList);
+    const getCompanyUrl = ['/', this.apiConfigService.getInputcodeproductList].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -102,7 +102,7 @@ export class PackageconversionComponent implements OnInit {
         });
   }
    //GetInputcodeproductList() {
-   //  const getCostCentersListUrl = String.Join('/', this.apiConfigService.getInputcodeproductList);
+   //  const getCostCentersListUrl = ['/', this.apiConfigService.getInputcodeproductList].join('/');
    //  this.commonService.apiCall(getCostCentersListUrl, (data) => {
    //    this.inputcodeList = data['InputcodeList'];
    //    this.outcodeList = data['InputcodeList'];
@@ -114,7 +114,7 @@ export class PackageconversionComponent implements OnInit {
   getproductCodeList() {
     //debugger;
     this.spinner.show();
-    const getbranchcodeList = String.Join('/', this.apiConfigService.GetproductNames, this.modelFormData.get('inputproductCode').value);
+    const getbranchcodeList = ['/', this.apiConfigService.GetproductNames, this.modelFormData.get('inputproductCode').value].join('/');
     this.apiService.apiGetRequest(getbranchcodeList)
       .subscribe(
         response => {
@@ -136,7 +136,7 @@ export class PackageconversionComponent implements OnInit {
   getoutproductCodeList() {
    // debugger;
     this.spinner.show();
-    const getbranchcodeList = String.Join('/', this.apiConfigService.GetproductNames, this.modelFormData.get('outputproductCode').value);
+    const getbranchcodeList = ['/', this.apiConfigService.GetproductNames, this.modelFormData.get('outputproductCode').value].join('/');
     this.apiService.apiGetRequest(getbranchcodeList)
       .subscribe(
         response => {

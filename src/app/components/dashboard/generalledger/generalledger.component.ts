@@ -1,6 +1,5 @@
 import { Component, ViewChild, ViewEncapsulation, AfterViewInit, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
-import { String } from 'typescript-string-operations';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
@@ -49,7 +48,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
       }
 
       getTableData() {
-        const getUrl = String.Join('/', this.tableUrl.url);
+        const getUrl = ['/', this.tableUrl.url].join('/');
         this.apiService.apiGetRequest(getUrl)
         .subscribe(
           response => {
@@ -71,7 +70,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
         });
         dialogRef.afterClosed().subscribe(result => {
           if (!isNullOrUndefined(result)) {
-          const deleteCompanyUrl = String.Join('/', this.tableUrl.deleteUrl, result.item[this.tableUrl.primaryKey]);
+          const deleteCompanyUrl = ['/', this.tableUrl.deleteUrl, result.item[this.tableUrl.primaryKey]].join('/');
           this.apiService.apiDeleteRequest(deleteCompanyUrl, result.item)
               .subscribe(
                 response => {
@@ -102,7 +101,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
         dialogRef.afterClosed().subscribe(result => {
           if (!isNullOrUndefined(result)) {
             if (result.action === 'Add') {
-             const addCompanyUrl = String.Join('/', this.tableUrl.registerUrl);
+             const addCompanyUrl = ['/', this.tableUrl.registerUrl].join('/');
              this.apiService.apiPostRequest(addCompanyUrl, result.item)
                 .subscribe(
                   response => {
@@ -117,7 +116,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
                   this.spinner.hide();
                   });
             } else if (result.action === 'Edit') {
-             const updateCompanyUrl = String.Join('/', this.tableUrl.updateUrl);
+             const updateCompanyUrl = ['/', this.tableUrl.updateUrl].join('/');
              this.apiService.apiUpdateRequest(updateCompanyUrl, result.item)
                 .subscribe(
                   response => {

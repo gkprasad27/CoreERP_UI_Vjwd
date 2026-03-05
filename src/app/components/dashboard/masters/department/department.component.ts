@@ -63,7 +63,7 @@ export class DepartmentComponent implements OnInit {
 
  
   getCompaniesList() {
-    const getCompaniesList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getCompaniesList = ['/', this.apiConfigService.getCompaniesList].join('/');
     this.apiService.apiGetRequest(getCompaniesList)
       .subscribe(
         response => {

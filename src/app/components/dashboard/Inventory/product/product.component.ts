@@ -102,7 +102,7 @@ export class ProductComponent implements OnInit {
   }
 
   getSupplierGroupList() {
-    const getSupplierGroupList = String.Join('/', this.apiConfigService.getSupplierGroupList);
+    const getSupplierGroupList = ['/', this.apiConfigService.getSupplierGroupList].join('/');
     this.apiService.apiGetRequest(getSupplierGroupList)
       .subscribe(
         response => {
@@ -118,8 +118,8 @@ export class ProductComponent implements OnInit {
   }
 
         getTaxList() {
-          const getTaxListUrl = String.Join('/', this.apiConfigService.getTaxList,
-            this.modelFormData.get('taxStructureCode').value);
+          const getTaxListUrl = ['/', this.apiConfigService.getTaxList,
+            this.modelFormData.get('taxStructureCode').value].join('/');
           this.apiService.apiGetRequest(getTaxListUrl).subscribe(
             response => {
               const res = response.body;
@@ -142,7 +142,7 @@ export class ProductComponent implements OnInit {
   
 
   getProductGroupList() {
-    const getProductGroupList = String.Join('/', this.apiConfigService.getProductGroupList);
+    const getProductGroupList = ['/', this.apiConfigService.getProductGroupList].join('/');
     this.apiService.apiGetRequest(getProductGroupList)
       .subscribe(
         response => {
@@ -158,7 +158,7 @@ export class ProductComponent implements OnInit {
   }
 
   getTaxApplicableList() {
-    const getTaxApplicableList = String.Join('/', this.apiConfigService.getTaxApplicableList);
+    const getTaxApplicableList = ['/', this.apiConfigService.getTaxApplicableList].join('/');
     this.apiService.apiGetRequest(getTaxApplicableList)
       .subscribe(
         response => {
@@ -174,7 +174,7 @@ export class ProductComponent implements OnInit {
   }
 
   getProductPackingList() {
-    const getProductPackingList = String.Join('/', this.apiConfigService.getProductPackingList);
+    const getProductPackingList = ['/', this.apiConfigService.getProductPackingList].join('/');
     this.apiService.apiGetRequest(getProductPackingList)
       .subscribe(
         response => {
@@ -190,7 +190,7 @@ export class ProductComponent implements OnInit {
   }
 
   getTaxGrouplist(){
-    const getTaxGrouplist=String.Join('/', this.apiConfigService.getTaxGrouplist,this.modelFormData.get('productGroupCode').value);
+    const getTaxGrouplist=['/', this.apiConfigService.getTaxGrouplist,this.modelFormData.get('productGroupCode').value].join('/');
     this.apiService.apiGetRequest(getTaxGrouplist)
     .subscribe(
       response => {
@@ -206,7 +206,7 @@ export class ProductComponent implements OnInit {
   }
 
   getUnitList() {
-    const getUnitList = String.Join('/', this.apiConfigService.getUnitList);
+    const getUnitList = ['/', this.apiConfigService.getUnitList].join('/');
     this.apiService.apiGetRequest(getUnitList)
       .subscribe(
         response => {
@@ -222,7 +222,7 @@ export class ProductComponent implements OnInit {
   }
 
   getTaxStructure(){
-    const getTaxStructure = String.Join('/', this.apiConfigService.getTaxStructure,this.modelFormData.get('taxGroupCode').value);
+    const getTaxStructure = ['/', this.apiConfigService.getTaxStructure,this.modelFormData.get('taxGroupCode').value].join('/');
     this.apiService.apiGetRequest(getTaxStructure)
       .subscribe(
         response => {

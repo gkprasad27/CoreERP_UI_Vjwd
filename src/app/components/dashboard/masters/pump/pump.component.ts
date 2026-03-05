@@ -69,7 +69,7 @@ export class PumpComponent implements OnInit {
   }
 
   GetBranchesList() {
-    const getBranchesListUrl = String.Join('/', this.apiConfigService.getCashPaymentBranchesList);
+    const getBranchesListUrl = ['/', this.apiConfigService.getCashPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getBranchesListUrl)
       .subscribe(
         response => {
@@ -83,7 +83,7 @@ export class PumpComponent implements OnInit {
       });
   }
   GetProductGroupsList() {
-    const getProductGroupsListUrl = String.Join('/', this.apiConfigService.GetProductGroups);
+    const getProductGroupsListUrl = ['/', this.apiConfigService.GetProductGroups].join('/');
     this.apiService.apiGetRequest(getProductGroupsListUrl)
       .subscribe(
         response => {
@@ -99,7 +99,7 @@ export class PumpComponent implements OnInit {
 
 
   getbranchCodeList() {
-    const getbranchcodeList = String.Join('/', this.apiConfigService.GetBranchcodes, this.modelFormData.get('branchName').value);
+    const getbranchcodeList = ['/', this.apiConfigService.GetBranchcodes, this.modelFormData.get('branchName').value].join('/');
     this.apiService.apiGetRequest(getbranchcodeList)
       .subscribe(
         response => {
@@ -119,7 +119,7 @@ export class PumpComponent implements OnInit {
 
   }
   getGetProductGroupsNamesList() {
-    const getProductGroupsNamesList = String.Join('/', this.apiConfigService.GetProductGroupsNames, this.modelFormData.get('productCode').value);
+    const getProductGroupsNamesList = ['/', this.apiConfigService.GetProductGroupsNames, this.modelFormData.get('productCode').value].join('/');
     this.apiService.apiGetRequest(getProductGroupsNamesList)
       .subscribe(
         response => {

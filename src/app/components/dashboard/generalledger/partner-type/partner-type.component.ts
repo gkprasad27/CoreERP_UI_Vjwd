@@ -60,7 +60,7 @@ export class PartnerTypeComponent implements OnInit {
   }
 
   getaccounttypelistData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getaccounttypelist);
+    const getCompanyUrl = ['/', this.apiConfigService.getaccounttypelist].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

@@ -59,7 +59,7 @@ branchCode:any;
   }
 
   getBankPaymentBranchesList() {
-    const getBankPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getBankPaymentBranchesList);
+    const getBankPaymentBranchesListUrl = ['/', this.apiConfigService.getBankPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getBankPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -75,7 +75,7 @@ branchCode:any;
   }
 
   getBankpaymentList() {
-    const getBankpaymentListUrl = String.Join('/', this.apiConfigService.getBankpaymentList, this.branchCode.branchCode);
+    const getBankpaymentListUrl = ['/', this.apiConfigService.getBankpaymentList, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getBankpaymentListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;

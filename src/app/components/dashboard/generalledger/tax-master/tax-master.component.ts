@@ -69,7 +69,7 @@ export class TaxMasterComponent implements OnInit {
   }
 
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.GetTaxTypes);
+    const getCompanyUrl = ['/', this.apiConfigService.GetTaxTypes].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

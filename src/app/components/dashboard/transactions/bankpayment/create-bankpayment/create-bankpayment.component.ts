@@ -126,7 +126,7 @@ export class CreateBankpaymentComponent implements OnInit {
     });
   }
   getBankPaymentDetailsList(id) {
-    const getBankPaymentDetailsListUrl = String.Join('/', this.apiConfigService.getBankPaymentDetailsList, id);
+    const getBankPaymentDetailsListUrl = ['/', this.apiConfigService.getBankPaymentDetailsList, id].join('/');
     this.apiService.apiGetRequest(getBankPaymentDetailsListUrl).subscribe(
       response => {
         const res = response.body;
@@ -160,7 +160,7 @@ export class CreateBankpaymentComponent implements OnInit {
 
 
   getBankPaymentBranchesList() {
-    const getBankPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getBankPaymentBranchesList);
+    const getBankPaymentBranchesListUrl = ['/', this.apiConfigService.getBankPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getBankPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -176,7 +176,7 @@ export class CreateBankpaymentComponent implements OnInit {
   }
 
   getBPAccountLedgerList() {
-    const getBPAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerList);
+    const getBPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList].join('/');
     this.apiService.apiGetRequest(getBPAccountLedgerListUrl).subscribe(
       response => {
         const res = response.body;
@@ -192,7 +192,7 @@ export class CreateBankpaymentComponent implements OnInit {
   }
 
   // getBankPAccountLedgerList() {
-  //   const getBankPAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBankPAccountLedgerList);
+  //   const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBankPAccountLedgerList].join('/');
   //   this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
   //     response => {
   //       const res = response.body;
@@ -209,7 +209,7 @@ export class CreateBankpaymentComponent implements OnInit {
 
   getBankPAccountLedgerList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getBankPAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerList, value);
+      const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -245,9 +245,9 @@ export class CreateBankpaymentComponent implements OnInit {
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getBankPaymentVoucherNo, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getBankPaymentVoucherNo, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getBankPaymentVoucherNo, this.branchFormData.get('branchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getBankPaymentVoucherNo, this.branchFormData.get('branchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -342,7 +342,7 @@ export class CreateBankpaymentComponent implements OnInit {
 
   getAccountByAccountCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerList, value);
+      const getAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -362,7 +362,7 @@ export class CreateBankpaymentComponent implements OnInit {
 
   getAccountByAccountName(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getAccountLedgerListUrl = String.Join('/', this.apiConfigService.getBPAccountLedgerListByName, value);
+      const getAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerListByName, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -527,7 +527,7 @@ export class CreateBankpaymentComponent implements OnInit {
       bankPaymentDate: this.commonService.formatDate(this.branchFormData.get('bankPaymentDate').value),
       postingDate: this.commonService.formatDate(this.branchFormData.get('postingDate').value),
     });
-    const registerBankPaymentUrl = String.Join('/', this.apiConfigService.registerBankPayment);
+    const registerBankPaymentUrl = ['/', this.apiConfigService.registerBankPayment].join('/');
     const requestObj = { BankpaymentHdr: this.branchFormData.value, BankpaymentDetail: data };
     this.apiService.apiPostRequest(registerBankPaymentUrl, requestObj).subscribe(
       response => {

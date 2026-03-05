@@ -66,7 +66,7 @@ export class NumberAssignmentComponent implements OnInit {
   }
 
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getCompanyUrl = ['/', this.apiConfigService.getCompaniesList].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -81,7 +81,7 @@ export class NumberAssignmentComponent implements OnInit {
         });
   }
   getProductGroupList() {
-    const getProductGroupList = String.Join('/', this.apiConfigService.getProductGroupList);
+    const getProductGroupList = ['/', this.apiConfigService.getProductGroupList].join('/');
     this.apiService.apiGetRequest(getProductGroupList)
       .subscribe(
         response => {
@@ -98,7 +98,7 @@ export class NumberAssignmentComponent implements OnInit {
 
 
   getMaterialGroupsList() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getMaterialGroupsList);
+    const getCompanyUrl = ['/', this.apiConfigService.getMaterialGroupsList].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

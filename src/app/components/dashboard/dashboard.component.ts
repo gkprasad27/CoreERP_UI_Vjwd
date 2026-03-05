@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getMenuList() {
    let obj= JSON.parse(localStorage.getItem("user"));
 
-    const getMenuUrl = String.Join('/', this.apiConfigService.getMenuUrl,obj.role);
+    const getMenuUrl = ['/', this.apiConfigService.getMenuUrl,obj.role].join('/');
     this.apiService.apiGetRequest(getMenuUrl)
       .subscribe(
         menu => {

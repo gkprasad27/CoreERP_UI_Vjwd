@@ -91,7 +91,7 @@ export class ApprovalTypeComponent implements OnInit {
   }
 
   getCashAccBranchesList() {
-    const getCashAccBranchesList = String.Join('/', this.apiConfigService.getCashAccBranchesList);
+    const getCashAccBranchesList = ['/', this.apiConfigService.getCashAccBranchesList].join('/');
     this.apiService.apiGetRequest(getCashAccBranchesList)
       .subscribe(
         response => {
@@ -107,7 +107,7 @@ export class ApprovalTypeComponent implements OnInit {
   }
 
   getCompiniesList() {
-    const getCompiniesListList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getCompiniesListList = ['/', this.apiConfigService.getCompaniesList].join('/');
     this.apiService.apiGetRequest(getCompiniesListList)
       .subscribe(
         response => {
@@ -124,7 +124,7 @@ export class ApprovalTypeComponent implements OnInit {
 
 
   getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getempList);
+    const getEmployeeList = ['/', this.apiConfigService.getempList].join('/');
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {

@@ -135,7 +135,7 @@ export class CreateJournalvoucherComponent implements OnInit {
     });
   }
   getJournalVoucherDetailsList(id) {
-    const getJournalVoucherDetailsListUrl = String.Join('/', this.apiConfigService.getJournalVoucherDetailsList, id);
+    const getJournalVoucherDetailsListUrl = ['/', this.apiConfigService.getJournalVoucherDetailsList, id].join('/');
     this.apiService.apiGetRequest(getJournalVoucherDetailsListUrl).subscribe(
       response => {
         const res = response.body;
@@ -168,7 +168,7 @@ export class CreateJournalvoucherComponent implements OnInit {
 
 
   getJournalVoucherBranchesList() {
-    const getJournalVoucherBranchesListUrl = String.Join('/', this.apiConfigService.getJournalVoucherBranchesList);
+    const getJournalVoucherBranchesListUrl = ['/', this.apiConfigService.getJournalVoucherBranchesList].join('/');
     this.apiService.apiGetRequest(getJournalVoucherBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -184,7 +184,7 @@ export class CreateJournalvoucherComponent implements OnInit {
   }
 
   getJVAccountLedgerList() {
-    const getJVAccountLedgerListUrl = String.Join('/', this.apiConfigService.getJVAccountLedgerList);
+    const getJVAccountLedgerListUrl = ['/', this.apiConfigService.getJVAccountLedgerList].join('/');
     this.apiService.apiGetRequest(getJVAccountLedgerListUrl).subscribe(
       response => {
         const res = response.body;
@@ -200,7 +200,7 @@ export class CreateJournalvoucherComponent implements OnInit {
   }
 
   // getJournalVoucherAccountLedgerList() {
-  //   const getJournalVoucherAccountLedgerListUrl = String.Join('/', this.apiConfigService.getJournalVoucherAccountLedgerList);
+  //   const getJournalVoucherAccountLedgerListUrl = ['/', this.apiConfigService.getJournalVoucherAccountLedgerList].join('/');
   //   this.apiService.apiGetRequest(getJournalVoucherAccountLedgerListUrl).subscribe(
   //     response => {
   //       const res = response.body;
@@ -216,7 +216,7 @@ export class CreateJournalvoucherComponent implements OnInit {
   // }
   getJournalVoucherAccountLedgerList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getJournalVoucherAccountLedgerListUrl = String.Join('/', this.apiConfigService.getJournalVoucherAccountLedgerList, value);
+      const getJournalVoucherAccountLedgerListUrl = ['/', this.apiConfigService.getJournalVoucherAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getJournalVoucherAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -239,7 +239,7 @@ export class CreateJournalvoucherComponent implements OnInit {
 
   getAccountByAccountName(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getAccountLedgerListUrl = String.Join('/', this.apiConfigService.getAccountLedgerListByName, value);
+      const getAccountLedgerListUrl = ['/', this.apiConfigService.getAccountLedgerListByName, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -308,9 +308,9 @@ export class CreateJournalvoucherComponent implements OnInit {
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getJournalVoucherNo, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getJournalVoucherNo, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getJournalVoucherNo, this.branchFormData.get('branchCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getJournalVoucherNo, this.branchFormData.get('branchCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -403,7 +403,7 @@ export class CreateJournalvoucherComponent implements OnInit {
 
   getAccountByAccountCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getAccountLedgerListUrl = String.Join('/', this.apiConfigService.getJournalVoucherAccountLedgerList, value);
+      const getAccountLedgerListUrl = ['/', this.apiConfigService.getJournalVoucherAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -533,7 +533,7 @@ export class CreateJournalvoucherComponent implements OnInit {
       journalVoucherMasterId: 0,
       journalVoucherDate:this.commonService.formatDate(this.branchFormData.get('journalVoucherDate').value)
     });
-    const registerJournalVoucherUrl = String.Join('/', this.apiConfigService.registerJournalVoucher);
+    const registerJournalVoucherUrl = ['/', this.apiConfigService.registerJournalVoucher].join('/');
     const requestObj = { JournalVoucherHdr: this.branchFormData.value, JournalVoucherDetail: data };
     this.apiService.apiPostRequest(registerJournalVoucherUrl, requestObj).subscribe(
       response => {

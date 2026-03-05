@@ -57,7 +57,7 @@ this.getGLSubCodeAccountsList();
 
 
   getGLSubCodeAccountsList() {
-    const getGLSubCodeAccountsList = String.Join('/', this.apiConfigService.getGLSubCodeAccountsList);
+    const getGLSubCodeAccountsList = ['/', this.apiConfigService.getGLSubCodeAccountsList].join('/');
     this.apiService.apiGetRequest(getGLSubCodeAccountsList)
       .subscribe(
         response => {

@@ -60,7 +60,7 @@ export class PurchaserequisitionapprovalComponent implements OnInit {
 
   getPurchaserequisitionDetails() {
     //debugger;
-    const getInvoiceDetailstUrl = String.Join('/', this.apiConfigService.getPurchaserequisitionDetailsListLoad, this.branchCode.branchCode);
+    const getInvoiceDetailstUrl = ['/', this.apiConfigService.getPurchaserequisitionDetailsListLoad, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
@@ -105,7 +105,7 @@ export class PurchaserequisitionapprovalComponent implements OnInit {
   }
   getpurchaserequisitionList() {
     //debugger;
-    const getInvoiceListUrl = String.Join('/', this.apiConfigService.getpurchaserequisitionList, this.branchCode.branchCode);
+    const getInvoiceListUrl = ['/', this.apiConfigService.getpurchaserequisitionList, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;

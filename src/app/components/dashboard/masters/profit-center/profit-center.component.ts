@@ -73,7 +73,7 @@ export class ProfitCenterComponent implements OnInit {
   }
 
   companiesListData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = ['/', this.apiConfigService.getCompanysList].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

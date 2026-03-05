@@ -77,7 +77,7 @@ this.getPricingLevellist();
   }
 
   getAccountGrouplist() {
-    const getAccountGrouplist = String.Join('/', this.apiConfigService.getAccountGrouplist);
+    const getAccountGrouplist = ['/', this.apiConfigService.getAccountGrouplist].join('/');
     this.apiService.apiGetRequest(getAccountGrouplist)
       .subscribe(
         response => {
@@ -93,7 +93,7 @@ this.getPricingLevellist();
   }
 
   getAccountTypelist() {
-    const getAccountTypelist = String.Join('/', this.apiConfigService.getAccountTypelist);
+    const getAccountTypelist = ['/', this.apiConfigService.getAccountTypelist].join('/');
     this.apiService.apiGetRequest(getAccountTypelist)
       .subscribe(
         response => {
@@ -109,7 +109,7 @@ this.getPricingLevellist();
   }
 
   getPaymentTypelist() {
-    const getPaymentTypelist = String.Join('/', this.apiConfigService.getPaymentTypelist);
+    const getPaymentTypelist = ['/', this.apiConfigService.getPaymentTypelist].join('/');
     this.apiService.apiGetRequest(getPaymentTypelist)
       .subscribe(
         response => {
@@ -125,7 +125,7 @@ this.getPricingLevellist();
   }
 
   getPricingLevellist() {
-    const getPricingLevellist = String.Join('/', this.apiConfigService.getPricingLevellist);
+    const getPricingLevellist = ['/', this.apiConfigService.getPricingLevellist].join('/');
     this.apiService.apiGetRequest(getPricingLevellist)
       .subscribe(
         response => {

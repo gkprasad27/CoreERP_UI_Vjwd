@@ -67,7 +67,7 @@ export class TanksComponent implements OnInit {
   }
   
   GetBranchesList() {
-    const getBranchesListUrl = String.Join('/', this.apiConfigService.GetBranches);
+    const getBranchesListUrl = ['/', this.apiConfigService.GetBranches].join('/');
     this.apiService.apiGetRequest(getBranchesListUrl)
       .subscribe(
         response => {
@@ -83,7 +83,7 @@ export class TanksComponent implements OnInit {
 
 
   getBranchesList() {
-    const getCashPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getCashPaymentBranchesList);
+    const getCashPaymentBranchesListUrl = ['/', this.apiConfigService.getCashPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -106,7 +106,7 @@ export class TanksComponent implements OnInit {
 
   getbranchCodeList() {
     this.spinner.show();
-    const getbranchcodeList = String.Join('/', this.apiConfigService.Getbranchcodes, this.modelFormData.get('branchName').value);
+    const getbranchcodeList = ['/', this.apiConfigService.Getbranchcodes, this.modelFormData.get('branchName').value].join('/');
     this.apiService.apiGetRequest(getbranchcodeList)
       .subscribe(
         response => {

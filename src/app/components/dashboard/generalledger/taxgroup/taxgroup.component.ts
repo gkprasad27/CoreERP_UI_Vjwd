@@ -64,7 +64,7 @@ export class TaxgroupsComponent implements OnInit {
 
  
   GetProductGroupsList() {
-    const getProductGroupsListUrl = String.Join('/', this.apiConfigService.GetProductGroups);
+    const getProductGroupsListUrl = ['/', this.apiConfigService.GetProductGroups].join('/');
     this.apiService.apiGetRequest(getProductGroupsListUrl)
       .subscribe(
         response => {

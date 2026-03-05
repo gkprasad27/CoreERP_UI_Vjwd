@@ -87,7 +87,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
     //alert("hi");
     //debugger;
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
+      const getProductByProductCodeUrl = ['/', this.apiConfigService.getEmpCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
         response => {
           const res = response.body;
@@ -110,9 +110,9 @@ export class LeaveopeningbalanceComponent implements OnInit {
     //alert("hi");
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(code)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getEmpName, code.value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, code.value].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getEmpName, this.modelFormData.get('empCode').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, this.modelFormData.get('empCode').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -137,7 +137,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('user'));
     let username = user.userName;
     this.spinner.show();
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getLeaveTypeatListforlop, user.companyCode ? user.companyCode : "6");
+    const getCompanyUrl = ['/', this.apiConfigService.getLeaveTypeatListforlop, user.companyCode ? user.companyCode : "6"].join('/');
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

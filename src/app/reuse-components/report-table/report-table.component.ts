@@ -214,7 +214,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
   }
 
   getAccountLedgersList() {
-    const getLoginUrl = String.Join('/', this.apiConfigService.getAccountLedgersList);
+    const getLoginUrl = ['/', this.apiConfigService.getAccountLedgersList].join('/');
     this.apiService.apiGetRequest(getLoginUrl)
       .subscribe(
         response => {
@@ -227,7 +227,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
         });
   }
   getReportBranchesList() {
-    const getLoginUrl = String.Join('/', this.apiConfigService.getReportBranchList);
+    const getLoginUrl = ['/', this.apiConfigService.getReportBranchList].join('/');
     this.apiService.apiGetRequest(getLoginUrl)
       .subscribe(
         response => {
@@ -240,7 +240,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
         });
   }
   getReportPGList() {
-    const getLoginUrl = String.Join('/', this.apiConfigService.getReportPGList);
+    const getLoginUrl = ['/', this.apiConfigService.getReportPGList].join('/');
     this.apiService.apiGetRequest(getLoginUrl)
       .subscribe(
         response => {
@@ -253,7 +253,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
         });
   }
   getReportSGList() {
-    const getLoginUrl = String.Join('/', this.apiConfigService.getReportSGList);
+    const getLoginUrl = ['/', this.apiConfigService.getReportSGList].join('/');
     this.apiService.apiGetRequest(getLoginUrl)
       .subscribe(
         response => {
@@ -266,7 +266,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
         });
   }
   // getProductsList() {
-  //   const getLoginUrl = String.Join('/', this.apiConfigService.getStockProducts);
+  //   const getLoginUrl = ['/', this.apiConfigService.getStockProducts].join('/');
   //   this.apiService.apiGetRequest(getLoginUrl)
   //     .subscribe(
   //       response => {
@@ -281,7 +281,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
 
   getProductsList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductListUrl = String.Join('');
+      const getProductListUrl = ['/', this.apiConfigService.getStockProducts, value].join('/');
       this.apiService.apiGetRequest(getProductListUrl).subscribe(
         response => {
           const res = response.body;
@@ -304,7 +304,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
 
   getBankPAccountLedgerList(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getBankPAccountLedgerListUrl = String.Join('');
+      const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
@@ -875,7 +875,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
               this.params = this.params.append('shiftId', data.item.ShiftID)
 
               let tableUrl = this.reportsService.getRouteUrls('InnerShift');
-              const getUrl = String.Join('/', tableUrl.url);
+              const getUrl = ['/', tableUrl.url].join('/');
               this.apiService.apiGetRequest(getUrl, this.params)
                 .subscribe(
                   response => {

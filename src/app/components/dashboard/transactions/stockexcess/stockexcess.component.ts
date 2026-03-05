@@ -57,7 +57,7 @@ branchCode: any;
 
 
   getStockexcessList() {
-    const getStockexcessListUrl = String.Join('/', this.apiConfigService.getStockexcessList, this.branchCode.branchCode);
+    const getStockexcessListUrl = ['/', this.apiConfigService.getStockexcessList, this.branchCode.branchCode].join('/');
     this.apiService.apiPostRequest(getStockexcessListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;

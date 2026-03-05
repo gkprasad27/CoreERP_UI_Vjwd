@@ -61,7 +61,7 @@ this.getCashAccounts();
   }
 
   getCashAccBranchesList() {
-    const getCashAccBranchesList = String.Join('/', this.apiConfigService.getCashAccBranchesList);
+    const getCashAccBranchesList = ['/', this.apiConfigService.getCashAccBranchesList].join('/');
     this.apiService.apiGetRequest(getCashAccBranchesList)
       .subscribe(
         response => {
@@ -77,7 +77,7 @@ this.getCashAccounts();
   }
 
   getBankAccounts() {
-    const getBankAccounts = String.Join('/', this.apiConfigService.getBankAccounts);
+    const getBankAccounts = ['/', this.apiConfigService.getBankAccounts].join('/');
     this.apiService.apiGetRequest(getBankAccounts)
       .subscribe(
         response => {
@@ -93,7 +93,7 @@ this.getCashAccounts();
   }
 
   getCashAccounts() {
-    const getCashAccounts = String.Join('/', this.apiConfigService.getCashAccounts);
+    const getCashAccounts = ['/', this.apiConfigService.getCashAccounts].join('/');
     this.apiService.apiGetRequest(getCashAccounts)
       .subscribe(
         response => {

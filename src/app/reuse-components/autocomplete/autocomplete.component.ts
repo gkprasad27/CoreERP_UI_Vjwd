@@ -74,8 +74,8 @@ export class AutocompleteComponent implements OnInit {
   // filter and return the values
   filter(value: string) {
     if (!isNullOrUndefined(value) && value.length) {
-      // const url = String.Join('/', this.dataConfig.url, value.trim());
-      const url = String.Join('/', this.dataConfig.url);
+      // const url = ['/', this.dataConfig.url, value.trim()].join('/');
+      const url = ['/', this.dataConfig.url].join('/');
     return this.apiService.apiGetRequest(url)
       .pipe(map(r => r.json()))
       .subscribe(response => {          

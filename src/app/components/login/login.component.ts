@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   loginAPICall() {
     // // this.spinner.show();
     const requestObj = { UserName: this.loginForm.get('username').value, Password: this.loginForm.get('password').value };
-    const getLoginUrl = String.Join('/', this.apiConfigService.loginUrl);
+    const getLoginUrl = ['/', this.apiConfigService.loginUrl].join('/');
     this.apiService.apiPostRequest(getLoginUrl, requestObj)
       .subscribe(
         response => {
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   getBranchesForUser(obj) {
-    const getBranchesForUserUrl = String.Join('/', this.apiConfigService.getBranchesForUser, obj.seqId);
+    const getBranchesForUserUrl = ['/', this.apiConfigService.getBranchesForUser, obj.seqId].join('/');
     this.apiService.apiGetRequest(getBranchesForUserUrl).subscribe(
       response => {
         this.spinner.hide();

@@ -139,7 +139,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
 
   getprreqDeatilList(id) {
     debugger;
-    const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.getprreqDeatilList, id);
+    const getInvoiceDeatilListUrl = ['/', this.apiConfigService.getprreqDeatilList, id].join('/');
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
@@ -153,7 +153,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
       });
   }
   getCompiniesList() {
-    const getCompiniesListList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getCompiniesListList = ['/', this.apiConfigService.getCompaniesList].join('/');
     this.apiService.apiGetRequest(getCompiniesListList)
       .subscribe(
         response => {
@@ -168,7 +168,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
         });
   }
   getBranchesList() {
-    const getCashPaymentBranchesListUrl = String.Join('/', this.apiConfigService.getCashPaymentBranchesList);
+    const getCashPaymentBranchesListUrl = ['/', this.apiConfigService.getCashPaymentBranchesList].join('/');
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
@@ -190,9 +190,9 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     //setbranch
     let genarateVoucherNoUrl;
     if (!isNullOrUndefined(branch)) {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getprreqreceiptnosList, branch);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getprreqreceiptnosList, branch].join('/');
     } else {
-      genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getprreqreceiptnosList, this.branchFormData.get('branch').value);
+      genarateVoucherNoUrl = ['/', this.apiConfigService.getprreqreceiptnosList, this.branchFormData.get('branch').value].join('/');
     }
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
@@ -290,7 +290,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
 
   getProductByProductCode(value) {
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getProductByProductCode);
+      const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
@@ -312,7 +312,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
   getProductByProductName(value) {
     //debugger;
     if (!isNullOrUndefined(value) && value != '') {
-      const getProductByProductNameUrl = String.Join('/', this.apiConfigService.getProductByProductName);
+      const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
@@ -335,8 +335,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     //debugger;set branch
     if (!isNullOrUndefined(this.branchFormData.get('branch').value) && this.branchFormData.get('branch').value != '' &&
       !isNullOrUndefined(productCode.value) && productCode.value != '') {
-      const getBillingDetailsRcdUrl = String.Join('/', this.apiConfigService.GetProductListsforpreq, productCode.value,
-        this.branchFormData.get('branch').value);
+      const getBillingDetailsRcdUrl = ['/', this.apiConfigService.GetProductListsforpreq, productCode.value,
+        this.branchFormData.get('branch').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
@@ -428,7 +428,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
 
   registerpurreq() {
     debugger;
-    const registerStackreceiptsUrl = String.Join('/', this.apiConfigService.registerPurchaserequisitionDetails);
+    const registerStackreceiptsUrl = ['/', this.apiConfigService.registerPurchaserequisitionDetails].join('/');
     const requestObj = { PurreqHdr: this.branchFormData.value, PurreqDetail: this.dataSource.data };
     this.apiService.apiPostRequest(registerStackreceiptsUrl, requestObj).subscribe(
       response => {
