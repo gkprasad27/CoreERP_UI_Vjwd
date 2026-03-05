@@ -36,7 +36,6 @@
     "multilingual-number-to-words": "^5.0.3",
     "ngx-bootstrap": "^5.3.2",
     "ngx-daterangepicker-material": "^2.2.0",
-    "ngx-mat-select-search": "^2.1.0",
     "ngx-spinner": "^8.1.0",
     "pdfmake": "^0.1.65",
     "rxjs": "~6.6.7",
