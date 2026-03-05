@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   
 
-  @ViewChild('appDrawer', {static: false}) appDrawer: ElementRef;
+  @ViewChild('appDrawer') appDrawer: ElementRef;
   navItems = [];
   
   

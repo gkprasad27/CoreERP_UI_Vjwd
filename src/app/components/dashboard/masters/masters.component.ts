@@ -26,7 +26,7 @@ export class MastersComponent implements OnInit {
   addOrUpdateData: any;
   tableUrl: any;
 
-  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+  @ViewChild(TableComponent) tableComponent: TableComponent;
 
   paramId: any;
 

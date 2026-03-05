@@ -24,7 +24,7 @@ export class TransactionsComponent implements OnInit {
   tableUrl: any;
   routeParams: any;
 
-  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+  @ViewChild(TableComponent) tableComponent: TableComponent;
 
   constructor(
     private apiService: ApiService,

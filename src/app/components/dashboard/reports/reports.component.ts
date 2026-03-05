@@ -25,7 +25,7 @@ export class ReportsComponent implements OnInit {
   footerData:any;
   tableUrl: any;
   route: any;
-  @ViewChild(ReportTableComponent, { static: false }) reportTableComponent: ReportTableComponent;
+  @ViewChild(ReportTableComponent) reportTableComponent: ReportTableComponent;
 
   constructor(
     private apiService: ApiService,

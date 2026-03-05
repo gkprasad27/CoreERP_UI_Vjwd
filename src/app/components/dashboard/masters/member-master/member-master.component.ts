@@ -50,7 +50,7 @@ export class MemberMasterComponent implements OnInit {
   @Input() memberUrls: any;
   isFormEdit: boolean = false;
 
-  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+  @ViewChild(TableComponent) tableComponent: TableComponent;
 
   giftIssued : giftIssued[]=
   [

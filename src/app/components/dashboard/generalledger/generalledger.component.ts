@@ -23,7 +23,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
     tableData: any;
     tableUrl: any;
 
-    @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+    @ViewChild(TableComponent) tableComponent: TableComponent;
 
     constructor(
         private apiService: ApiService,
