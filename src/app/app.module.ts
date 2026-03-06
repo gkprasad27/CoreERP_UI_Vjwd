@@ -89,105 +89,76 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FocusOnEnterDirective,
-    DashboardComponent,
-    LoginComponent,
-    SidebarComponent,
-    NotFoundComponent,
-    TableComponent, DeleteItemComponent,SaveItemComponent,
-    GeneralledgerComponent, AccountsGroupComponent,
-    SubGroupComponent, UndersubGroupComponent,
-    GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
-    AccToAccClassComponent, VoucherTypesComponent,
-    InventoryComponent, BrandModelComponent, SizesComponent, AccountingClassComponent,UnitComponent,
-    BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent, MastersComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent,  CostCenterComponent,
-    NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
-    TaxMasterComponent,  TanksComponent, PumpComponent, 
-    TaxgroupsComponent, TaxstructuresComponent,
-    PayrollComponent,
-    LeaveopeningbalancesComponent,
-    //LeaveopeningbalanceComponent,
-    //selfserviceComponent,
-    SelfserviceComponent,
-    LeavetypeComponent,
-    LeaveopeningbalanceComponent,
-    LeavetypesComponent, ApplyodComponent, PermissionRequestComponent, PermissionApprovalsComponent, ApprovalTypeComponent, AdvanceComponent, VehicleRequisitionsComponent, VehicleApprovalsComponent,
-    LeaveRequestComponent, PTMasterComponent, ComponentMasterComponent,
-    StructureCreationComponent, LeaveApprovalComponent, odApprovalComponent,advanceApprovalComponent,
-    PFMasterComponent, CTCBreakupComponent, SalaryProcessComponent,
-    SalesComponent, SalesInvoiceComponent, SalesReturnComponent, CreateBillComponent, SalesReturnViewComponent,
-    TransactionsComponent, CashPaymentComponent, CreateCashpaymentComponent, CashReceiptComponent,
-    CreateCashreceiptComponent, BankPaymentComponent, CreateBankpaymentComponent,BankReceiptComponent,
-    CreateBankreceiptComponent,JournalVoucherComponent,CreateJournalvoucherComponent,
-    RolesprevilagesComponent, SettingsComponent, StocktransferComponent, CreateStockTransferComponent, PurchaseComponent, PurchaseCreateComponent, PurchaseReturnComponent, PurchaseReturnViewComponent,
-    ReportTableComponent,ReportsInnerTableComponent, ReportsComponent, SearchFilterTableComponent,
-    CreateStockissuesComponent , StockissuesComponent,PurchaserequisitionComponent, PurchaserequisitionapprovalComponent,CreatePurchaseRequisitionapprovalComponent, CreatePurchaseRequisitionComponent, CreateStockreceiptsComponent, StockreceiptsComponent
-    , CreateStockshortsComponent, StockshortComponent, CreateOilconversionsComponent, OilconversionComponent,
-    PrintComponent, PrintPetrolComponent, PackageconversionComponent, MSHSDRatesComponent,OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent, MeterReadingComponent, ProductComponent, MemberMasterComponent, VehicleComponent, ShareTransferComponent, GiftMasterComponent,
-    AdditionalShareTransferComponent, AutocompleteComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    SharedImportModule,
-    NgxDaterangepickerMd.forRoot(),
-    BsDropdownModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-  ],
-  providers: [
-    RuntimeConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (environment: RuntimeConfigService) => () => environment.loadRuntimeConfig(),
-      multi: true,
-      deps: [RuntimeConfigService, HttpClientModule]
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    SaveItemComponent,
-    GeneralledgerComponent, AccountsGroupComponent,
-    SubGroupComponent, UndersubGroupComponent,
-    GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
-    AccToAccClassComponent, VoucherTypesComponent,
-    DeleteItemComponent, InventoryComponent, BrandModelComponent,UnitComponent, SizesComponent, AccountingClassComponent,
-    BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent, CostCenterComponent,
-    NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
-    TaxMasterComponent,  TanksComponent, PumpComponent, 
-    TaxgroupsComponent, TaxstructuresComponent,
-    LeaveopeningbalancesComponent,
-   // LeaveopeningbalanceComponent,
-    LeavetypeComponent,
-    LeaveopeningbalanceComponent,
-    LeavetypesComponent,
-    ApplyodComponent, PermissionRequestComponent, PermissionApprovalsComponent, ApprovalTypeComponent, AdvanceComponent, VehicleRequisitionsComponent, VehicleApprovalsComponent,
-    LeaveRequestComponent,
-    PTMasterComponent, ComponentMasterComponent,
-    StructureCreationComponent, LeaveApprovalComponent,odApprovalComponent,advanceApprovalComponent,
-    PFMasterComponent, CTCBreakupComponent, SalaryProcessComponent,CashPaymentComponent, CreateCashpaymentComponent, CashReceiptComponent,
-    CreateCashreceiptComponent, BankPaymentComponent, CreateBankpaymentComponent,BankReceiptComponent,CreateBankreceiptComponent,
-    JournalVoucherComponent,CreateJournalvoucherComponent,
-    ReportsInnerTableComponent, SearchFilterTableComponent,
-    PrintComponent, PrintPetrolComponent, PackageconversionComponent, MSHSDRatesComponent,OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent, MeterReadingComponent, ProductComponent,
-    // MemberMasterComponent, VehicleComponent
-  ]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FocusOnEnterDirective,
+        DashboardComponent,
+        LoginComponent,
+        SidebarComponent,
+        NotFoundComponent,
+        TableComponent, DeleteItemComponent, SaveItemComponent,
+        GeneralledgerComponent, AccountsGroupComponent,
+        SubGroupComponent, UndersubGroupComponent,
+        GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
+        AccToAccClassComponent, VoucherTypesComponent,
+        InventoryComponent, BrandModelComponent, SizesComponent, AccountingClassComponent, UnitComponent,
+        BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent, ProductpackingComponent,
+        CompanyComponent, MastersComponent, BranchesComponent, DepartmentComponent, DivisionComponent, DesignationComponent,
+        SegmentComponent, ProfitCenterComponent, CostCenterComponent,
+        NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent, PartnerCreationComponent,
+        TaxMasterComponent, TanksComponent, PumpComponent,
+        TaxgroupsComponent, TaxstructuresComponent,
+        PayrollComponent,
+        LeaveopeningbalancesComponent,
+        //LeaveopeningbalanceComponent,
+        //selfserviceComponent,
+        SelfserviceComponent,
+        LeavetypeComponent,
+        LeaveopeningbalanceComponent,
+        LeavetypesComponent, ApplyodComponent, PermissionRequestComponent, PermissionApprovalsComponent, ApprovalTypeComponent, AdvanceComponent, VehicleRequisitionsComponent, VehicleApprovalsComponent,
+        LeaveRequestComponent, PTMasterComponent, ComponentMasterComponent,
+        StructureCreationComponent, LeaveApprovalComponent, odApprovalComponent, advanceApprovalComponent,
+        PFMasterComponent, CTCBreakupComponent, SalaryProcessComponent,
+        SalesComponent, SalesInvoiceComponent, SalesReturnComponent, CreateBillComponent, SalesReturnViewComponent,
+        TransactionsComponent, CashPaymentComponent, CreateCashpaymentComponent, CashReceiptComponent,
+        CreateCashreceiptComponent, BankPaymentComponent, CreateBankpaymentComponent, BankReceiptComponent,
+        CreateBankreceiptComponent, JournalVoucherComponent, CreateJournalvoucherComponent,
+        RolesprevilagesComponent, SettingsComponent, StocktransferComponent, CreateStockTransferComponent, PurchaseComponent, PurchaseCreateComponent, PurchaseReturnComponent, PurchaseReturnViewComponent,
+        ReportTableComponent, ReportsInnerTableComponent, ReportsComponent, SearchFilterTableComponent,
+        CreateStockissuesComponent, StockissuesComponent, PurchaserequisitionComponent, PurchaserequisitionapprovalComponent, CreatePurchaseRequisitionapprovalComponent, CreatePurchaseRequisitionComponent, CreateStockreceiptsComponent, StockreceiptsComponent,
+        CreateStockshortsComponent, StockshortComponent, CreateOilconversionsComponent, OilconversionComponent,
+        PrintComponent, PrintPetrolComponent, PackageconversionComponent, MSHSDRatesComponent, OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent, MeterReadingComponent, ProductComponent, MemberMasterComponent, VehicleComponent, ShareTransferComponent, GiftMasterComponent,
+        AdditionalShareTransferComponent, AutocompleteComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        SharedImportModule,
+        NgxDaterangepickerMd.forRoot(),
+        BsDropdownModule.forRoot(),
+        TypeaheadModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+    ],
+    providers: [
+        RuntimeConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (environment: RuntimeConfigService) => () => environment.loadRuntimeConfig(),
+            multi: true,
+            deps: [RuntimeConfigService, HttpClientModule]
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
