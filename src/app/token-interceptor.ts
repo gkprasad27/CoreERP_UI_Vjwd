@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable } from "rxjs";
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/do';
+import { tap } from "rxjs/internal/operators/tap";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor{
@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor{
                 }
             });
         }
-        return next.handle(request).do((event: HttpEvent<any>) => {
+        return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
               // do stuff with response if you want
             }
@@ -31,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor{
                     this.authLogout();
               }
             }
-          });
+          }));
     }
     authLogout(){
         this.router.navigateByUrl('/login');
