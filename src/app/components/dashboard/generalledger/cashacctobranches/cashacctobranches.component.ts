@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -17,7 +17,7 @@ import { CommonService } from 'src/app/services/common.service';
 
 export class CashAccToBranchesComponent  implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
   branchesList:any;
@@ -26,7 +26,7 @@ export class CashAccToBranchesComponent  implements OnInit {
   glaccgrpList:any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<CashAccToBranchesComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,

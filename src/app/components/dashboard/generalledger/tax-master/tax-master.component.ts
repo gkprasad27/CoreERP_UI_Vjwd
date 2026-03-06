@@ -8,7 +8,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -21,7 +21,7 @@ import { CommonService } from '../../../../services/common.service';
 })
 export class TaxMasterComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
     tableData: any;
@@ -35,7 +35,7 @@ export class TaxMasterComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<TaxMasterComponent>,
     private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed

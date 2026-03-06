@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
@@ -23,9 +23,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class CreatePurchaseRequisitionComponent  implements OnInit {
 
-  branchFormData: FormGroup;
+  branchFormData: UntypedFormGroup;
   GetBranchesListArray = [];
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   filteredOptions: Observable<any[]>;
   getAccountLedgerListArray = [];
   getAccountLedgerListNameArray = [];
@@ -43,8 +43,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   date = new Date((new Date().getTime() - 3888000000));
-  modelFormData: FormGroup;
-  tableFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
+  tableFormData: UntypedFormGroup;
   // printBill: any;
   issueno = null;
   totalamount = null;
@@ -58,7 +58,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
   compiniesList: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

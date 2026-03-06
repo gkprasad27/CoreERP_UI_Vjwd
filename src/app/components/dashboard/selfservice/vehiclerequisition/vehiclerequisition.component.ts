@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { DatePipe, formatDate } from '@angular/common';
@@ -29,7 +29,7 @@ export class VehicleRequisitionsComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   //LeaveTypeatList: any;
@@ -39,7 +39,7 @@ export class VehicleRequisitionsComponent implements OnInit {
   //SizesList: any;
   getProductByProductCodeArray = [];
   getProductByProductNameArray: any[];
-  applDate = new FormControl(new Date());
+  applDate = new UntypedFormControl(new Date());
 
   
   EmpName: any;
@@ -49,7 +49,7 @@ export class VehicleRequisitionsComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<VehicleRequisitionsComponent>,
     private commonService: CommonService,

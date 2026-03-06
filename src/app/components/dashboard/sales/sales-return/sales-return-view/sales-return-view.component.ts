@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, NgZone, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PrintComponent } from '../../../../../reuse-components/print/print.component';
@@ -28,10 +28,10 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
 })
 export class SalesReturnViewComponent implements OnInit {
 
-  branchFormData: FormGroup;
+  branchFormData: UntypedFormGroup;
   GetBranchesListArray = [];
   getCashPartyAccountListArray = [];
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   getmemberNamesArray = [];
   getStateListArray = [];
   getProductByProductCodeArray = [];
@@ -49,14 +49,14 @@ export class SalesReturnViewComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   date = new Date((new Date().getTime() - 3888000000));
-  modelFormData: FormGroup;
-  tableFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
+  tableFormData: UntypedFormGroup;
   printBill = false;
   routeUrl = '';
   taxPercentage: any;
   isSalesReturnInvoice: any;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

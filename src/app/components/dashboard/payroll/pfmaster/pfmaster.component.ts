@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -28,7 +28,7 @@ interface Limit {
 
 export class PFMasterComponent  implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
   componentList:any;
@@ -48,7 +48,7 @@ export class PFMasterComponent  implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<PFMasterComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,

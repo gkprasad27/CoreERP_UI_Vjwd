@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -23,7 +23,7 @@ interface Year {
 })
 export class SalaryProcessComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   
   displayedColumns: string[] = ['branchCode'];
   dataSource: MatTableDataSource<any>;
@@ -56,7 +56,7 @@ export class SalaryProcessComponent implements OnInit {
   ];
   
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
 
@@ -69,7 +69,7 @@ export class SalaryProcessComponent implements OnInit {
     });
   }
 
-  checkDates(group: FormGroup) {
+  checkDates(group: UntypedFormGroup) {
     if(group.controls.formDate.value < group.controls.toDate.value) {
       return { notValid:true }
     }

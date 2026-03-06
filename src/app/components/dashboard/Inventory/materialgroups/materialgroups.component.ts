@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { StatusCodes } from '../../../../enums/common/common';
 import { ApiService } from '../../../../services/api.service';
@@ -19,7 +19,7 @@ import { CommonService } from 'src/app/services/common.service';
 
 export class MaterialGroupsComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   AccountingClassList: any;
@@ -30,7 +30,7 @@ export class MaterialGroupsComponent implements OnInit {
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<MaterialGroupsComponent>,
     // @Optional() is used to prevent error if no data is passed

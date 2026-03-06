@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -24,7 +24,7 @@ export class PermissionApprovalsComponent implements OnInit {
 
   leaveApprovalList: any;
 
-  leaveRequestForm: FormGroup;
+  leaveRequestForm: UntypedFormGroup;
   displayedColumns: string[] = ['select', 'empcode', 'id', 'applydate', 'fromdate', 'fromtime', 'totime', 'status', 'approvedId', 'purpose'];
  // 
   dataSource: MatTableDataSource<any>;
@@ -33,7 +33,7 @@ export class PermissionApprovalsComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

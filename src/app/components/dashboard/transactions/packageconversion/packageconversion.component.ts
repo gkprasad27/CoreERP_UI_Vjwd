@@ -8,7 +8,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { DatePipe, formatDate } from '@angular/common';
@@ -29,13 +29,13 @@ interface Session {
 
 export class PackageconversionComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   LeaveTypeatList: any;
   inputproductName = null;
   outputproductName = null;
-  applDate = new FormControl(new Date());
+  applDate = new UntypedFormControl(new Date());
 
   sessions: Session[] =
     [
@@ -48,7 +48,7 @@ export class PackageconversionComponent implements OnInit {
   
   constructor(
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<PackageconversionComponent>,

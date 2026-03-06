@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -15,14 +15,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./ctcbreakup.component.scss']
 })
 export class CTCBreakupComponent implements OnInit {
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   structureList:any;
   filteredOptions:any;
   displayedColumns: string[] = ['componentCode','componentName','amount','duration','specificMonth'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

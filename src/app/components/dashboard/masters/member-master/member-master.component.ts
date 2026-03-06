@@ -6,7 +6,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -28,7 +28,7 @@ interface giftIssued {
 })
 export class MemberMasterComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   companyList: any;
@@ -63,7 +63,7 @@ export class MemberMasterComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     // public dialogRef: MatDialogRef<MemberMasterComponent>,
     private commonService: CommonService,
     public dialog: MatDialog,

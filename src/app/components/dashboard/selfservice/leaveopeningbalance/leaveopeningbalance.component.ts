@@ -8,7 +8,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -21,7 +21,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LeaveopeningbalanceComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   companyList: any;
@@ -33,7 +33,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<LeaveopeningbalanceComponent>,
     private commonService: CommonService,

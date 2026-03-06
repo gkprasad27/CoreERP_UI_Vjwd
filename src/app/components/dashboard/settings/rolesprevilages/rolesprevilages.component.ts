@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -19,7 +19,7 @@ import { CommonService } from '../../../../services/common.service';
 })
 export class RolesprevilagesComponent implements OnInit {
 
-  formData: FormGroup;
+  formData: UntypedFormGroup;
   roleArray = [];
   parentMenu = [];
   actualData = [];
@@ -29,7 +29,7 @@ export class RolesprevilagesComponent implements OnInit {
   displayedColumns: string[] = ['ext4', 'active', 'canAdd', 'canEdit', 'canDelete'];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
     private alertService: AlertService,

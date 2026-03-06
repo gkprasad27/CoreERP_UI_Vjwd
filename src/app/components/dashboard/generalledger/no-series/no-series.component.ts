@@ -5,7 +5,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -36,7 +36,7 @@ export class NoSeriesComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<NoSeriesComponent>,
     private commonService: CommonService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {

@@ -16,7 +16,7 @@ import { SearchFilterTableComponent } from '../search-filter-table/search-filter
 import { NgxSpinnerService } from 'ngx-spinner';
 // search
 
-import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject, pipe } from 'rxjs';
 import { take, takeUntil, map } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
@@ -44,13 +44,13 @@ export class ReportTableComponent implements OnInit, OnChanges {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };
   GetBankPAccountLedgerListArray = [];
   GetProductListArray = [];
-  public tableMultiCtrl: FormControl = new FormControl();
+  public tableMultiCtrl: UntypedFormControl = new UntypedFormControl();
   public filteredTableMulti: ReplaySubject<any> = new ReplaySubject<any>(1);
 
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
   protected onDestroy = new Subject<void>();
 
-  dateForm: FormGroup;
+  dateForm: UntypedFormGroup;
   params = new HttpParams();
   @Input() tableData: any;
   @Input() headerData: any = [];
@@ -118,7 +118,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
     { id: 'Fuels', parameter: 'Fuels' }
   ];
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
@@ -160,7 +160,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
     });
 
   }
-  checkDates(group: FormGroup) {
+  checkDates(group: UntypedFormGroup) {
     if (group.controls.formDate.value < group.controls.toDate.value) {
       return { notValid: true }
     }

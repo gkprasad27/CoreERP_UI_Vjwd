@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 var curValue = require("multilingual-number-to-words");
@@ -26,10 +26,10 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
 })
 export class PurchaseReturnViewComponent implements OnInit {
 
-  branchFormData: FormGroup;
+  branchFormData: UntypedFormGroup;
   GetBranchesListArray = [];
   getCashPartyAccountListArray = [];
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   getStateListArray = [];
   getProductByProductCodeArray = [];
   getProductByProductNameArray = [];
@@ -45,8 +45,8 @@ export class PurchaseReturnViewComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   date = new Date((new Date().getTime() - 3888000000));
-  modelFormData: FormGroup;
-  tableFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
+  tableFormData: UntypedFormGroup;
   printBill = false;
   routeUrl = '';
   taxPercentage: any;
@@ -54,7 +54,7 @@ export class PurchaseReturnViewComponent implements OnInit {
   isPurchaseReturnInvoice: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

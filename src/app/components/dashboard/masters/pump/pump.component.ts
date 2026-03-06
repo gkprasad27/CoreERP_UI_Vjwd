@@ -3,7 +3,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { StatusCodes } from '../../../../enums/common/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -18,7 +18,7 @@ import { CommonService } from '../../../../services/common.service';
 
 export class PumpComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   BranchesList: any;
@@ -31,7 +31,7 @@ export class PumpComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private commonService: CommonService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<PumpComponent>,
 
     // @Optional() is used to prevent error if no data is passed

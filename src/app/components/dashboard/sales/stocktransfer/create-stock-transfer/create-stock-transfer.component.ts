@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
@@ -34,10 +34,10 @@ import { SaveItemComponent } from '../../../../../reuse-components/save-item/sav
   ]
 })
 export class CreateStockTransferComponent implements OnInit {
-  formData: FormGroup;
+  formData: UntypedFormGroup;
   routeUrl = '';
   GetBranchesListArray = [];
-  tableFormData: FormGroup;
+  tableFormData: UntypedFormGroup;
   totalQty: any;
   totalAmount: any;
   totalLtrs: any;
@@ -59,7 +59,7 @@ export class CreateStockTransferComponent implements OnInit {
   date = new Date((new Date().getTime() - 3888000000));
   getLtrsArray: any;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

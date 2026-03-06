@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,7 +19,7 @@ import { CommonService } from 'src/app/services/common.service';
 
 export class NumberAssignmentComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
     companyList: any;
@@ -32,7 +32,7 @@ export class NumberAssignmentComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<NumberAssignmentComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {

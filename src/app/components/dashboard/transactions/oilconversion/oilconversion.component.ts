@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -22,7 +22,7 @@ import * as moment from 'moment';
 export class OilconversionComponent implements OnInit {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };
 
-  dateForm: FormGroup;
+  dateForm: UntypedFormGroup;
   // table
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -33,7 +33,7 @@ export class OilconversionComponent implements OnInit {
     oilConversionVchNo: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

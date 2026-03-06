@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -23,7 +23,7 @@ interface affectGrossProfit {
 
 export class MSHSDRatesComponent  implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
   getMshsdBranches:any;
@@ -33,7 +33,7 @@ export class MSHSDRatesComponent  implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<MSHSDRatesComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,

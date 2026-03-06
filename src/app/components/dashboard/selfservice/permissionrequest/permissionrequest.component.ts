@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { DatePipe, formatDate } from '@angular/common';
@@ -29,12 +29,12 @@ export class PermissionRequestComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   getProductByProductCodeArray = [];
   getProductByProductNameArray: any[];
-  permissionDate = new FormControl(new Date());
+  permissionDate = new UntypedFormControl(new Date());
 
 
   EmpName: any;
@@ -45,7 +45,7 @@ export class PermissionRequestComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<PermissionRequestComponent>,
     private commonService: CommonService,
@@ -56,7 +56,7 @@ export class PermissionRequestComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       id: ['0'],
       empCode: [null],
-      permissionDate: new FormControl(new Date()),
+      permissionDate: new UntypedFormControl(new Date()),
       status: [null],
       companyCode: [null],
       fromTime: [null],

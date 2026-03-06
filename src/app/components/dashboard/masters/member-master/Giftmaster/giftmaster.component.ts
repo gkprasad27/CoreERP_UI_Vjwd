@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, Input} from'@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 import { ApiService} from '../../../../../services/api.service';
@@ -20,7 +20,7 @@ interface giftIsActive {
     styleUrls:['giftmaster.component.scss']
 })
 export class GiftMasterComponent implements OnInit, OnChanges {
-    modelFromData: FormGroup;
+    modelFromData: UntypedFormGroup;
     productList:any=[];
     
     isFormEdit:boolean=false;
@@ -41,7 +41,7 @@ membercode:any;
         private apiConfigService: ApiConfigService,
         private spinner: NgxSpinnerService,
         private alertService: AlertService,
-        private fromBuilder:FormBuilder,
+        private fromBuilder:UntypedFormBuilder,
         private commonService: CommonService,
     ){
 

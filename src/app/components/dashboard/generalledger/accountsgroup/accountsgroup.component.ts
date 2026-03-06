@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-accountsgroup',
   templateUrl: './accountsgroup.component.html',
@@ -10,12 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class AccountsGroupComponent  implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<AccountsGroupComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {

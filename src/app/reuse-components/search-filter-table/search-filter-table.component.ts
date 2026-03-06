@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit, OnChanges, ViewChild, AfterViewIni
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, UntypedFormControl, AbstractControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
@@ -14,10 +14,10 @@ import { take, takeUntil } from 'rxjs/operators';
 export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   /** control for the selected bank for multi-selection */
-  public tableMultiCtrl: FormControl = new FormControl();
+  public tableMultiCtrl: UntypedFormControl = new UntypedFormControl();
 
   /** control for the MatSelect filter keyword multi-selection */
-  public tableMultiFilterCtrl: FormControl = new FormControl();
+  public tableMultiFilterCtrl: UntypedFormControl = new UntypedFormControl();
 
   /** list of banks filtered by search keyword */
   public filteredTableMulti: ReplaySubject<any> = new ReplaySubject<any>(1);

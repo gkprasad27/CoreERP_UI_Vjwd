@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -23,7 +23,7 @@ export class VehicleApprovalsComponent implements OnInit {
 
   leaveApprovalList: any;
 
-  leaveRequestForm: FormGroup;
+  leaveRequestForm: UntypedFormGroup;
   displayedColumns: string[] = ['select', 'empCode', 'empName', 'sno', 'fromDate', 'todate', 'place', 'status', 'approvedId', 'reason'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -31,7 +31,7 @@ export class VehicleApprovalsComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

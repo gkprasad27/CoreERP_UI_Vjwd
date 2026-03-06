@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { ApiService } from '../../../../services/api.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -17,13 +17,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class BrandComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   companyList: any;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<BrandComponent>,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,

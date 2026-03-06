@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Static } from '../../enums/common/static';
 import { SnackBar, StatusCodes } from '../../enums/common/common';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiConfigService } from '../../services/api-config.service';
 import { AuthService } from '../../services/auth.service';
@@ -22,14 +22,14 @@ import { CommonService } from '../../services/common.service';
 export class LoginComponent implements OnInit {
 
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   isSubmitted = false;
 
   constructor(
     public translate: TranslateService,
     private apiConfigService: ApiConfigService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
     private apiService: ApiService,

@@ -8,7 +8,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
@@ -19,7 +19,7 @@ import { StatusCodes } from '../../../../enums/common/common';
 })
 export class ProductpackingComponent implements OnInit {
 
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted = false;
   formData: any;
   apiConfigService: any;
@@ -30,7 +30,7 @@ export class ProductpackingComponent implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<ProductpackingComponent>,
     private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed

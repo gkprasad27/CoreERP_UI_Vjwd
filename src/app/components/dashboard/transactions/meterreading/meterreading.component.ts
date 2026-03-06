@@ -2,7 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA,MatDialog } from '@angular/material/dialog';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -22,7 +22,7 @@ import { SaveItemComponent } from '../../../../reuse-components/save-item/save-i
 
 export class MeterReadingComponent  implements OnInit {
   isSaveDisabled = true;
-  modelFormData: FormGroup;
+  modelFormData: UntypedFormGroup;
   isSubmitted  =  false;
   formData: any;
   getMeterReadingBranches:any;
@@ -35,7 +35,7 @@ export class MeterReadingComponent  implements OnInit {
   getmemberNamesArray = [];
   constructor(
     private alertService: AlertService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialogRef: MatDialogRef<MeterReadingComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,

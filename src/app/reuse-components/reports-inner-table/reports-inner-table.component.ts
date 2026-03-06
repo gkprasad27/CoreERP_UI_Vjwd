@@ -12,7 +12,7 @@ import { CommonService } from '../../services/common.service';
 import { ActivatedRoute } from '@angular/router';
 import { DeleteItemComponent } from '../delete-item/delete-item.component';
 import { SearchFilterTableComponent } from '../search-filter-table/search-filter-table.component';
-import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -32,13 +32,13 @@ import * as fs from 'file-saver';
 })
 export class ReportsInnerTableComponent  {
 
-  public tableMultiCtrl: FormControl = new FormControl();
+  public tableMultiCtrl: UntypedFormControl = new UntypedFormControl();
   public filteredTableMulti: ReplaySubject<any> = new ReplaySubject<any>(1);
 
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
   protected onDestroy = new Subject<void>();
 
-  dateForm: FormGroup;
+  dateForm: UntypedFormGroup;
   tableData: any;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
@@ -56,7 +56,7 @@ export class ReportsInnerTableComponent  {
   excelUrl: any;
   CsvUrl: any;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private commonService: CommonService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
@@ -97,7 +97,7 @@ export class ReportsInnerTableComponent  {
     }
 
   }
-  checkDates(group: FormGroup) {
+  checkDates(group: UntypedFormGroup) {
     if (group.controls.formDate.value < group.controls.toDate.value) {
       return { notValid: true }
     }
