@@ -520,7 +520,7 @@ export class PurchaseReturnViewComponent implements OnInit {
   calculateAmount(row, index) {
     if (row?.qty != null && row.qty !== '') {
       this.dataSource.data[index].grossAmount = (row.qty * row.rate).toFixed(2);
-    } else if (row?.fQty != null && row.fQty !== '')
+    } else if ((row.fQty != null) && (row.fQty != '')) {
       this.dataSource.data[index].grossAmount = (0 * row.rate).toFixed(2);
     }
     this.dataSource = new MatTableDataSource(this.dataSource.data);
