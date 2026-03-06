@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Event, NavigationEnd, Router } from '@angular/router';
-import { isNullOrUndefined } from 'util';
+
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -44,7 +44,7 @@ export class CommonService {
 
   languageConfig() {
     const languageConfiguration: any = JSON.parse(localStorage.getItem('langConfig'));
-    if (!isNullOrUndefined(languageConfiguration)) {
+    if ((languageConfiguration != null)) {
       this.translate.addLangs(languageConfiguration.langagues);
       this.translate.setDefaultLang('english');
       if (localStorage.getItem('defaultLang')) {
@@ -95,7 +95,7 @@ export class CommonService {
 
 
   public toggleSidebar() {
-    if (!isNullOrUndefined(this.appDrawer)) {
+    if ((this.appDrawer != null)) {
       this.appDrawer.toggle();
     }
   }

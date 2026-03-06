@@ -2,7 +2,7 @@ import {Component, HostBinding, Input, OnInit, Output, EventEmitter} from '@angu
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { isNullOrUndefined } from 'util';
+
 
 
 @Component({
@@ -46,7 +46,7 @@ export class SidebarComponent implements OnInit {
 
   onItemSelected(item: any) {
 
-    if (!isNullOrUndefined(item.children)) {
+    if ((item.children != null)) {
       this.commonService.parentItem = item.route;
 
     }

@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -61,8 +61,8 @@ branchCode: any;
     this.apiService.apiPostRequest(getStockexcessListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response['StockexcessList']) && res.response['StockexcessList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+        if (res?.response?.StockexcessList?.length) {
           this.dataSource = new MatTableDataSource( res.response['StockexcessList']);
           this.dataSource.paginator = this.paginator;
           this.spinner.hide();
@@ -77,8 +77,8 @@ branchCode: any;
   }
 
   search() {
-    if (isNullOrUndefined(this.dateForm.value.stockExcessNo)) {
-        if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if ((this.dateForm.value.stockExcessNo == null)) {
+        if (this.dateForm?.value?.selected == null) {
           this.alertService.openSnackBar('Select StockExcess No or Date', Static.Close, SnackBar.error);
           return;
         } else {

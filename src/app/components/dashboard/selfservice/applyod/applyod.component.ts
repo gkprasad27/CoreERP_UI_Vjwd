@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -111,7 +111,7 @@ export class ApplyodComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (this.formData.item != null) {
       this.modelFormData.patchValue(this.formData.item);
       //this.modelFormData.controls['empCode'].disable();
     }
@@ -139,8 +139,8 @@ export class ApplyodComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.dataSource = new MatTableDataSource(res.response['LeaveApplDetailsList']);
               this.dataSource.paginator = this.paginator;
               //this.checkAll(false);
@@ -159,14 +159,14 @@ export class ApplyodComponent implements OnInit {
 
     var session1 = null;
     var session2 = null;
-    if (!isNullOrUndefined(date1)) {
+    if (date1 != null) {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getnoofdayscount].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: date1, date2, session1, session2 }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['days'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.days != null) {
                 this.EmpName = res.response['days']
                 this.modelFormData.patchValue
                   ({
@@ -200,8 +200,8 @@ export class ApplyodComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.LeaveTypeatList = res.response['leavetypesList'];
             }
@@ -222,8 +222,8 @@ export class ApplyodComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.LeaveTypeatList = res.response['leavetypesList'];
             }
@@ -238,14 +238,14 @@ export class ApplyodComponent implements OnInit {
   getProductByProductCode(value) {
     //debugger;
 
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getEmpCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Empcodes'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.['Empcodes'] != null) {
                 this.getProductByProductCodeArray = res.response['Empcodes'];
                 this.spinner.hide();
               }
@@ -261,7 +261,7 @@ export class ApplyodComponent implements OnInit {
   onSearchChange(code) {
     //debugger;
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(code)) {
+    if (code != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, code.value].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, this.modelFormData.get('empCode').value].join('/');
@@ -269,9 +269,9 @@ export class ApplyodComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['empname'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.empname != null) {
               this.EmpName = res.response['empname']
               this.modelFormData.patchValue
                 ({

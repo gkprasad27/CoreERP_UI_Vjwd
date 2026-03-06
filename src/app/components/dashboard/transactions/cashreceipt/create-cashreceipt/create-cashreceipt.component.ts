@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -96,7 +96,7 @@ export class CreateCashreceiptComponent implements OnInit {
   loadData() {
     this.getCashReceiptBranchesList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getCashReceiptDetailsList(params.id1);
@@ -105,7 +105,7 @@ export class CreateCashreceiptComponent implements OnInit {
       } else {
         this.disableForm();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -129,8 +129,8 @@ export class CreateCashreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(getCashReceiptDetailsListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['CashReceiptDetails']) && res.response['CashReceiptDetails'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.CashReceiptDetails?.length) {
             this.dataSource = new MatTableDataSource(res.response['CashReceiptDetails']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -140,7 +140,7 @@ export class CreateCashreceiptComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['voucherNo'].disable();
       this.branchFormData.controls['branchCode'].disable();
       this.branchFormData.controls['cashReceiptDate'].disable();
@@ -159,9 +159,9 @@ export class CreateCashreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(getCashReceiptBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -172,7 +172,7 @@ export class CreateCashreceiptComponent implements OnInit {
 
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getCashReceiptVoucherNo, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getCashReceiptVoucherNo, this.branchFormData.get('branchCode').value].join('/');
@@ -180,9 +180,9 @@ export class CreateCashreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList != null) {
               this.branchFormData.patchValue({
                 voucherNo: res.response['BranchesList']
               });
@@ -200,7 +200,7 @@ export class CreateCashreceiptComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -214,7 +214,7 @@ export class CreateCashreceiptComponent implements OnInit {
     const tableObj = {
       toLedgerCode: '', toLedgerName: '', amount: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -269,14 +269,14 @@ export class CreateCashreceiptComponent implements OnInit {
   }
 
   getAccountByAccountCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getCashRAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -377,14 +377,14 @@ export class CreateCashreceiptComponent implements OnInit {
   }
 
   getAccountByAccountName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getCRAccountLedgerListByName, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -437,7 +437,7 @@ export class CreateCashreceiptComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         // this.enableFileds();
         this.registerCashReceipt(tableData);
       }
@@ -463,8 +463,8 @@ export class CreateCashreceiptComponent implements OnInit {
     this.apiService.apiPostRequest(registerCashReceiptUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Cash Receipt Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

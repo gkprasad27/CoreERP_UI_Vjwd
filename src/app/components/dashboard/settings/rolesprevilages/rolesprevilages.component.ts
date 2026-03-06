@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { AlertService } from '../../../../services/alert.service';
-import { isNullOrUndefined } from 'util';
+
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -54,8 +54,8 @@ export class RolesprevilagesComponent implements OnInit {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.roleArray = res.response['Roles'];
           }
         }
@@ -76,8 +76,8 @@ export class RolesprevilagesComponent implements OnInit {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.parentMenu = res.response['ParentMenus'];
           }
         }
@@ -91,8 +91,8 @@ export class RolesprevilagesComponent implements OnInit {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.actualData = res.response.map(x => ({...x}));
             this.dataSource = new MatTableDataSource(res.response.map(x => ({...x})));
             this.dataSource.paginator = this.paginator;
@@ -104,7 +104,7 @@ export class RolesprevilagesComponent implements OnInit {
 
 
   checkboxCheck(event, column) {
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data = this.dataSource.data.map(val => {
         val[column] = event.checked;
         return val;
@@ -127,8 +127,8 @@ export class RolesprevilagesComponent implements OnInit {
     this.apiService.apiPostRequest(getAccessUrl, filterData).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar(Static.LoginSussfull, Static.Close, SnackBar.success);
             this.reset();
           }

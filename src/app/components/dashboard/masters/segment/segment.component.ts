@@ -8,7 +8,7 @@ import { AlertService } from '../../../../services/alert.service';
 
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -46,7 +46,7 @@ export class SegmentComponent implements OnInit {
       });
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
        this.modelFormData.controls['id'].disable();
       }

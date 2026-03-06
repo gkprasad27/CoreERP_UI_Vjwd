@@ -5,7 +5,7 @@ import { ApiService } from '../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportsService } from './reports.service';
-import { isNullOrUndefined } from 'util';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
@@ -40,9 +40,9 @@ export class ReportsComponent implements OnInit {
     activatedRoute.params.subscribe(params => {
       this.tableUrl = reportsService.getRouteUrls(params.id);
       this.route = params.id;
-      if (!isNullOrUndefined(this.tableUrl)) {
+      if (this.tableUrl != null) {
         this.getTableData();
-        if (!isNullOrUndefined(this.reportTableComponent)) {
+        if ((this.reportTableComponent != null)) {
           this.reportTableComponent.defaultValues();
         }
       }
@@ -60,8 +60,8 @@ export class ReportsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               if (this.route == 'Intimate Sale') {
                 this.tableData = this.removeDuplicate(res.response[this.tableUrl.listName])
               } else {
@@ -84,8 +84,8 @@ export class ReportsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               if (this.route == 'Intimate Sale') {
                 this.tableData = this.removeDuplicate(res.response[this.tableUrl.listName])
               } else {
@@ -104,7 +104,7 @@ export class ReportsComponent implements OnInit {
   removeDuplicate(data) {
     let array = [];
     let vehicle = '';
-    if (!isNullOrUndefined(data)) {
+    if ((data != null)) {
       if (data.length) {
         for (let i = 0; i < data.length; i++) {
           if (vehicle != data[i].Vehicle) {
@@ -131,7 +131,7 @@ export class ReportsComponent implements OnInit {
   // removeDuplicate(data) {
   //   let array = [];
   //   let vehicle = '';
-  //   if (!isNullOrUndefined(data)) {
+  //   if ((data != null)) {
   //     if (data.length) {
   //       for (let i = 0; i < data.length; i++) {
   //         if (vehicle != data[i].Vehicle) {

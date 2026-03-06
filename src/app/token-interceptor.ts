@@ -1,7 +1,7 @@
 import { Injectable, Injector,  } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { tap } from "rxjs/internal/operators/tap";
 
@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor{
     constructor(private router: Router ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!isNullOrUndefined(localStorage.getItem('Token'))) {
+        if (localStorage.getItem('Token') != null) {
             request = request.clone({
                 setHeaders: {
                     Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('Token'))

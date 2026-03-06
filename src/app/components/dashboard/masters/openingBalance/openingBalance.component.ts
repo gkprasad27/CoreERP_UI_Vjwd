@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -54,7 +54,7 @@ export class OpeningBalanceComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (this.formData.item != null) {
       this.modelFormData.patchValue(this.formData.item);
     }
 
@@ -65,7 +65,7 @@ export class OpeningBalanceComponent implements OnInit {
     this.getPaymentType();
     this.commonService.setFocus('ledgerName');
     const user = JSON.parse(localStorage.getItem('user'));
-    if (!isNullOrUndefined(user.branchCode)) {
+    if (user?.branchCode != null) {
       this.modelFormData.patchValue({
         branchCode: user.branchCode,
         userId: user.seqId,
@@ -80,9 +80,9 @@ export class OpeningBalanceComponent implements OnInit {
    this.apiService.apiGetRequest(getOpeningBalBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -96,9 +96,9 @@ export class OpeningBalanceComponent implements OnInit {
    this.apiService.apiGetRequest(getPaymentTypeListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetPaymentListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -109,7 +109,7 @@ export class OpeningBalanceComponent implements OnInit {
 
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getObVoucherNo, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getObVoucherNo, this.modelFormData.get('branchCode').value].join('/');
@@ -117,9 +117,9 @@ export class OpeningBalanceComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList != null) {
               this.modelFormData.patchValue({
                 voucherNo: res.response['BranchesList']
               });
@@ -130,14 +130,14 @@ export class OpeningBalanceComponent implements OnInit {
       });
   }
   getBankPAccountLedgerList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList?.length > 0) {
                 this.GetBankPAccountLedgerListArray = res.response['AccountLedgerList'];
               } else {
                 this.GetBankPAccountLedgerListArray = [];
@@ -158,7 +158,7 @@ export class OpeningBalanceComponent implements OnInit {
   //     }
   //   });
   //   this.modelFormData.patchValue({
-  //     ledgerName:  !isNullOrUndefined(lname[0]) ? lname[0].text : null
+  //     ledgerName:  (lname[0] != null) ? lname[0].text : null
   //   });
   // }
 
@@ -170,7 +170,7 @@ export class OpeningBalanceComponent implements OnInit {
   //   });
   //   if (bname.length) {
   //     this.modelFormData.patchValue({
-  //       branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+  //       branchName: (bname[0] != null) ? bname[0].text : null
   //     });
   //   }
   // }

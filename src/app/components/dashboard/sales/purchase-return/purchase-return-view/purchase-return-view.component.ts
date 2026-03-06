@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
@@ -137,7 +137,7 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.getStateList();
     this.getperchaseData();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         const billHeader = JSON.parse(localStorage.getItem('purchaseReturn'));
@@ -150,7 +150,7 @@ export class PurchaseReturnViewComponent implements OnInit {
         this.disableForm();
         this.addTableRow();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -172,8 +172,8 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.apiService.apiGetRequest(getPurchaseReturnsDetailsUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['PurchaseReturnDetails']) && res.response['PurchaseReturnDetails'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.PurchaseReturnDetails?.length > 0) {
             this.dataSource = new MatTableDataSource(res.response['PurchaseReturnDetails']);
             this.spinner.hide();
           }
@@ -182,7 +182,7 @@ export class PurchaseReturnViewComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['branchCode'].disable();
       this.branchFormData.controls['purchaseInvDate'].disable();
       this.branchFormData.controls['ledgerCode'].disable();
@@ -211,9 +211,9 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.apiService.apiGetRequest(getBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -223,14 +223,14 @@ export class PurchaseReturnViewComponent implements OnInit {
   }
 
   getCashPartyAccountList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getCashPartyAccountListUrl = ['/', this.apiConfigService.getCashPartyAccountList, value].join('/');
       this.apiService.apiGetRequest(getCashPartyAccountListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['CashPartyAccountList']) && res.response['CashPartyAccountList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.CashPartyAccountList?.length > 0) {
                 this.getCashPartyAccountListArray = res.response['CashPartyAccountList'];
                 this.getCashPartyAccount();
               } else {
@@ -278,7 +278,7 @@ export class PurchaseReturnViewComponent implements OnInit {
       this.setBranchCode();
       this.setBranchLenght();
       let generateBillUrl;
-      if (!isNullOrUndefined(branch)) {
+      if (branch != null) {
         generateBillUrl = ['/', this.apiConfigService.getPurchasePurchaseReturnInvNo, branch].join('/');
       } else {
         generateBillUrl = ['/', this.apiConfigService.getPurchasePurchaseReturnInvNo, this.branchFormData.get('branchCode').value].join('/');
@@ -286,9 +286,9 @@ export class PurchaseReturnViewComponent implements OnInit {
       this.apiService.apiGetRequest(generateBillUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['PurchaseInvoiceNo'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.PurchaseInvoiceNo != null) {
                 // this.branchFormData.patchValue({
                 //   purchaseInvNo: res.response['PurchaseInvoiceNo']
                 // });
@@ -313,7 +313,7 @@ export class PurchaseReturnViewComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -325,7 +325,7 @@ export class PurchaseReturnViewComponent implements OnInit {
       }
     });
     this.branchFormData.patchValue({
-      ledgerName: !isNullOrUndefined(lname[0]) ? lname[0].text : null
+      ledgerName: lname?.[0] != null ? lname[0].text : null
     });
     this.getCashPartyAccount();
   }
@@ -336,9 +336,9 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.apiService.apiGetRequest(getCashPartyAccountUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['CashPartyAccount'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.CashPartyAccount != null) {
               this.branchFormData.patchValue({
                 ledgerName: res.response['CashPartyAccount']['ledgerName'],
                 ledgerId: res.response['CashPartyAccount']['ledgerId'],
@@ -357,9 +357,9 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.apiService.apiGetRequest(getStateListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               this.getStateListArray = res.response['StateList'];
               this.branchFormData.patchValue({
                 stateCode: '37',
@@ -379,9 +379,9 @@ export class PurchaseReturnViewComponent implements OnInit {
     this.apiService.apiGetRequest(getSelectedStateUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               const taxP = res.response['StateList'][0];
               this.branchFormData.patchValue({
                 stateCode: taxP.stateCode,
@@ -405,7 +405,7 @@ export class PurchaseReturnViewComponent implements OnInit {
       productCode: '', productName: '', hsnNo: '', unitName: '', qty: '', fQty: '', totalLiters: '', tankNo: '',
       rate: '', discount: 0.00, grossAmount: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -498,14 +498,14 @@ export class PurchaseReturnViewComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode, value].join('/');
       this.apiService.apiGetRequest(getProductByProductCodeUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -518,9 +518,9 @@ export class PurchaseReturnViewComponent implements OnInit {
   }
 
   calculateAmount(row, index) {
-    if (!isNullOrUndefined(row.qty) && (row.qty != '')) {
+    if (row?.qty != null && row.qty !== '') {
       this.dataSource.data[index].grossAmount = (row.qty * row.rate).toFixed(2);
-    } else if (!isNullOrUndefined(row.fQty) && (row.fQty != '')) {
+    } else if (row?.fQty != null && row.fQty !== '')
       this.dataSource.data[index].grossAmount = (0 * row.rate).toFixed(2);
     }
     this.dataSource = new MatTableDataSource(this.dataSource.data);
@@ -536,8 +536,8 @@ export class PurchaseReturnViewComponent implements OnInit {
       }
     }
     this.branchFormData.patchValue({
-      totalAmount: !isNullOrUndefined(totalAmount) ? totalAmount.toFixed(2) : null,
-      totaltaxAmount: !isNullOrUndefined(totaltaxAmount) ? totaltaxAmount.toFixed(2) : null,
+      totalAmount: totalAmount != null ? totalAmount.toFixed(2) : null,
+      totaltaxAmount: totaltaxAmount != null ? totaltaxAmount.toFixed(2) : null,
     });
     this.branchFormData.patchValue({
       grandTotal: (totalAmount + totaltaxAmount).toFixed(2),
@@ -552,16 +552,19 @@ export class PurchaseReturnViewComponent implements OnInit {
 
   getProductDeatilsSectionRcd(productCode, index) {
     // if (this.checkProductCode(productCode, index)) {
-    if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    const branchCode = this.branchFormData.get('branchCode')?.value;
+const pCode = productCode?.value;
+
+if (branchCode != null && branchCode !== '' && pCode != null && pCode !== '') {
+
       const getProductDeatilsSectionRcdUrl = ['/', this.apiConfigService.getProductDeatilsSectionRcd,
         this.branchFormData.get('branchCode').value, productCode.value].join('/');
       this.apiService.apiGetRequest(getProductDeatilsSectionRcdUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['ProductDeatilsSectionRcd'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if ((res.response['ProductDeatilsSectionRcd'] != null)) {
                 this.billingDetailsSection(res.response['ProductDeatilsSectionRcd'], index);
                 this.getProductByProductCodeArray = [];
                 this.spinner.hide();
@@ -578,7 +581,7 @@ export class PurchaseReturnViewComponent implements OnInit {
   }
 
   // checkProductCode(code, index) {
-  //   if (!isNullOrUndefined(code.value)) {
+  //   if ((code.value != null)) {
   //     for (let c = 0; c < this.dataSource.data.length; c++) {
   //       if ((this.dataSource.data[c].productCode == code.value) && c != index) {
   //         return false;
@@ -590,7 +593,7 @@ export class PurchaseReturnViewComponent implements OnInit {
 
 
   billingDetailsSection(obj, index) {
-    if (isNullOrUndefined(obj.availStock) || (obj.availStock == 0)) {
+    if ((obj.availStock == null) || (obj.availStock == 0)) {
       this.alertService.openSnackBar(`This Product(${obj.productCode}) available stock is 0`, Static.Close, SnackBar.error);
     }
     obj.text = 'obj';
@@ -617,14 +620,14 @@ export class PurchaseReturnViewComponent implements OnInit {
 
 
   getProductByProductName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName, value].join('/');
       this.apiService.apiGetRequest(getProductByProductNameUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -663,7 +666,7 @@ export class PurchaseReturnViewComponent implements OnInit {
     //     content = '0 Availablilty Stock';
     //     return stock;
     //   }
-    //   if (isNullOrUndefined(stock.qty) && isNullOrUndefined(stock.fQty)) {
+    //   if (stock?.qty == null && stock?.fQty == null) {
     //     content = 'qty or Fqty is null';
     //     return stock;
     //   }

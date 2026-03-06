@@ -7,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../../services/api.service';
 import { StatusCodes } from '../../enums/common/common';
 import { CommonService } from '../../services/common.service';
-import { isNullOrUndefined } from 'util';
+
 
 @Component({
   selector: 'app-autocomplete',
@@ -20,7 +20,7 @@ export class AutocompleteComponent implements OnInit {
 
   @Input()
   set configData(value) {
-    if (!isNullOrUndefined(value)) {
+    if (!value == null) {
       this.dataConfig = value;
       console.log(this.dataConfig);
     }
@@ -73,7 +73,7 @@ export class AutocompleteComponent implements OnInit {
 
   // filter and return the values
   filter(value: string) {
-    if (!isNullOrUndefined(value) && value.length) {
+    if (!value == null && value.length) {
       // const url = ['/', this.dataConfig.url, value.trim()].join('/');
       const url = ['/', this.dataConfig.url].join('/');
     return this.apiService.apiGetRequest(url)
@@ -81,7 +81,7 @@ export class AutocompleteComponent implements OnInit {
       .subscribe(response => {          
         const res = response.body;
           this.spinner.hide();
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (res != null && res.status === StatusCodes.pass) {
             return res.response[this.dataConfig.list];
           }
         });

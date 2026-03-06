@@ -5,7 +5,7 @@ import { CommonService } from '../../../../services/common.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { isNullOrUndefined } from 'util';
+
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 //import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -119,8 +119,8 @@ export class advanceApprovalComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.dataSource = new MatTableDataSource(res.response['AdvanceApprovalApplDetailsList']);
               this.dataSource.paginator = this.paginator;
               console.log(this.dataSource);
@@ -139,8 +139,8 @@ export class advanceApprovalComponent implements OnInit {
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Advance Approval  Successfully..', Static.Close, SnackBar.success);
             //this.branchFormData.reset();
           }

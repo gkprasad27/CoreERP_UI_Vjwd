@@ -5,7 +5,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 
 import { CommonService } from '../../../../services/common.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -46,8 +46,8 @@ export class StructureCreationComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.dataSource = new MatTableDataSource(res.response['ComponentsList']);
               this.dataSource.paginator = this.paginator;
             }
@@ -72,7 +72,7 @@ export class StructureCreationComponent implements OnInit {
 
   save() {
     this.isSaveDisabled = false;
-    if (isNullOrUndefined(this.structionName) && this.structionName == '') {
+    if ((this.structionName != null) && this.structionName == '') {
       return;
     }
 

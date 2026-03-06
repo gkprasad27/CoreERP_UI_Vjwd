@@ -2,7 +2,7 @@ import { Component, ViewChild, ViewEncapsulation, AfterViewInit, OnInit, Input }
 import { ApiService } from '../../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { StatusCodes } from '../../../enums/common/common';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { TableComponent } from '../../../reuse-components/table/table.component';
@@ -38,9 +38,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
       ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
           this.tableUrl = this.generalLedgerService.getRouteUrls(params.id);
-          if (!isNullOrUndefined(this.tableUrl)) {
+          if (this.tableUrl != null) {
             this.getTableData();
-            if (!isNullOrUndefined(this.tableComponent)) {
+            if (this.tableComponent != null) {
               this.tableComponent.defaultValues();
             }
           }
@@ -53,8 +53,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
         .subscribe(
           response => {
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (res != null && res.status === StatusCodes.pass) {
+              if (res.response != null) {
                 this.tableData = res.response[this.tableUrl.listName];
               }
             }
@@ -69,14 +69,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
           disableClose: true
         });
         dialogRef.afterClosed().subscribe(result => {
-          if (!isNullOrUndefined(result)) {
+          if (result != null) {
           const deleteCompanyUrl = ['/', this.tableUrl.deleteUrl, result.item[this.tableUrl.primaryKey]].join('/');
           this.apiService.apiDeleteRequest(deleteCompanyUrl, result.item)
               .subscribe(
                 response => {
                   const res = response.body;
-                  if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                    if (!isNullOrUndefined(res.response)) {
+                  if (res != null && res.status === StatusCodes.pass) {
+                    if (res.response != null) {
                       this.tableComponent.defaultValues();
                       this.getTableData();
                       this.alertService.openSnackBar('Delected Record...', 'close', SnackBar.success);
@@ -99,15 +99,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
           disableClose: true
         });
         dialogRef.afterClosed().subscribe(result => {
-          if (!isNullOrUndefined(result)) {
+          if (result != null) {
             if (result.action === 'Add') {
              const addCompanyUrl = ['/', this.tableUrl.registerUrl].join('/');
              this.apiService.apiPostRequest(addCompanyUrl, result.item)
                 .subscribe(
                   response => {
                     const res = response.body;
-                    if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                    if (!isNullOrUndefined(res.response)) {
+                    if (res != null && res.status === StatusCodes.pass) {
+                    if (res.response != null) {
                       this.tableComponent.defaultValues();
                       this.getTableData();
                       this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
@@ -121,8 +121,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
                 .subscribe(
                   response => {
                     const res = response.body;
-                    if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                      if (!isNullOrUndefined(res.response)) {
+                    if (res != null && res.status === StatusCodes.pass) {
+                      if (res.response != null) {
                         this.tableComponent.defaultValues();
                         this.getTableData();
                         this.alertService.openSnackBar('Record Updated...', 'close', SnackBar.success);

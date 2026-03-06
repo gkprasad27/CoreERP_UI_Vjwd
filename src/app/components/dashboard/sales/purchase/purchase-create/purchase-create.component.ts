@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
@@ -142,7 +142,7 @@ export class PurchaseCreateComponent implements OnInit {
     this.getPCashPartyAccountList('100');
     this.getStateList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getPurchaseInvoiceDeatilList(params.id2);
@@ -159,7 +159,7 @@ export class PurchaseCreateComponent implements OnInit {
         this.disableForm();
         this.addTableRow();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -186,8 +186,8 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(getPurchaseInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['InvoiceDetailList']) && res.response['InvoiceDetailList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+         if (res?.response?.InvoiceDetailList?.length > 0) {
             this.dataSource = new MatTableDataSource(res.response['InvoiceDetailList']);
             this.spinner.hide();
           }
@@ -196,7 +196,7 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['branchCode'].disable();
       this.branchFormData.controls['purchaseInvDate'].disable();
       this.branchFormData.controls['ledgerCode'].disable();
@@ -227,9 +227,9 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(generateBillUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['PurchaseInvoiceNo'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.PurchaseInvoiceNo != null) {
               this.isPurchaseReturnInvoice = res.response['PurchaseInvoiceNo'];
               this.spinner.hide();
             }
@@ -247,9 +247,9 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(getBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.setBranchCode();
               this.spinner.hide();
@@ -260,14 +260,14 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   getPCashPartyAccountList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getCashPartyAccountListUrl = ['/', this.apiConfigService.getPCashPartyAccountList, value].join('/');
       this.apiService.apiGetRequest(getCashPartyAccountListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['CashPartyAccountList']) && res.response['CashPartyAccountList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.CashPartyAccountList?.length > 0) {
                 this.getCashPartyAccountListArray = res.response['CashPartyAccountList'];
                 this.getCashPartyAccount();
               } else {
@@ -315,7 +315,7 @@ export class PurchaseCreateComponent implements OnInit {
       this.setBranchCode();
       // this.setBranchLenght();
       let generateBillUrl;
-      if (!isNullOrUndefined(branch)) {
+      if (branch != null) {
         generateBillUrl = ['/', this.apiConfigService.generatePurchaseInvNo, branch].join('/');
       } else {
         generateBillUrl = ['/', this.apiConfigService.generatePurchaseInvNo, this.branchFormData.get('branchCode').value].join('/');
@@ -323,9 +323,9 @@ export class PurchaseCreateComponent implements OnInit {
       this.apiService.apiGetRequest(generateBillUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['PurchaseInvoiceNo'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.PurchaseInvoiceNo != null) {
                 this.branchFormData.patchValue({
                   purchaseInvNo: res.response['PurchaseInvoiceNo']
                 });
@@ -349,7 +349,7 @@ export class PurchaseCreateComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: (bname[0] != null) ? bname[0].text : null
       });
     }
   }
@@ -361,7 +361,7 @@ export class PurchaseCreateComponent implements OnInit {
       }
     });
     this.branchFormData.patchValue({
-      ledgerName: !isNullOrUndefined(lname[0]) ? lname[0].text : null
+      ledgerName: (lname[0] != null) ? lname[0].text : null
     });
     this.getCashPartyAccount();
     this.commonService.setFocus('productCode0');
@@ -369,8 +369,8 @@ export class PurchaseCreateComponent implements OnInit {
 
 
   setBackGroundColor(value, prop) {
-    if (!isNullOrUndefined(this.calculateLiters)) {
-      if (isNullOrUndefined(value) && this.calculateLiters.length) {
+    if ((this.calculateLiters) != null) {
+      if (value == null && this.calculateLiters.length) {
         let flag = true;
         for (let s = 0; s < this.calculateLiters.length; s++) {
           if (this.calculateLiters[s] == prop) {
@@ -389,14 +389,14 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   getTankas(no, index) {
-    if (!isNullOrUndefined(no)) {
+    if ((no != null)) {
       const getTankasUrl = ['/', this.apiConfigService.getTankas, no, this.branchFormData.get('branchCode').value].join('/');
       this.apiService.apiGetRequest(getTankasUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['TankList']) && res.response['TankList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.TankList?.length > 0) {
                 this.dataSource.data[index].TankId = res.response['TankList'][0].id;
                 this.dataSource.data[index].TankNo = res.response['TankList'][0].text;
                 this.dataSource = new MatTableDataSource(this.dataSource.data);
@@ -422,9 +422,9 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(getCashPartyAccountUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['CashPartyAccount'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.CashPartyAccount != null) {
               this.branchFormData.patchValue({
                 ledgerName: res.response['CashPartyAccount']['ledgerName'],
                 ledgerId: res.response['CashPartyAccount']['ledgerId'],
@@ -443,9 +443,9 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(getStateListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               this.getStateListArray = res.response['StateList'];
               // this.branchFormData.patchValue({
               //   stateCode: '37',
@@ -465,9 +465,9 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(getSelectedStateUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               const taxP = res.response['StateList'][0];
               this.branchFormData.patchValue({
                 stateCode: taxP.stateCode,
@@ -491,7 +491,7 @@ export class PurchaseCreateComponent implements OnInit {
       productCode: '', productName: '', hsnNo: '', unitName: '', qty: '', fQty: '', totalLiters: '', tankNo: null,
       rate: '', discount: 0.00, grossAmount: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -587,14 +587,14 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -607,7 +607,7 @@ export class PurchaseCreateComponent implements OnInit {
   }
   
   calculateLiter(code) {
-    if (!isNullOrUndefined(this.calculateLiters)) {
+    if ((this.calculateLiters != null)) {
       for (let p = 0; p < this.calculateLiters.length; p++) {
         if (this.calculateLiters[p] == code) {
           return false;
@@ -619,10 +619,10 @@ export class PurchaseCreateComponent implements OnInit {
   }
   
   calculateAmount(row?, index?) {
-    if(!isNullOrUndefined(row)) {
-      if (!isNullOrUndefined(row.qty) && (row.qty != '')) {
+    if((row != null)) {
+      if ((row.qty != null) && (row.qty != '')) {
         this.dataSource.data[index].grossAmount = (this.calculateLiter(row.productCode)) ? (row.qty * row.rate).toFixed(2) : (row.rate * row.qty).toFixed(2);
-      } else if (!isNullOrUndefined(row.fQty) && (row.fQty != '')) {
+      } else if ((row.fQty != null) && (row.fQty != '')) {
         this.dataSource.data[index].grossAmount = (this.calculateLiter(row.productCode)) ? (0 * row.rate).toFixed(2) : (0 * row.rate).toFixed(2);
       }
     }
@@ -644,8 +644,8 @@ export class PurchaseCreateComponent implements OnInit {
       }
     }
     this.branchFormData.patchValue({
-      totalAmount: !isNullOrUndefined(totalAmount) ? totalAmount.toFixed(2) : null,
-      totaltaxAmount: !isNullOrUndefined(totaltaxAmount) ? (totaltaxAmount + TcsAmt).toFixed(2)   : null,
+      totalAmount: (totalAmount != null) ? totalAmount.toFixed(2) : null,
+      totaltaxAmount: (totaltaxAmount != null) ? (totaltaxAmount + TcsAmt).toFixed(2)   : null,
     });
     this.branchFormData.patchValue({
       grandTotal: (totalAmount + totaltaxAmount + TcsAmt).toFixed(2),
@@ -670,8 +670,8 @@ export class PurchaseCreateComponent implements OnInit {
     this.setFocus = id + index;
     this.commonService.setFocus(id + index)
     // if (this.checkProductCode(productCode, index)) {
-    if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    if ((this.branchFormData.get('branchCode').value != null) && this.branchFormData.get('branchCode').value != '' &&
+      (productCode.value != null) && productCode.value != '') {
       const getProductDeatilsSectionRcdUrl = ['/', this.apiConfigService.getProductDeatilsSectionRcd].join('/');
       this.apiService.apiPostRequest(getProductDeatilsSectionRcdUrl, {
         branchCode:
@@ -679,9 +679,9 @@ export class PurchaseCreateComponent implements OnInit {
       }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['ProductDeatilsSectionRcd'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if ((res.response['ProductDeatilsSectionRcd'] != null)) {
                 this.billingDetailsSection(res.response['ProductDeatilsSectionRcd'], index);
                 this.getProductByProductCodeArray = [];
                 this.spinner.hide();
@@ -698,7 +698,7 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   // checkProductCode(code, index) {
-  //   if (!isNullOrUndefined(code.value)) {
+  //   if ((code.value != null)) {
   //     for (let c = 0; c < this.dataSource.data.length; c++) {
   //       if ((this.dataSource.data[c].productCode == code.value) && c != index) {
   //         return false;
@@ -710,7 +710,7 @@ export class PurchaseCreateComponent implements OnInit {
 
 
   billingDetailsSection(obj, index) {
-    // if (isNullOrUndefined(obj.availStock) || (obj.availStock == 0)) {
+    // if ((obj.availStock == null) || (obj.availStock == 0)) {
     //   this.alertService.openSnackBar(`This Product(${obj.productCode}) available stock is 0`, Static.Close, SnackBar.error);
     // }
     obj.text = 'obj';
@@ -737,14 +737,14 @@ export class PurchaseCreateComponent implements OnInit {
 
 
   getProductByProductName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -764,7 +764,7 @@ export class PurchaseCreateComponent implements OnInit {
   }
 
   roundOff(prop) {
-    if (!isNullOrUndefined(this.branchFormData.get('totalAmount').value) && this.branchFormData.get('totalAmount').value > 0) {
+    if (this.branchFormData.get('totalAmount')?.value != null && this.branchFormData.get('totalAmount')?.value > 0) {
       if (prop == 'roundOffPlus') {
         this.branchFormData.patchValue({
           grandTotal: ((+this.branchFormData.get('totalAmount').value) + (+this.branchFormData.get('totaltaxAmount').value)  + (+this.branchFormData.get('roundOffPlus').value)).toFixed(2),
@@ -804,7 +804,7 @@ export class PurchaseCreateComponent implements OnInit {
       //   content = '0 Availablilty Stock';
       //   return stock;
       // }
-      if (isNullOrUndefined(stock.qty) && isNullOrUndefined(stock.fQty)) {
+      if ((stock.qty == null) && (stock.fQty == null)) {
         content = 'qty or Fqty is null';
         return stock;
       }
@@ -824,7 +824,7 @@ export class PurchaseCreateComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         this.enableFileds();
         this.registerPurchase(tableData);
       }
@@ -842,8 +842,8 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiGetRequest(registerPurchaseUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Purchase Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
@@ -884,8 +884,8 @@ export class PurchaseCreateComponent implements OnInit {
     this.apiService.apiPostRequest(registerPurchaseUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Purchase Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

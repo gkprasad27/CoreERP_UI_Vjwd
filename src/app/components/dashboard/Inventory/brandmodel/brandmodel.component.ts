@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
@@ -60,7 +60,7 @@ export class BrandModelComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (this.formData.item != null) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
@@ -80,8 +80,8 @@ export class BrandModelComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.companyList = res.response['CompaniesList'];
             }
@@ -95,8 +95,8 @@ export class BrandModelComponent implements OnInit {
   //    .subscribe(
   //      response => {
   //        const res = response.body;
-  //        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //          if (!isNullOrUndefined(res.response)) {
+  //        if (res != null && res.status === StatusCodes.pass) {
+  //          if (res.response != null) {
   //            console.log(res);
   //            this.companyList = res.response['companiesList'];
   //          }
@@ -111,8 +111,8 @@ export class BrandModelComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.brandList = res.response['BrandList'];
             }
@@ -126,8 +126,8 @@ export class BrandModelComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.MaterialGroupsList = res.response['materialGroupList'];
             }
@@ -142,8 +142,8 @@ export class BrandModelComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.SizesList = res.response['sizesList'];
             }

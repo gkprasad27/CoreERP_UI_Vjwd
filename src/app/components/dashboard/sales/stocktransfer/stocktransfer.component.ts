@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -64,8 +64,8 @@ export class StocktransferComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response['InvoiceList']) && res.response['InvoiceList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+        if (res?.response?.InvoiceList?.length > 0) {
           this.dataSource = new MatTableDataSource( res.response['InvoiceList']);
           this.dataSource.paginator = this.paginator;
           this.spinner.hide();
@@ -80,8 +80,8 @@ export class StocktransferComponent implements OnInit {
   }
 
   search() {
-    if (isNullOrUndefined(this.dateForm.value.invoiceNo)) {
-        if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.invoiceNo == null) {
+        if (this.dateForm?.value?.selected == null) {
           this.alertService.openSnackBar('Select Invoice or Date', Static.Close, SnackBar.error);
           return;
         } else {

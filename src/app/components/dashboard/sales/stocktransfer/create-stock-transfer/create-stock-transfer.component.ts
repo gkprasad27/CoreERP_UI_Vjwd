@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -99,7 +99,7 @@ export class CreateStockTransferComponent implements OnInit {
     this.GetBranchesList();
 
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getStockTransferDetilsaRecords(params.id1);
@@ -111,7 +111,7 @@ export class CreateStockTransferComponent implements OnInit {
         this.addTableRow();
         this.formGroup();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.formData.patchValue({
             fromBranchCode: user.branchCode,
             userId: user.seqId,
@@ -128,8 +128,8 @@ export class CreateStockTransferComponent implements OnInit {
     this.apiService.apiGetRequest(getStockTransferDetilsaRecordsUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['InvoiceList']) && res.response['InvoiceList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.InvoiceList?.length > 0) {
             this.getltrs(res.response['InvoiceList'][0]);
              this.dataSource = new MatTableDataSource(res.response['InvoiceList']);
              this.calculateAmount();
@@ -140,7 +140,7 @@ export class CreateStockTransferComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.formData.controls['stockTransferMasterId'].disable();
       this.formData.controls['stockTransferDate'].disable();
       this.formData.controls['fromBranchCode'].disable();
@@ -163,9 +163,9 @@ export class CreateStockTransferComponent implements OnInit {
     this.apiService.apiGetRequest(getBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.setBranchCode('fromBranchCode', 'fromBranchName');
               this.spinner.hide();
@@ -198,7 +198,7 @@ export class CreateStockTransferComponent implements OnInit {
       });
       if (bname.length) {
         this.formData.patchValue({
-          [text]: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+          [text]: bname?.[0] != null ? bname[0].text : null
         });
         if (code == 'fromBranchCode' && this.routeUrl == '') {
           this.generateStockTranfNo();
@@ -214,7 +214,7 @@ export class CreateStockTransferComponent implements OnInit {
       ltrs: '',
       fQty: '', batchNo: '', unitId: '', unitName: '', totalAmount: '', availStock: '', text: 'obj', delete: ''
     }
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -291,11 +291,11 @@ export class CreateStockTransferComponent implements OnInit {
     this.apiService.apiGetRequest(generateStockTranfNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['SateteList']) && res.response['SateteList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.SateteList?.length) {
               this.formData.patchValue({
-                stockTransferNo: !isNullOrUndefined(res.response['SateteList']) ? res.response['SateteList'] : null
+                stockTransferNo: (res.response['SateteList'] != null) ? res.response['SateteList'] : null
               });
               this.spinner.hide();
             }
@@ -307,14 +307,14 @@ export class CreateStockTransferComponent implements OnInit {
 
   getProductByProductCode(value) {
     // this.getltrs(value);
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -331,17 +331,19 @@ export class CreateStockTransferComponent implements OnInit {
     this.setFocus = id + index;
     this.commonService.setFocus(id + index)
     // if (this.checkProductCode(productCode, index)) {
-    if (!isNullOrUndefined(this.formData.get('fromBranchCode').value) && this.formData.get('fromBranchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    const fromBranchCode = this.formData.get('fromBranchCode')?.value;
+
+if (fromBranchCode != null && fromBranchCode !== '' &&
+    productCode?.value != null && productCode.value !== '') {
       const getStockTransferDetailsSectionUrl = ['/', this.apiConfigService.getStockTransferDetailsSection].join('/');
       this.apiService.apiPostRequest(getStockTransferDetailsSectionUrl, {
         branchCode: this.formData.get('fromBranchCode').value, productCode: productCode.value
       }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['SateteList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if ((res.response['SateteList'] != null)) {
                 this.getltrs(res.response['SateteList'], index);
                 this.getProductByProductCodeArray = [];
                 this.spinner.hide();
@@ -359,7 +361,7 @@ export class CreateStockTransferComponent implements OnInit {
   }
 
   // checkProductCode(code, index) {
-  //   if (!isNullOrUndefined(code.value)) {
+  //   if (code?.value != null) {
   //     for (let c = 0; c < this.dataSource.data.length; c++) {
   //       if ((this.dataSource.data[c].productCode == code.value) && c != index) {
   //         return false;
@@ -371,7 +373,7 @@ export class CreateStockTransferComponent implements OnInit {
 
 
   detailsSection(obj, index) {
-    if (isNullOrUndefined(obj.availStock) || (obj.availStock == 0)) {
+    if (obj?.availStock == null || obj.availStock === 0) {
       this.alertService.openSnackBar(`This Product(${obj.productCode}) available stock is 0`, Static.Close, SnackBar.error);
     }
     obj.text = 'obj';
@@ -389,14 +391,14 @@ export class CreateStockTransferComponent implements OnInit {
 
   getProductByProductName(value) {
 
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -408,17 +410,17 @@ export class CreateStockTransferComponent implements OnInit {
     }
   }
   getltrs(value, index?) {
-    if (!isNullOrUndefined(value.productCode) && value.productCode != '') {
+    if (value?.productCode != null && value.productCode !== '') {
     const getProductByProductNameUrl = ['/', this.apiConfigService.getLtrs].join('/');
     this.apiService.apiPostRequest(getProductByProductNameUrl, { code: value.productCode }).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['Ltrs'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.Ltrs != null) {
               console.log(res.response['Ltrs']);
               value.ltrs = res.response['Ltrs'][0]['id'];
-              if (!isNullOrUndefined(index))
+              if ((index != null))
               {
                 this.detailsSection(value, index);
               } 
@@ -449,18 +451,18 @@ export class CreateStockTransferComponent implements OnInit {
 
 
   calculateAmount(row?, index?) {
-    if (!isNullOrUndefined(row)) {
-      if (!isNullOrUndefined(row.qty) && (row.qty != '')) 
+    if (row != null) {
+      if ((row.qty != null) && (row.qty != '')) 
       {
         this.dataSource.data[index].totalAmount = (row.qty * row.rate).toFixed(2);
       }
-      if (!isNullOrUndefined(row.ltrs) && (row.ltrs != '')) 
+      if ((row.ltrs != null) && (row.ltrs != '')) 
       {
         this.dataSource.data[index].totalltrs= (row.qty * row.ltrs);
         this.dataSource.data[index].ltrs = (row.qty * row.ltrs);
       }
       
-       else if (!isNullOrUndefined(row.fQty) && (row.fQty != '')) 
+       else if ((row.fQty != null) && (row.fQty != '')) 
        {
         this.dataSource.data[index].totalAmount = (0 * row.rate).toFixed(2);
       }
@@ -477,25 +479,25 @@ export class CreateStockTransferComponent implements OnInit {
         amount = amount + (+this.dataSource.data[a].totalAmount);
         totltrs =  totltrs  + (+this.dataSource.data[a].totalltrs);
       }
-      if (!isNullOrUndefined(this.dataSource.data[a].qty))
+      if ((this.dataSource.data[a].qty != null))
       {
          qty = qty + this.dataSource.data[a].qty;
          //ltrs=this.dataSource.data[a].qty * this.dataSource.data[a].ltrs;
       }
-      // if (!isNullOrUndefined(this.dataSource.data[a].ltrs))
+      // if ((this.dataSource.data[a].ltrs) != null)
       // {
       //   this.dataSource.data[a].ltrs = this.dataSource.data[a].qty * this.dataSource.data[a].ltrs;
       // }      
-      else if (!isNullOrUndefined(this.dataSource.data[a].fQty))
+      else if ((this.dataSource.data[a].fQty != null))
       {
         qty = qty + this.dataSource.data[a].fQty;
       }
     }
     this.totalQty = qty;
-    this.totalAmount = !isNullOrUndefined(amount) ? amount : null,
-    this.totalLtrs=!isNullOrUndefined(totltrs) ? totltrs: 0,
+    this.totalAmount = (amount != null) ? amount : null,
+    this.totalLtrs= (totltrs != null) ? totltrs: 0,
     this.formData.patchValue({
-      totalAmount: !isNullOrUndefined(amount) ? amount.toFixed(2) : null,
+      totalAmount: (amount != null) ? amount.toFixed(2) : null,
     });
   }
 
@@ -515,7 +517,7 @@ export class CreateStockTransferComponent implements OnInit {
         content = '0 Availablilty Stock';
         return stock;
       }
-      if (isNullOrUndefined(stock.qty) && isNullOrUndefined(stock.fQty)) {
+      if (stock?.qty == null && stock?.fQty == null) {
         content = 'qty or Fqty is null';
         return stock;
       }
@@ -535,7 +537,7 @@ export class CreateStockTransferComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         this.enableFileds();
         this.registerStockTransfer(tableData);
       }
@@ -566,8 +568,8 @@ export class CreateStockTransferComponent implements OnInit {
     this.apiService.apiPostRequest(registerStockTransferUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Stock Trasfer Created Successfully..', Static.Close, SnackBar.success);
           }
           this.spinner.hide();
@@ -593,9 +595,9 @@ export class CreateStockTransferComponent implements OnInit {
     this.apiService.apiGetRequest(tableUrl, this.params).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StockList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StockList != null) {
               this.getTableArray = res.response['StockList'];
               this.tableHeaders = res.response['headerList'];
               this.footerData = res.response['footerList'];

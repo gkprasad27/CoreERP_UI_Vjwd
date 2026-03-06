@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -62,8 +62,8 @@ export class OilconversionComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['OilconversionsDeatilList']) && res.response['OilconversionsDeatilList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.OilconversionsDeatilList?.length) {
             this.dataSource = new MatTableDataSource(res.response['OilconversionsDeatilList']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -86,8 +86,8 @@ export class OilconversionComponent implements OnInit {
   //Search and datadisplay code
   search()
   {
-    if (isNullOrUndefined(this.dateForm.value.oilConversionVchNo)) {
-      if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.oilConversionVchNo == null) {
+      if (this.dateForm?.value?.selected == null) {
         this.alertService.openSnackBar('Select oilConversionVchNo or Date', Static.Close, SnackBar.error);
         return;
       }
@@ -109,8 +109,8 @@ export class OilconversionComponent implements OnInit {
     this.apiService.apiPostRequest(getOilconversionListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['oilconversionsList']) && res.response['oilconversionsList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.oilconversionsList?.length) {
             this.dataSource = new MatTableDataSource(res.response['oilconversionsList']);
             console.log(res.response['oilconversionsList']);
             this.dataSource.paginator = this.paginator;

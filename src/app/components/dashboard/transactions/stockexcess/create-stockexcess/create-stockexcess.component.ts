@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
@@ -88,7 +88,7 @@ export class CreateStockExcessComponent implements OnInit {
     this.getStockExcessBranchesList();
     this.getStockExcessCostCentersList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getStockExcessDetailsList(params.id1);
@@ -97,7 +97,7 @@ export class CreateStockExcessComponent implements OnInit {
       } else {
         this.disableForm();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -117,8 +117,8 @@ export class CreateStockExcessComponent implements OnInit {
     this.apiService.apiGetRequest(getStockExcessDetailsListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['StockExcessDetails']) && res.response['StockExcessDetails'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.StockExcessDetails?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockExcessDetails']);
             this.spinner.hide();
           }
@@ -127,7 +127,7 @@ export class CreateStockExcessComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['stockExcessNo'].disable();
       this.branchFormData.controls['branchCode'].disable();
       this.branchFormData.controls['stockExcessDate'].disable();
@@ -146,9 +146,9 @@ export class CreateStockExcessComponent implements OnInit {
     this.apiService.apiGetRequest(getStockExcessBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -159,7 +159,7 @@ export class CreateStockExcessComponent implements OnInit {
 
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getstockexcessNo, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getstockexcessNo, this.branchFormData.get('branchCode').value].join('/');
@@ -167,9 +167,9 @@ export class CreateStockExcessComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['stockexcessNo'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['stockexcessNo'] != null)) {
               this.branchFormData.patchValue({
                 stockExcessNo: res.response['stockexcessNo']
               });
@@ -185,9 +185,9 @@ export class CreateStockExcessComponent implements OnInit {
     this.apiService.apiGetRequest(getStockExcessCostCentersListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['CostCentersList']) && res.response['CostCentersList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.CostCentersList?.length) {
               this.getStockExcessListArray = res.response['CostCentersList'];
               this.spinner.hide();
             }
@@ -204,7 +204,7 @@ export class CreateStockExcessComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -217,7 +217,7 @@ export class CreateStockExcessComponent implements OnInit {
     const tableObj = {
       productCode: '', productName: '', hsnNo: '', unit: '', qty: '', rate: '', totalAmount: '', batchNo: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -271,14 +271,14 @@ export class CreateStockExcessComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -306,14 +306,14 @@ export class CreateStockExcessComponent implements OnInit {
 }
 
 getProductByProductName(value) {
-  if (!isNullOrUndefined(value) && value != '') {
+  if (value != null && value !== '') {
     const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
     this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['Products'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.Products != null) {
               this.getProductByProductNameArray = res.response['Products'];
               this.spinner.hide();
             }
@@ -327,16 +327,19 @@ getProductByProductName(value) {
 
   getdata(productCode) {
     //debugger;
-    if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    const branchCode = this.branchFormData.get('branchCode')?.value;
+const pCode = productCode?.value;
+
+if (branchCode != null && branchCode !== '' && pCode != null && pCode !== '') {
+
       const getBillingDetailsRcdUrl = ['/', this.apiConfigService.getProductListsforStockexcessList, productCode.value,
         this.branchFormData.get('branchCode').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['productsList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.productsList != null) {
                 this.DetailsSection(res.response['productsList']);
                 this.spinner.hide();
               }
@@ -411,8 +414,8 @@ getProductByProductName(value) {
     this.apiService.apiPostRequest(registerStockexcessUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Stock Excess Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA,MatDialog } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -64,7 +64,7 @@ export class MeterReadingComponent  implements OnInit {
 
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
        this.modelFormData.controls['totalSales'].disable();
        this.modelFormData.controls['invoiceSales'].disable();
@@ -76,7 +76,7 @@ export class MeterReadingComponent  implements OnInit {
       }
       else{
         const user = JSON.parse(localStorage.getItem('user'));
-       if (!isNullOrUndefined(user.branchCode)) {
+       if (user?.branchCode != null) {
         this.modelFormData.patchValue({
           branchCode: user.branchCode,
           userId: user.seqId,
@@ -114,9 +114,9 @@ getSaledUnits() {
     .subscribe(
       response => {
       const res = response.body;
-      if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response)) {
-          if (!isNullOrUndefined(res.response['saledList'])) {
+      if (res != null && res.status === StatusCodes.pass) {
+        if (res.response != null) {
+          if (res?.response?.saledList != null) {
             this.getSUFromIM = res.response['saledList'];
             this.modelFormData.patchValue({
               invoiceSales: this.getSUFromIM
@@ -142,8 +142,8 @@ getSaledUnits() {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getMeterReadingBranches = res.response['BranchesList'];
           }
@@ -156,16 +156,16 @@ getSaledUnits() {
   getShift(userId) {
     let getShiftUrl
     //const getShift = ['/', this.apiConfigService.getShift,userId].join('/');
-    if (!isNullOrUndefined(userId)) {
+    if (userId != null) {
       getShiftUrl = ['/', this.apiConfigService.getShift, userId].join('/');
     }
     this.apiService.apiGetRequest(getShiftUrl)
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['ShiftList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['ShiftList'] != null)) {
               this.getShiftList = res.response['ShiftList'];
               this.modelFormData.patchValue({
                 shiftId: this.getShiftList.shiftId
@@ -183,9 +183,9 @@ getSaledUnits() {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['OBList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['OBList'] != null)) {
               this.getOBFromPumpList = res.response['OBList'];
               this.modelFormData.patchValue({
                 inMeterReading: this.getOBFromPumpList.outMeterReading
@@ -201,7 +201,7 @@ getSaledUnits() {
   getPump(branch?) {
     let getPumpUrl;
     //const getPump = ['/', this.apiConfigService.getPump,branch].join('/');
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       getPumpUrl = ['/', this.apiConfigService.getPump, branch].join('/');
       this.getmemberNames(this.modelFormData.get('pumpNo').value);
     }
@@ -219,9 +219,9 @@ getSaledUnits() {
     //   .subscribe(
     //     response => {
     //     const res = response.body;
-    //     if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-    //       if (!isNullOrUndefined(res.response)) {
-    //         if (!isNullOrUndefined(res.response['PumpList']) && res.response['PumpList'].length) {
+    //     if (res != null && res.status === StatusCodes.pass) {
+    //       if (res.response != null) {
+    //         if (res?.response?.PumpList?.length) {
     //           this.getPumpList = res.response['PumpList'];
     //       }
     //       this.spinner.hide();
@@ -238,7 +238,7 @@ getSaledUnits() {
    {
     let getPumpUrl;
     //const getPump = ['/', this.apiConfigService.getPump,branch].join('/');
-    if (!isNullOrUndefined(val))
+    if ((val != null))
     {
       getPumpUrl = ['/', this.apiConfigService.getPump, val].join('/');
     }
@@ -249,9 +249,9 @@ getSaledUnits() {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['PumpList']) && res.response['PumpList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.PumpList?.length) {
               this.getPumpList = res.response['PumpList'];
           }
           this.spinner.hide();
@@ -268,14 +268,14 @@ getSaledUnits() {
   }
 
   getmemberNames(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getmemberNamesUrl = ['/', this.apiConfigService.getPump, value, this.modelFormData.get('branchCode').value].join('/');
       this.apiService.apiGetRequest(getmemberNamesUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['PumpList']) && res.response['PumpList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.PumpList?.length) {
                 this.getmemberNamesArray = res.response['PumpList'];
             }
             else
@@ -314,7 +314,7 @@ getSaledUnits() {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         this.formData.item = this.modelFormData.value;
         this.dialogRef.close(this.formData);
       }

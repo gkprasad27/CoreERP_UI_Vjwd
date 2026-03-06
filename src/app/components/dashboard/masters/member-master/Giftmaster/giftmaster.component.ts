@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 import { ApiService} from '../../../../../services/api.service';
 import { AlertService}from '../../../../../services/alert.service';
-import { isNullOrUndefined } from 'util';
+
 import { StatusCodes, SnackBar } from 'src/app/enums/common/common';
 import { debug } from 'console';
 import { CommonService } from '../../../../../services/common.service';
@@ -84,8 +84,8 @@ membercode:any;
             response => {
                
               const res = response.body;
-              if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                if (!isNullOrUndefined(res.response)) {
+              if (res != null && res.status === StatusCodes.pass) {
+                if (res.response != null) {
                    //console.log(res);
                   this.productList = res.response['GiftProduct'];
                 }
@@ -101,8 +101,8 @@ membercode:any;
               response=>{
              
                  const res=response.body;
-                 if(!isNullOrUndefined(res) && res.status == StatusCodes.pass){
-                     if(!isNullOrUndefined(res.response)){
+                 if (res != null && res.status === StatusCodes.pass) {
+                     if (res?.response != null) {
                        this.gifttableDataList =res.response["Gifts"];
                      }
                  }
@@ -117,7 +117,7 @@ membercode:any;
         if (value.action == 'Edit') {
 
           this.formData = value.item;
-          if (!isNullOrUndefined(this.formData)) {
+          if (this.formData != null) {
             this.modelFromData.patchValue(this.formData);            
            // this.modelFromData.controls['giftId'].disable();
             this.modelFromData.controls["giftId"].setValue(this.formData.giftId);
@@ -141,8 +141,8 @@ membercode:any;
               .subscribe(
                 response => {
                   const res = response.body;
-                  if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                    if (!isNullOrUndefined(res.response)) {
+                  if (res != null && res.status === StatusCodes.pass) {
+                    if (res.response != null) {
                       this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
                       this.reset();
                       this.getGiftList(this.membercode);
@@ -162,8 +162,8 @@ membercode:any;
             .subscribe(
               response => {
                 const res = response.body;
-                if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                  if (!isNullOrUndefined(res.response)) {
+                if (res != null && res.status === StatusCodes.pass) {
+                  if (res.response != null) {
                     this.alertService.openSnackBar('Record Updated successfully', 'close', SnackBar.success);
                     this.reset();
                     this.getGiftList(this.membercode);

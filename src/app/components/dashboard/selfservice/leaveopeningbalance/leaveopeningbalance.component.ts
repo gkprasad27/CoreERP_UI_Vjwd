@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '../../../../services/alert.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -60,7 +60,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item))
+    if (this.formData?.item != null)
     {
       
      
@@ -86,14 +86,14 @@ export class LeaveopeningbalanceComponent implements OnInit {
   getProductByProductCode(value) {
     //alert("hi");
     //debugger;
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getEmpCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Empcodes'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.['Empcodes'] != null) {
                 this.getProductByProductCodeArray = res.response['Empcodes'];
                 this.spinner.hide();
               }
@@ -109,7 +109,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
    // debugger;
     //alert("hi");
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(code)) {
+    if (code != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, code.value].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getEmpName, this.modelFormData.get('empCode').value].join('/');
@@ -117,9 +117,9 @@ export class LeaveopeningbalanceComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['empname'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.empname != null) {
               //this.EmpName = res.response['empname']
               this.modelFormData.patchValue
                 ({
@@ -142,8 +142,8 @@ export class LeaveopeningbalanceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.LeaveTypeatList = res.response['leavetypesList'];
             }

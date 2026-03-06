@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
@@ -84,7 +84,7 @@ export class CreateStockissuesComponent implements OnInit {
     });
     //String data= null;
     const user = JSON.parse(localStorage.getItem('user'));
-    if (!isNullOrUndefined(user))
+    if ((user != null))
     {
      // debugger;
       this.branchFormData.patchValue
@@ -102,7 +102,7 @@ export class CreateStockissuesComponent implements OnInit {
     this.getCashPaymentBranchesList();
     // this.gettingtobranches();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         //this.disableForm(params.id1);
         this.getStockissuesDeatilList(params.id1);
@@ -112,7 +112,7 @@ export class CreateStockissuesComponent implements OnInit {
       } else {
         //this.disableForm();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode))
+        if ((user.branchCode != null))
         {
           this.branchFormData.patchValue
           ({
@@ -143,7 +143,7 @@ export class CreateStockissuesComponent implements OnInit {
     if (bname.length)
     {
       this.branchFormData.patchValue({
-        fromBranchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        fromBranchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -153,7 +153,7 @@ export class CreateStockissuesComponent implements OnInit {
   genaratebranchcode(branch?) {
    //debugger;
       let genaratebranchNoUrl;
-    if (!isNullOrUndefined(branch))
+    if ((branch != null))
     {
       genaratebranchNoUrl = ['/', this.apiConfigService.getbranchesnosList, branch].join('/');
     }
@@ -165,9 +165,9 @@ export class CreateStockissuesComponent implements OnInit {
       response =>
       {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['branchno'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['branchno'] != null)) {
               this.fromBranchCode = res.response['branchno']
               console.log(res.response['branchno']);
               this.branchFormData.patchValue
@@ -202,8 +202,8 @@ export class CreateStockissuesComponent implements OnInit {
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['StockissuesDeatilList']) && res.response['StockissuesDeatilList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.StockissuesDeatilList?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockissuesDeatilList']);
             this.spinner.hide();
           }
@@ -218,9 +218,9 @@ export class CreateStockissuesComponent implements OnInit {
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -236,7 +236,7 @@ export class CreateStockissuesComponent implements OnInit {
     //debugger;
     
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getStockissuesnosList, branch].join('/');
     }
     else
@@ -247,9 +247,9 @@ export class CreateStockissuesComponent implements OnInit {
       response =>
       {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StackissueNo']))
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['StackissueNo'] != null))
             {
               this.issueno= res.response['StackissueNo']
               this.branchFormData.patchValue
@@ -280,9 +280,9 @@ export class CreateStockissuesComponent implements OnInit {
     this.apiService.apiGetRequest(gettingtobranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['branch']) && res.response['branch'].length)
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.branch?.length)
             {
               console.log(res.response['branch']);
               this.toBranchCode = res.response['branch']
@@ -313,7 +313,7 @@ export class CreateStockissuesComponent implements OnInit {
       productCode: '', productName: '', hsnNo: '', unit: '', qty: '', rate: '', grossAmount: '', availStock: '', batchNo: '', delete: '', text: 'obj'
     };
 
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -384,14 +384,14 @@ export class CreateStockissuesComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -406,14 +406,14 @@ export class CreateStockissuesComponent implements OnInit {
   //Autocomplete code
   getProductByProductName(value) {
     //debugger;
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -427,14 +427,14 @@ export class CreateStockissuesComponent implements OnInit {
 
 
   //getProductByProductCode(value) {
-  //  if (!isNullOrUndefined(value) && value != '') {
+  //  if (value != null && value !== '') {
   //    const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode, value].join('/');
   //    this.apiService.apiGetRequest(getProductByProductCodeUrl).subscribe(
   //      response => {
   //        const res = response.body;
-  //        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //          if (!isNullOrUndefined(res.response)) {
-  //            if (!isNullOrUndefined(res.response['Products'])) {
+  //        if (res != null && res.status === StatusCodes.pass) {
+  //          if (res.response != null) {
+  //            if (res?.response?.Products != null) {
   //              this.getProductByProductCodeArray = res.response['Products'];
   //              this.spinner.hide();
   //            }
@@ -448,14 +448,14 @@ export class CreateStockissuesComponent implements OnInit {
 
   ////Autocomplete code
   //getProductByProductName(value) {
-  //  if (!isNullOrUndefined(value) && value != '') {
+  //  if (value != null && value !== '') {
   //    const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName, value].join('/');
   //    this.apiService.apiGetRequest(getProductByProductNameUrl).subscribe(
   //      response => {
   //        const res = response.body;
-  //        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //          if (!isNullOrUndefined(res.response)) {
-  //            if (!isNullOrUndefined(res.response['Products'])) {
+  //        if (res != null && res.status === StatusCodes.pass) {
+  //          if (res.response != null) {
+  //            if (res?.response?.Products != null) {
   //              this.getProductByProductNameArray = res.response['Products'];
   //              this.spinner.hide();
   //            }
@@ -472,16 +472,18 @@ export class CreateStockissuesComponent implements OnInit {
   {
     this.setFocus = id + index;
     //debugger;
-    if (!isNullOrUndefined(this.branchFormData.get('fromBranchCode').value) && this.branchFormData.get('fromBranchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+  const fromBranchCode = this.branchFormData.get('fromBranchCode')?.value;
+
+if (fromBranchCode != null && fromBranchCode !== '' &&
+    productCode?.value != null && productCode.value !== '') {
       const getBillingDetailsRcdUrl = ['/', this.apiConfigService.GetProductLists, productCode.value,
         this.branchFormData.get('fromBranchCode').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['productsList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.productsList != null) {
                 this.DetailsSection(res.response['productsList']);
                 this.spinner.hide();
               }
@@ -552,8 +554,7 @@ export class CreateStockissuesComponent implements OnInit {
     }
     let availStock = this.dataSource.filteredData.filter(stock =>
     {
-      if (stock.availStock == 0 || (isNullOrUndefined(stock.qty) && isNullOrUndefined(stock.rate)))
-      {
+      if (stock?.availStock === 0 || (stock?.qty == null && stock?.rate == null)) {
         return stock;
       }
     });
@@ -581,9 +582,9 @@ export class CreateStockissuesComponent implements OnInit {
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass)
+        if (res?.status === StatusCodes.pass)
         {
-          if (!isNullOrUndefined(res.response))
+          if (res?.response != null)
           {
             this.alertService.openSnackBar('Stock Issues Created Successfully..', Static.Close, SnackBar.success);
             //this.branchFormData.reset();

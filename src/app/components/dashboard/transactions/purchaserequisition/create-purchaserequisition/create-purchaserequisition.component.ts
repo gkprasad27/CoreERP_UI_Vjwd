@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
@@ -76,7 +76,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
         id: '0',
       });
     const user = JSON.parse(localStorage.getItem('user'));
-    if (!isNullOrUndefined(user)) {
+    if (user != null) {
       //debugger;
       this.branchFormData.patchValue
         ({
@@ -96,7 +96,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.getCompiniesList();
     this.getBranchesList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         //this.disableForm(params.id1);
         this.getprreqDeatilList(params.id1);
@@ -105,7 +105,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
         this.branchFormData.setValue(billHeader);
       } else {
         //this.disableForm();
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             fromBranchCode: user.branchCode,
             branch: user.branchCode,
@@ -130,7 +130,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        fromBranchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        fromBranchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -143,8 +143,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['PrreqDeatilList']) && res.response['PrreqDeatilList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.PrreqDeatilList?.length) {
             this.dataSource = new MatTableDataSource(res.response['PrreqDeatilList']);
             ////console.log(res.response['StockissuesDeatilList']);
             this.spinner.hide();
@@ -158,8 +158,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.compiniesList = res.response['CompaniesList'];
             }
@@ -172,9 +172,9 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.apiService.apiGetRequest(getCashPaymentBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -189,7 +189,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     debugger;
     //setbranch
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getprreqreceiptnosList, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getprreqreceiptnosList, this.branchFormData.get('branch').value].join('/');
@@ -197,9 +197,9 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StackissueNo'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StackissueNo != null) {
               this.receiptNo = res.response['StackissueNo']
               this.branchFormData.patchValue
                 ({
@@ -227,7 +227,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
       productCode: '', productName: '', qty: '', availbleQtyinBranch: '', availbleQtyinGowdown: '', approvedQty: '', delete: '', text: 'obj'
     };
 
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -289,14 +289,14 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
 
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -311,14 +311,14 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
   //Autocomplete code
   getProductByProductName(value) {
     //debugger;
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -333,16 +333,18 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
 
   getdata(productCode) {
     //debugger;set branch
-    if (!isNullOrUndefined(this.branchFormData.get('branch').value) && this.branchFormData.get('branch').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    const branch = this.branchFormData.get('branch')?.value;
+
+if (branch != null && branch !== '' &&
+    productCode?.value != null && productCode.value !== '') {
       const getBillingDetailsRcdUrl = ['/', this.apiConfigService.GetProductListsforpreq, productCode.value,
         this.branchFormData.get('branch').value].join('/');
       this.apiService.apiGetRequest(getBillingDetailsRcdUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['productsList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.productsList != null) {
                 this.DetailsSection(res.response['productsList']);
               
                 this.spinner.hide();
@@ -408,7 +410,7 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
       return;
     }
     let availStock = this.dataSource.filteredData.filter(stock => {
-      if (stock.availStock == 0 || (isNullOrUndefined(stock.qty))) {
+      if (stock.availStock == 0 || ((stock.qty == null))) {
         return stock;
       }
     });
@@ -433,8 +435,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.apiService.apiPostRequest(registerStackreceiptsUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('PurchaseRequisition Created Successfully..', Static.Close, SnackBar.success);
             // this.branchFormData.reset();
           }
@@ -454,8 +456,8 @@ export class CreatePurchaseRequisitionComponent  implements OnInit {
     this.branchFormData = this.formBuilder.group
       ({
         requisitionDate: [(new Date()).toISOString()],
-        //fromBranchCode: !isNullOrUndefined(user.branchCode) ? user.branchCode : user.branchCode,
-        branch: !isNullOrUndefined(user.branchCode) ? user.branchCode : user.branchCode,
+        //fromBranchCode: (user.branchCode != null) ? user.branchCode : user.branchCode,
+        branch: (user.branchCode != null) ? user.branchCode : user.branchCode,
         company: [null],
         requisitionNo: [null]
       });

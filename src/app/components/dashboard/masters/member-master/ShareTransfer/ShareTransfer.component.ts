@@ -5,7 +5,7 @@ import { ApiService } from '../../../../../services/api.service';
 import { AlertService } from '../../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../../services/api-config.service';
@@ -78,7 +78,7 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       toMemberCode:this.memberCode,
       toMemberName:this.memberName
     });
-    if (!isNullOrUndefined(this.formData)) {
+    if (this.formData != null) {
       this.seDefaults();
       this.tableUrl = {
         url: this.apiConfigService.getShareTransfer,
@@ -111,8 +111,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               // console.log(res);
               this.shareTableData = res.response['ShareList'];
             }
@@ -127,8 +127,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.modelFormData.patchValue({
               shareTransferCode: res.response['ShareTransferNoList']
               })
@@ -144,9 +144,9 @@ export class ShareTransferComponent implements OnInit, OnChanges {
     this.apiService.apiGetRequest(getShareMembersListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['memberList']) && res.response['memberList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.memberList?.length) {
               this.getShareMembersListArray = res.response['memberList'];
               this.spinner.hide();
             }
@@ -160,8 +160,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               // this.getNoOfShares1 = res.response['noOfsharesList'];
               this.modelFormData.patchValue({
                 fromMemberSharesBefore:res.response['noOfsharesList'],
@@ -180,8 +180,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               // this.getNoOfShares1 = res.response['noOfsharesList'];
               this.modelFormData.patchValue({
                 toMemberSharesBefore:0
@@ -198,8 +198,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.modelFormData.patchValue({
                 toMemberName:res.response['memberName']
               });
@@ -218,7 +218,7 @@ export class ShareTransferComponent implements OnInit, OnChanges {
     });
     if (bname.length) {
       this.modelFormData.patchValue({
-        fromMembername: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        fromMembername: (bname[0] != null) ? bname[0].text : null
       });
     }
   }
@@ -228,7 +228,7 @@ export class ShareTransferComponent implements OnInit, OnChanges {
   addOrUpdateEvent(value) {
     if (value.action == 'Edit') {
       this.formData = value.item;
-      if (!isNullOrUndefined(this.formData)) {
+      if (this.formData != null) {
         this.modelFormData.patchValue(this.formData);
         this.modelFormData.controls['shareId'].disable();
         // this.modelFormData.controls['memberCode'].disable();
@@ -259,8 +259,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
         .subscribe(
           response => {
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (res != null && res.status === StatusCodes.pass) {
+              if (res.response != null) {
                 this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
                 this.reset();
                 this.getShareTableData(memberCode);
@@ -277,8 +277,8 @@ export class ShareTransferComponent implements OnInit, OnChanges {
         .subscribe(
           response => {
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (res != null && res.status === StatusCodes.pass) {
+              if (res.response != null) {
                 this.alertService.openSnackBar('Record Updated...', 'close', SnackBar.success);
                 this.reset();
                 this.getShareTableData(memberCode);

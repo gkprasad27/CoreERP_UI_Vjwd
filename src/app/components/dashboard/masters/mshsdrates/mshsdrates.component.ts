@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -53,7 +53,7 @@ export class MSHSDRatesComponent  implements OnInit {
 
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
         this.modelFormData.controls['id'].disable();
         this.modelFormData.controls['branchCode'].disable();
@@ -61,7 +61,7 @@ export class MSHSDRatesComponent  implements OnInit {
       }
       else{
         const user = JSON.parse(localStorage.getItem('user'));
-       if (!isNullOrUndefined(user.branchCode)) {
+       if (user?.branchCode != null) {
         this.modelFormData.patchValue({
           branchCode: user.branchCode,
           userId: user.seqId,
@@ -83,8 +83,8 @@ this.getProductList();
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getMshsdBranches = res.response['mshsdBranchesList'];
           }
@@ -99,8 +99,8 @@ this.getProductList();
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getMshsdProductList = res.response['mshsdProductsList'];
           }

@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -68,8 +68,8 @@ export class StockissuesComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['StockIssueList']) && res.response['StockIssueList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.StockIssueList?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockIssueList']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -92,8 +92,8 @@ export class StockissuesComponent implements OnInit {
 
   //Search and datadisplay code
   search() {
-    if (isNullOrUndefined(this.dateForm.value.issueNo)) {
-      if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.issueNo == null) {
+      if (this.dateForm?.value?.selected == null) {
         this.alertService.openSnackBar('Select issueNo or Date', Static.Close, SnackBar.error);
         return;
       }
@@ -115,9 +115,9 @@ export class StockissuesComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass)
+        if (res?.status === StatusCodes.pass)
         {
-          if (!isNullOrUndefined(res.response['StockIssueList']) && res.response['StockIssueList'].length) {
+          if (res?.response?.StockIssueList?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockIssueList']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();

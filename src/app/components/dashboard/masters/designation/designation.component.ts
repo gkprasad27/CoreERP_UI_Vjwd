@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -48,7 +48,7 @@ export class DesignationComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (this.formData.item != null) {
       this.modelFormData.patchValue(this.formData.item);
       //this.modelFormData.controls['code'].disable();
     }

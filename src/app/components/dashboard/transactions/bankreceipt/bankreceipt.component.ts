@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -63,9 +63,9 @@ branchCode:any;
     this.apiService.apiGetRequest(getBankReceiptBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -79,8 +79,8 @@ branchCode:any;
     this.apiService.apiPostRequest(getBankreceiptListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response['BankReceiptList']) && res.response['BankReceiptList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+        if (res?.response?.BankReceiptList?.length) {
           this.dataSource = new MatTableDataSource( res.response['BankReceiptList']);
           this.dataSource.paginator = this.paginator;
           this.spinner.hide();
@@ -95,9 +95,9 @@ branchCode:any;
   }
 
   search() {
-    if (isNullOrUndefined(this.dateForm.value.voucherNo)) {
-       if (isNullOrUndefined(this.dateForm.value.branchCode)) {
-        if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.voucherNo == null) {
+       if (this.dateForm?.value?.branchCode == null) {
+        if (this.dateForm?.value?.selected == null) {
           this.alertService.openSnackBar('Select VoucherNo or Date', Static.Close, SnackBar.error);
           return;
         } else {

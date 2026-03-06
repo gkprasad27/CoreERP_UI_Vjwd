@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from '../../services/alert.service';
 import { Static } from '../../enums/common/static';
 import { SnackBar, StatusCodes } from '../../enums/common/common';
-import { isNullOrUndefined } from 'util';
+
 
 @Component({
   selector: 'app-navbar',
@@ -55,12 +55,12 @@ export class NavbarComponent implements OnInit {
     this.apiService.apiGetRequest(getShiftIdUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.shiftButton = !isNullOrUndefined(res.response['ShiftId']) ? 'ShiftOUT' : 'ShiftIN'
-            this.employeeShift = !isNullOrUndefined(res.response['ShiftId']) ? res.response['ShiftId'] : null
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            this.shiftButton = (res.response['ShiftId'] != null) ? 'ShiftOUT' : 'ShiftIN'
+            this.employeeShift = (res.response['ShiftId'] != null) ? res.response['ShiftId'] : null
           }
-        } else if (!isNullOrUndefined(res) && res.status === StatusCodes.fail) {
+        } else if ((res != null) && res.status === StatusCodes.fail) {
           this.shiftButton = 'ShiftIN'
         }
       });
@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit {
       response => {
         const res = response.body;
         this.spinner.hide();
-        if (!isNullOrUndefined(res.response)) {
+        if (res.response != null) {
           this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           this.authService.logout();
           this.router.navigateByUrl('/login');
@@ -93,10 +93,10 @@ export class NavbarComponent implements OnInit {
       response => {
         const res = response.body;
         this.spinner.hide();
-        if (!isNullOrUndefined(res.response)) {
-          this.shiftButton = !isNullOrUndefined(res.response['ShiftId']) ? 'ShiftOUT' : 'ShiftIN'
-          this.employeeShift = !isNullOrUndefined(res.response['ShiftId']) ? res.response['ShiftId'] : null
-          const mesage = !isNullOrUndefined(res.response['ShiftId']) ? 'Shift IN' : 'Shift Out'
+        if (res.response != null) {
+          this.shiftButton = (res.response['ShiftId'] != null) ? 'ShiftOUT' : 'ShiftIN'
+          this.employeeShift = (res.response['ShiftId'] != null) ? res.response['ShiftId'] : null
+          const mesage = (res.response['ShiftId'] != null) ? 'Shift IN' : 'Shift Out'
           this.alertService.openSnackBar(`Successfully ${mesage}`, Static.Close, SnackBar.success);
         }
       });

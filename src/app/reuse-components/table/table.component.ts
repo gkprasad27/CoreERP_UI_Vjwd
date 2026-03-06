@@ -8,7 +8,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from '../../services/common.service';
-import { isNullOrUndefined } from 'util';
+
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -119,7 +119,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   }
 
   highlightRows(row?) {
-    if (!isNullOrUndefined(row)) {
+    if (row != null) {
           this.highlightedRows = [];
           this.highlightedRows.push(row);
     }
@@ -133,7 +133,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   openDialog(val, row?) {
     let data;
-    if (!isNullOrUndefined(row)) {
+    if (row != null) {
       data = { action: val, item: row };
       this.highlightedRows = [row];
     }
@@ -178,7 +178,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       this.routeParam='AdditionalShareTransfer';
     }
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
       if (this.tableData.length > 0) {
         this.showDataNotFound = false;
         this.dataSource = new MatTableDataSource(this.tableData);
@@ -186,12 +186,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         this.showDataNotFound = true;
       }
     }
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
 
-      if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+      if ((this.tableData != null) && this.tableData.length > 0) {
         // tslint:disable-next-line:forin
         for (const key in this.tableData[0]) {
           this.keys.push({ col: key });
@@ -219,7 +219,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       }
 
 
-      if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+      if ((this.tableData != null) && this.tableData.length > 0) {
         this.filteredTableMulti.next(this.columnDefinitions.slice());
         this.tableMultiFilterCtrl.valueChanges
           .pipe(takeUntil(this.onDestroy))
@@ -293,7 +293,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   getDisplayedColumns(): string[] {
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
   }

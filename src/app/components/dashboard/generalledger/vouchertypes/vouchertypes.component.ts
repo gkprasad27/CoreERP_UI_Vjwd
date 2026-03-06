@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -51,7 +51,7 @@ export class VoucherTypesComponent  implements OnInit {
 
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
         //this.modelFormData.controls['voucherCode'].disable();
       }
@@ -71,8 +71,8 @@ this.getCompaniesList();
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.voucherClass = res.response['VoucherClassList'];
             console.log(this.voucherClass);
@@ -88,8 +88,8 @@ this.getCompaniesList();
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.compList = res.response['CompaniesList'];
           }
@@ -104,8 +104,8 @@ this.getCompaniesList();
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.branchList = res.response['BranchesList'];
           }

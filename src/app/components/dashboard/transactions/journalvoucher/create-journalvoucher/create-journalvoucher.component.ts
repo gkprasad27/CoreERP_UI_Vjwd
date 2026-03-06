@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -111,7 +111,7 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.getJournalVoucherBranchesList();
     this.getJVAccountLedgerList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getJournalVoucherDetailsList(params.id1);
@@ -121,7 +121,7 @@ export class CreateJournalvoucherComponent implements OnInit {
         this.disableForm();
         this.addTableRow();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -139,8 +139,8 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.apiService.apiGetRequest(getJournalVoucherDetailsListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['JournalVoucherDetails']) && res.response['JournalVoucherDetails'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.JournalVoucherDetails?.length) {
             this.dataSource = new MatTableDataSource(res.response['JournalVoucherDetails']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -150,7 +150,7 @@ export class CreateJournalvoucherComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['voucherNo'].disable();
       this.branchFormData.controls['referenceDate'].disable();
       this.branchFormData.controls['branchCode'].disable();
@@ -172,9 +172,9 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.apiService.apiGetRequest(getJournalVoucherBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -188,9 +188,9 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.apiService.apiGetRequest(getJVAccountLedgerListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.AccountLedgerList?.length > 0) {
               this.getJVAccountLedgerListArray = res.response['AccountLedgerList'];
               this.spinner.hide();
             }
@@ -204,9 +204,9 @@ export class CreateJournalvoucherComponent implements OnInit {
   //   this.apiService.apiGetRequest(getJournalVoucherAccountLedgerListUrl).subscribe(
   //     response => {
   //       const res = response.body;
-  //       if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //         if (!isNullOrUndefined(res.response)) {
-  //           if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+  //       if (res != null && res.status === StatusCodes.pass) {
+  //         if (res.response != null) {
+  //           if (res?.response?.AccountLedgerList?.length > 0) {
   //             this.GetJournalVoucherListArray = res.response['AccountLedgerList'];
   //             this.spinner.hide();
   //           }
@@ -215,14 +215,14 @@ export class CreateJournalvoucherComponent implements OnInit {
   //     });
   // }
   getJournalVoucherAccountLedgerList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getJournalVoucherAccountLedgerListUrl = ['/', this.apiConfigService.getJournalVoucherAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getJournalVoucherAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList?.length > 0) {
                 this.GetJournalVoucherListArray = res.response['AccountLedgerList'];
                 //this.getCashPartyAccount();
               } else {
@@ -238,14 +238,14 @@ export class CreateJournalvoucherComponent implements OnInit {
   }
 
   getAccountByAccountName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getAccountLedgerListByName, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -264,7 +264,7 @@ export class CreateJournalvoucherComponent implements OnInit {
       }
     });
     this.branchFormData.patchValue({
-      fromLedgerName: !isNullOrUndefined(lname[0]) ? lname[0].text : null
+      fromLedgerName: lname?.[0] != null ? lname[0].text : null
     });
   }
 
@@ -307,7 +307,7 @@ export class CreateJournalvoucherComponent implements OnInit {
 
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getJournalVoucherNo, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getJournalVoucherNo, this.branchFormData.get('branchCode').value].join('/');
@@ -315,9 +315,9 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList != null) {
               this.branchFormData.patchValue({
                 voucherNo: res.response['BranchesList']
               });
@@ -335,7 +335,7 @@ export class CreateJournalvoucherComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -348,7 +348,7 @@ export class CreateJournalvoucherComponent implements OnInit {
     const tableObj = {
       toLedgerCode: '', toLedgerName: '', amount: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -402,14 +402,14 @@ export class CreateJournalvoucherComponent implements OnInit {
   }
 
   getAccountByAccountCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getJournalVoucherAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -513,7 +513,7 @@ export class CreateJournalvoucherComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         // this.enableFileds();
         this.registerJournalVoucher(tableData);
       }
@@ -538,8 +538,8 @@ export class CreateJournalvoucherComponent implements OnInit {
     this.apiService.apiPostRequest(registerJournalVoucherUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Journal Voucher Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -63,7 +63,7 @@ export class UndersubGroupComponent implements OnInit {
 
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (this.formData.item != null) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['accountGroupId'].disable();
       this.getGLUnderGroupList();
@@ -83,8 +83,8 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.glAccgrpList = res.response['GLAccGroupList'];
             }
           }
@@ -98,8 +98,8 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.glAccNameList = res.response['GetAccountNamelist'];
             }
           }
@@ -113,8 +113,8 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.getAccSubGrpList = res.response['GetAccountSubGrouplist'];
             }
           }
@@ -129,8 +129,8 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.glAccNameList = res.response['GLAccSubGroupList'];
             }
@@ -150,7 +150,7 @@ export class UndersubGroupComponent implements OnInit {
     }
     this.modelFormData.controls['accountGroupId'].enable();
     this.formData.item = this.modelFormData.value;
-    (!isNullOrUndefined(this.formData.item.Undersubaccount)) ? this.formData.item.groupUnder = this.formData.item.Undersubaccount : null;
+    (this.formData.item.Undersubaccount != null) ? this.formData.item.groupUnder = this.formData.item.Undersubaccount : null;
     console.log(this.formData)
     this.dialogRef.close(this.formData);
   }

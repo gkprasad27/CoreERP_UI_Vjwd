@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -63,8 +63,8 @@ export class StockshortComponent  implements OnInit {
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['StockshortsList']) && res.response['StockshortsList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.StockshortsList?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockshortsList']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -86,8 +86,8 @@ export class StockshortComponent  implements OnInit {
   
   //Search and datadisplay code
   search() {
-    if (isNullOrUndefined(this.dateForm.value.stockshortNo)) {
-      if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if ((this.dateForm.value.stockshortNo == null)) {
+      if (this.dateForm?.value?.selected == null) {
         this.alertService.openSnackBar('Select issueNo or Date', Static.Close, SnackBar.error);
         return;
       }
@@ -107,8 +107,8 @@ export class StockshortComponent  implements OnInit {
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['StockshortsList']) && res.response['StockshortsList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.StockshortsList?.length) {
             this.dataSource = new MatTableDataSource(res.response['StockshortsList']);
             console.log(this.dataSource);
             console.log(res.response['StockshortsList']);

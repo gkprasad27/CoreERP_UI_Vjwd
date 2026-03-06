@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
@@ -152,7 +152,7 @@ export class CreateBillComponent implements OnInit {
     this.getSlipDate();
     this.getperchaseData();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         const billHeader = JSON.parse(localStorage.getItem('selectedBill'));
         this.branchFormData.setValue(billHeader);
@@ -166,7 +166,7 @@ export class CreateBillComponent implements OnInit {
         this.addTableRow();
         this.getCashPartyAccountList("100");
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -220,7 +220,7 @@ export class CreateBillComponent implements OnInit {
   }
 
   disabledPump(code) {
-    if (!isNullOrUndefined(this.disablePump)) {
+    if (this.disablePump != null) {
       for (let p = 0; p < this.disablePump.length; p++) {
         if (this.disablePump[p] == code) {
           return false;
@@ -236,9 +236,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(generateSalesReturnInvNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['SalesReturnInvNo'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.SalesReturnInvNo != null) {
               this.isSalesReturnInvoice = res.response['SalesReturnInvNo'];
               this.spinner.hide();
             }
@@ -252,8 +252,8 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['InvoiceDetailList']) && res.response['InvoiceDetailList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+         if (res?.response?.InvoiceDetailList?.length > 0) {
             this.dataSource = new MatTableDataSource(res.response['InvoiceDetailList']);
             this.spinner.hide();
           }
@@ -262,7 +262,7 @@ export class CreateBillComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['ledgerCode'].disable();
       this.branchFormData.controls['branchCode'].disable();
       this.branchFormData.controls['invoiceDate'].disable();
@@ -298,9 +298,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.setBranchCode();
               this.spinner.hide();
@@ -316,8 +316,8 @@ export class CreateBillComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               console.log(res);
               this.branchesList = res.response['branchesList'];
             }
@@ -347,7 +347,7 @@ export class CreateBillComponent implements OnInit {
       this.setBranchCode();
       this.setBranchLenght();
       let generateBillUrl;
-      if (!isNullOrUndefined(branch)) {
+      if (branch != null) {
         generateBillUrl = ['/', this.apiConfigService.generateBillNo, branch].join('/');
       } else {
         generateBillUrl = ['/', this.apiConfigService.generateBillNo, this.branchFormData.get('branchCode').value].join('/');
@@ -355,9 +355,9 @@ export class CreateBillComponent implements OnInit {
       this.apiService.apiGetRequest(generateBillUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['BillNo'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.BillNo != null) {
                 this.branchFormData.patchValue({
                   invoiceNo: res.response['BillNo']
                 });
@@ -382,7 +382,7 @@ export class CreateBillComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -394,7 +394,7 @@ export class CreateBillComponent implements OnInit {
       }
     });
     this.branchFormData.patchValue({
-      ledgerName: !isNullOrUndefined(lname[0]) ? lname[0].text : null
+      ledgerName: lname?.[0] != null ? lname[0].text : null
     });
     this.getCashPartyAccount();
     this.commonService.setFocus('vehicleRegNo');
@@ -414,15 +414,17 @@ export class CreateBillComponent implements OnInit {
     // }
   }
   getAccountBalance(accountGroupId) {
-    if (!isNullOrUndefined(this.branchFormData.get('ledgerCode').value) && this.branchFormData.get('ledgerCode').value != '') {
+    const ledgerCode = this.branchFormData.get('ledgerCode')?.value;
+
+if (ledgerCode != null && ledgerCode !== '') {
       const getAccountBalanceUrl = ['/', this.apiConfigService.getAccountBalance,
         this.branchFormData.get('ledgerCode').value].join('/');
       this.apiService.apiGetRequest(getAccountBalanceUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountBalance'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountBalance != null) {
                 this.branchFormData.patchValue({
                   accountBalance: res.response['AccountBalance']
                 });
@@ -442,14 +444,15 @@ export class CreateBillComponent implements OnInit {
   }
 
   getmemberNames(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getmemberNamesUrl = ['/', this.apiConfigService.getmemberNames, value].join('/');
       this.apiService.apiGetRequest(getmemberNamesUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Members']) && res.response['Members'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Members?.length) {
+
                 this.getmemberNamesArray = res.response['Members'];
               } else {
                 this.getmemberNamesArray = [];
@@ -472,14 +475,15 @@ export class CreateBillComponent implements OnInit {
       generalNo: null,
       vehicleId: null
     })
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getVechielsUrl = ['/', this.apiConfigService.getVechiels, value, this.branchFormData.get('memberCode').value].join('/');
       this.apiService.apiGetRequest(getVechielsUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Members']) && res.response['Members'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Members?.length) {
+
                 this.getVechielsArray = res.response['Members'];
               } else {
                 this.getVechielsArray = [];
@@ -497,14 +501,14 @@ export class CreateBillComponent implements OnInit {
     if ((value.which || value.keyCode) == 113) {
       
   }
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getCashPartyAccountListUrl = ['/', this.apiConfigService.getCashPartyAccountList, value].join('/');
       this.apiService.apiGetRequest(getCashPartyAccountListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['CashPartyAccountList']) && res.response['CashPartyAccountList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.CashPartyAccountList?.length > 0) {
                 this.getCashPartyAccountListArray = res.response['CashPartyAccountList'];
                 this.getCashPartyAccount();
               } else {
@@ -520,14 +524,14 @@ export class CreateBillComponent implements OnInit {
   }
   //Raghavendra
   getCustomerGstNumList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getCashPartyAccountListUrl = ['/', this.apiConfigService.getCustomerGstNumList, value].join('/');
       this.apiService.apiGetRequest(getCashPartyAccountListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['CustomerGstNum'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.CustomerGstNum != null) {
                 this.branchFormData.patchValue({
                   customerGstin: res.response['CustomerGstNum']['customerGstin'],
                 });
@@ -554,9 +558,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getCashPartyAccountUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['CashPartyAccount'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.CashPartyAccount != null) {
               this.branchFormData.patchValue({
                 ledgerName: res.response['CashPartyAccount']['ledgerName'],
                 paymentMode: res.response['CashPartyAccount']['crOrDr'],
@@ -595,9 +599,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getStateListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               this.getStateListArray = res.response['StateList'];
               // this.branchFormData.patchValue({
               //   stateCode: '37'
@@ -635,7 +639,7 @@ export class CreateBillComponent implements OnInit {
   // disableSlipValData(column) {
   //   if (this.disableSlipVal(column.productCode)) {
   //     return true;
-  //   } else if (isNullOrUndefined(column.slipNo)) {
+  //   } else if ((column.slipNo == null)) {
   //     return false;
   //   } else {
   //     return true;
@@ -648,9 +652,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getSelectedStateUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['StateList']) && res.response['StateList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.StateList?.length > 0) {
               const taxP = res.response['StateList'][0];
               this.branchFormData.patchValue({
                 stateCode: taxP.stateCode
@@ -673,7 +677,7 @@ export class CreateBillComponent implements OnInit {
       return '';
     } else if (value == 0) {
       return '';
-    } else if (value == '' || isNullOrUndefined(value)) {
+    } else if (value == '' || value == null) {
       return 'flashLight';
     } else {
       return '';
@@ -685,7 +689,7 @@ export class CreateBillComponent implements OnInit {
       productCode: '', productName: '', hsnNo: '', pumpNo: '', qty: '', fQty: '', slipNo: '', unitName: '',
       discount: 0.00, taxGroupName: '', rate: '', grossAmount: '', availStock: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -771,14 +775,14 @@ export class CreateBillComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductCodeUrl = ['/', this.apiConfigService.getProductByProductCode].join('/');
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { productCode: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductCodeArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -796,9 +800,9 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(getmemberNamesByCodeUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['Members'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.Members != null) {
               this.branchFormData.patchValue({
                 memberCode: res.response['Members']['memberCode'],
                 memberName: res.response['Members']['memberName'],
@@ -815,10 +819,10 @@ export class CreateBillComponent implements OnInit {
   }
 
   calculateAmount(row?, index?) {
-    if (!isNullOrUndefined(row)) {
-      if (!isNullOrUndefined(row.qty) && (row.qty != '')) {
+    if (row != null) {
+      if (row?.qty != null && row.qty !== '') {
         this.dataSource.data[index].grossAmount = (row.qty * row.rate).toFixed(2);
-      } else if (!isNullOrUndefined(row.fQty) && (row.fQty != '')) {
+      } else if (row?.fQty != null && row.fQty !== '')
         this.dataSource.data[index].grossAmount = (0 * row.rate).toFixed(2);
       }
     }
@@ -835,8 +839,8 @@ export class CreateBillComponent implements OnInit {
       }
     }
     this.branchFormData.patchValue({
-      totalAmount: !isNullOrUndefined(totalAmount) ? totalAmount.toFixed(2) : null,
-      totaltaxAmount: !isNullOrUndefined(totaltaxAmount) ? totaltaxAmount.toFixed(2) : null,
+      totalAmount: totalAmount != null ? totalAmount.toFixed(2) : null,
+      totaltaxAmount: totaltaxAmount != null ? totaltaxAmount.toFixed(2) : null,
     });
     this.branchFormData.patchValue({
       grandTotal: (totalAmount + totaltaxAmount).toFixed(2),
@@ -853,15 +857,18 @@ export class CreateBillComponent implements OnInit {
     this.setFocus = id + index;
     this.commonService.setFocus(id + index);
     // if (this.checkProductCode(productCode, index)) {
-    if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
-      !isNullOrUndefined(productCode.value) && productCode.value != '') {
+    const branchCode = this.branchFormData.get('branchCode')?.value;
+const pCode = productCode?.value;
+
+if (branchCode != null && branchCode !== '' && pCode != null && pCode !== '') {
+
       const getBillingDetailsRcdUrl = ['/', this.apiConfigService.getBillingDetailsRcd].join('/');
       this.apiService.apiPostRequest(getBillingDetailsRcdUrl, { productCode: productCode.value, branchCode: this.branchFormData.get('branchCode').value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['BillingDetailsSection'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.BillingDetailsSection != null) {
                 this.billingDetailsSection(res.response['BillingDetailsSection'], index);
                 this.getProductByProductCodeArray = [];
                 this.spinner.hide();
@@ -878,7 +885,7 @@ export class CreateBillComponent implements OnInit {
   }
 
   // checkProductCode(code, index) {
-  //   if (!isNullOrUndefined(code.value)) {
+  //   if (code?.value != null) {
   //     for (let c = 0; c < this.dataSource.data.length; c++) {
   //       if ((this.dataSource.data[c].productCode == code.value) && c != index) {
   //         return false;
@@ -889,7 +896,7 @@ export class CreateBillComponent implements OnInit {
   // }
 
   billingDetailsSection(obj, index) {
-    if (isNullOrUndefined(obj.availStock) || (obj.availStock == 0)) {
+    if (obj?.availStock == null || obj.availStock === 0) {
       this.alertService.openSnackBar(`This Product(${obj.productCode}) available stock is 0`, Static.Close, SnackBar.error);
     }
     obj.text = 'obj';
@@ -917,14 +924,14 @@ export class CreateBillComponent implements OnInit {
   }
 
   getProductByProductName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductByProductNameUrl = ['/', this.apiConfigService.getProductByProductName].join('/');
       this.apiService.apiPostRequest(getProductByProductNameUrl, { productName: value }).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['Products'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.Products != null) {
                 this.getProductByProductNameArray = res.response['Products'];
                 this.spinner.hide();
               }
@@ -939,16 +946,19 @@ export class CreateBillComponent implements OnInit {
   getPupms(pump, productCode) {
     const pNumber = +pump;
     if (!isNaN(pNumber)) {
-      if (!isNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
-        !isNullOrUndefined(pump) && pump != '' && !isNullOrUndefined(productCode) && productCode != '') {
+      const branchCode = this.branchFormData.get('branchCode')?.value;
+
+if (branchCode != null && branchCode !== '' &&
+    pump != null && pump !== '' &&
+    productCode != null && productCode !== '') {
         const getPupmsUrl = ['/', this.apiConfigService.getPupms, pump,
           this.branchFormData.get('branchCode').value, productCode].join('/');
         this.apiService.apiGetRequest(getPupmsUrl).subscribe(
           response => {
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
-                if (!isNullOrUndefined(res.response['PumpsList'])) {
+            if (res != null && res.status === StatusCodes.pass) {
+              if (res.response != null) {
+                if (res?.response?.PumpsList != null) {
                   this.getPupmsArray = res.response['PumpsList'];
                   this.spinner.hide();
                 }
@@ -971,9 +981,9 @@ export class CreateBillComponent implements OnInit {
   //   this.apiService.apiGetRequest(getPumpsListUrl).subscribe(
   //     response => {
   //       const res = response.body;
-  //       if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //         if (!isNullOrUndefined(res.response)) {
-  //           if (!isNullOrUndefined(res.response['PumpsList']) && res.response['PumpsList'].length) {
+  //       if (res != null && res.status === StatusCodes.pass) {
+  //         if (res.response != null) {
+  //           if (res?.response?.PumpsList != null && res.response['PumpsList'].length) {
   //             this.GetPumpsListArray = res.response['PumpsList'];
   //             this.setBranchCode();
   //             this.spinner.hide();
@@ -1044,7 +1054,7 @@ export class CreateBillComponent implements OnInit {
         content = '0 Availablilty Stock';
         return stock;
       }
-      if (isNullOrUndefined(stock.qty) && isNullOrUndefined(stock.fQty)) {
+      if (stock?.qty == null && stock?.fQty == null) {
         content = 'qty or Fqty is null';
         return stock;
       }
@@ -1053,18 +1063,18 @@ export class CreateBillComponent implements OnInit {
         return stock;
       }
       if (stock.productCode == 'D') {
-        if (isNullOrUndefined(stock.slipNo)) {
+        if ((stock.slipNo == null)) {
           content = 'SlipNo is null';
           return stock;
         }
       }
       if (stock.productCode == 'D' || stock.productCode == 'P' || stock.productCode == 'XP') {
-        if (isNullOrUndefined(stock.pumpNo)) {
+        if ((stock.pumpNo == null)) {
           content = 'PumpNo is null';
           return stock;
         }
       }
-      if (!isNullOrUndefined(stock.pumpNo)) {
+      if ((stock.pumpNo != null)) {
         if (this.getPupmsArray.length == 0) {
           content = 'PumpNo is not valid';
           return stock;
@@ -1083,7 +1093,7 @@ export class CreateBillComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         this.enableFileds();
         this.registerInvoice(tableData);
         this.isSaveDisabled = true;
@@ -1139,8 +1149,8 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiPostRequest(registerInvoiceUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Billing Successfully..', Static.Close, SnackBar.success);
             if (this.printBill) {
               if (this.branchFormData.get('branchCode').value == 2 || (this.branchFormData.get('branchCode').value == 3) || (this.branchFormData.get('branchCode').value == 4) || (this.branchFormData.get('branchCode').value == 7)) {
@@ -1170,8 +1180,8 @@ export class CreateBillComponent implements OnInit {
     this.apiService.apiGetRequest(registerInvoiceReturnUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Billing Return Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

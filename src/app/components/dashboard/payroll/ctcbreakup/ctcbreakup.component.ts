@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { isNullOrUndefined } from 'util';
+
 @Component({
   selector: 'app-ctcbreakup',
   templateUrl: './ctcbreakup.component.html',
@@ -48,8 +48,8 @@ export class CTCBreakupComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.structureList = res.response['ComponentsList'];
           }
         }
@@ -63,8 +63,8 @@ export class CTCBreakupComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.dataSource = new MatTableDataSource(res.response['componentsList']);
             this.dataSource.paginator = this.paginator;
           }

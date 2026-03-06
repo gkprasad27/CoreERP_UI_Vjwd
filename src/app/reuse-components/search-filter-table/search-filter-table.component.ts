@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit, OnChanges, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
-import { isNullOrUndefined } from 'util';
+
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -50,7 +50,7 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
 
   ngOnInit() {
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
 
       // tslint:disable-next-line:forin
       // for (const key in this.tableData[0]) {
@@ -74,7 +74,7 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
 
     console.log(this.columnDefinitions);
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
       this.filteredTableMulti.next(this.columnDefinitions.slice());
 
       this.tableMultiFilterCtrl.valueChanges

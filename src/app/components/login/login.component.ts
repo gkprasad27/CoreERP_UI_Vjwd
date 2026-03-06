@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
 import { ApiService } from '../../services/api.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { isNullOrUndefined } from 'util';
+
 import { CommonService } from '../../services/common.service';
 
 
@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.getBranchesForUser(res.response['User']);
               localStorage.setItem('Token', JSON.stringify(res.response['Token']));
             }
@@ -87,9 +87,9 @@ export class LoginComponent implements OnInit {
       response => {
         this.spinner.hide();
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['Branches'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if ((res.response['Branches'] != null)) {
               obj.branchCode = res.response['Branches'][0];
               localStorage.setItem('branchList', JSON.stringify(res.response['Branches']));
               this.authService.login(obj);

@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -49,7 +49,7 @@ export class AccToAccClassComponent  implements OnInit {
 
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
         //this.modelFormData.controls['code'].disable();
       }
@@ -70,8 +70,8 @@ export class AccToAccClassComponent  implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.accClassList = res.response['AccountingclassList'];
           }
         }
@@ -85,8 +85,8 @@ export class AccToAccClassComponent  implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.tranTypes = res.response['mattranstype'];
           }
         }
@@ -100,8 +100,8 @@ export class AccToAccClassComponent  implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.salesGlAcc = res.response['GLSalesAccounts'];
           }
@@ -116,8 +116,8 @@ export class AccToAccClassComponent  implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.purchaseAcc = res.response['GLPurchaseAccounts'];
           }
@@ -132,8 +132,8 @@ export class AccToAccClassComponent  implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.invAcc = res.response['GLInventoryAccounts'];
           }

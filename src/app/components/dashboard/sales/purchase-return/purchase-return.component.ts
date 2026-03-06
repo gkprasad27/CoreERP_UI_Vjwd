@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -62,8 +62,8 @@ selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};
     this.apiService.apiPostRequest(getPurchaseInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response['PurchaseReturnHdr']) && res.response['PurchaseReturnHdr'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+        if (res?.response?.PurchaseReturnHdr?.length > 0) {
           this.dataSource = new MatTableDataSource( res.response['PurchaseReturnHdr']);
           this.dataSource.paginator = this.paginator;
           this.spinner.hide();
@@ -78,8 +78,8 @@ selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};
   }
 
   search() {
-    if (isNullOrUndefined(this.dateForm.value.invoiceNo)) {
-        if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.invoiceNo == null) {
+        if (this.dateForm?.value?.selected == null) {
           this.alertService.openSnackBar('Select Invoice or Date', Static.Close, SnackBar.error);
           return;
         } else {

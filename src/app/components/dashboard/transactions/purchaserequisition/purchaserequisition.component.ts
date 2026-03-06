@@ -6,7 +6,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { Router } from '@angular/router';
 import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
@@ -64,8 +64,8 @@ export class PurchaserequisitionComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceDetailstUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['PurchaseequisitionDetailslist']) && res.response['PurchaseequisitionDetailslist'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.PurchaseequisitionDetailslist?.length) {
             this.dataSource = new MatTableDataSource(res.response['PurchaseequisitionDetailslist']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -87,8 +87,8 @@ export class PurchaserequisitionComponent implements OnInit {
 
   //Search and datadisplay code
   search() {
-    if (isNullOrUndefined(this.dateForm.value.issueNo)) {
-      if (isNullOrUndefined(this.dateForm.value.selected)) {
+    if (this.dateForm?.value?.issueNo == null) {
+      if (this.dateForm?.value?.selected == null) {
         this.alertService.openSnackBar('Select issueNo or Date', Static.Close, SnackBar.error);
         return;
       }
@@ -109,8 +109,8 @@ export class PurchaserequisitionComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceListUrl, this.dateForm.value).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['PurchaseRequisitionList']) && res.response['PurchaseRequisitionList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.PurchaseRequisitionList?.length) {
             this.dataSource = new MatTableDataSource(res.response['PurchaseRequisitionList']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();

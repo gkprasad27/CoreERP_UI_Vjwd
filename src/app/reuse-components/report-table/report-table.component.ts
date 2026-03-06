@@ -9,7 +9,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from '../../services/common.service';
-import { isNullOrUndefined } from 'util';
+
 import { ActivatedRoute } from '@angular/router';
 import { DeleteItemComponent } from '../delete-item/delete-item.component';
 import { SearchFilterTableComponent } from '../search-filter-table/search-filter-table.component';
@@ -198,7 +198,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
     this.filterColData = [];
   }
   getDisplayedColumns(): string[] {
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
   }
@@ -219,8 +219,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === 'PASS') {
-            if (!isNullOrUndefined(res.response['accountLedgerList'])) {
+          if (res?.status === 'PASS') {
+            if (res?.response?.AccountLedgerList != null) {
               this.AccountLedgers = res.response['accountLedgerList'];
             }
           }
@@ -232,8 +232,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === 'PASS') {
-            if (!isNullOrUndefined(res.response['reportBranchesList'])) {
+          if (res?.status === 'PASS') {
+            if ((res.response['reportBranchesList'] != null)) {
               this.ReportBranches = res.response['reportBranchesList'];
             }
           }
@@ -245,8 +245,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === 'PASS') {
-            if (!isNullOrUndefined(res.response['reportPGList'])) {
+          if (res?.status === 'PASS') {
+            if ((res.response['reportPGList'] != null)) {
               this.ReportPGList = res.response['reportPGList'];
             }
           }
@@ -258,8 +258,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === 'PASS') {
-            if (!isNullOrUndefined(res.response['reportSGList'])) {
+          if (res?.status === 'PASS') {
+            if ((res.response['reportSGList'] != null)) {
               this.ReportSGList = res.response['reportSGList'];
             }
           }
@@ -271,8 +271,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
   //     .subscribe(
   //       response => {
   //         const res = response.body;
-  //         if (!isNullOrUndefined(res) && res.status === 'PASS') {
-  //           if (!isNullOrUndefined(res.response['productList'])) {
+  //         if (res?.status === 'PASS') {
+  //           if ((res.response['productList'] != null)) {
   //             this.Products = res.response['productList'];
   //           }
   //         }
@@ -280,14 +280,14 @@ export class ReportTableComponent implements OnInit, OnChanges {
   // }
 
   getProductsList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getProductListUrl = ['/', this.apiConfigService.getStockProducts, value].join('/');
       this.apiService.apiGetRequest(getProductListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['ProductList']) && res.response['ProductList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.ProductList?.length) {
                 this.GetProductListArray = res.response['ProductList'];
                 //this.getCashPartyAccount();
               } else {
@@ -303,14 +303,14 @@ export class ReportTableComponent implements OnInit, OnChanges {
   }
 
   getBankPAccountLedgerList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getBankPAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBankPAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList?.length > 0) {
                 this.GetBankPAccountLedgerListArray = res.response['AccountLedgerList'];
                 //this.getCashPartyAccount();
               } else {
@@ -332,7 +332,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
       }
     });
     this.dateForm.patchValue({
-      selectedAccountLedger: !isNullOrUndefined(lname[0]) ? lname[0].id : null
+      selectedAccountLedger: lname?.[0] != null ? lname[0].id : null
     });
   }
 
@@ -343,7 +343,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
       }
     });
     this.dateForm.patchValue({
-      selectedProduct: !isNullOrUndefined(pname[0]) ? pname[0].id : null
+      selectedProduct: (pname[0] != null) ? pname[0].id : null
     });
   }
 
@@ -354,7 +354,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
       }
     });
     this.dateForm.patchValue({
-      fromAccountLedger: !isNullOrUndefined(lname[0]) ? lname[0].id : null
+      fromAccountLedger: lname?.[0] != null ? lname[0].id : null
     });
   }
 
@@ -365,7 +365,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
       }
     });
     this.dateForm.patchValue({
-      toAccountLedger: !isNullOrUndefined(lname[0]) ? lname[0].id : null
+      toAccountLedger: lname?.[0] != null ? lname[0].id : null
     });
   }
 
@@ -859,7 +859,7 @@ export class ReportTableComponent implements OnInit, OnChanges {
           }
           else {
             let data;
-            if (!isNullOrUndefined(row)) {
+            if (row != null) {
               data = { action: val, item: row };
               this.highlightedRows = [row];
             } else {
@@ -881,8 +881,8 @@ export class ReportTableComponent implements OnInit, OnChanges {
                   response => {
                     let innerReportName = this.Reports[this.dateForm.get('selectedReport').value - 2].reportName;
                     const res = response.body;
-                    if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                      if (!isNullOrUndefined(res.response)) {
+                    if (res != null && res.status === StatusCodes.pass) {
+                      if (res.response != null) {
                         const dialogRef = this.dialog.open(ReportsInnerTableComponent, {
                           width: '1024px',
                           height: '500px',
@@ -923,18 +923,18 @@ export class ReportTableComponent implements OnInit, OnChanges {
     this.columnDefinitions = [];
     this.keys = [];
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (this.tableData != null) {
       if (this.tableData.length > 0) {
         this.dataSource = new MatTableDataSource(this.tableData);
       }
     }
 
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
 
-    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+    if ((this.tableData != null) && this.tableData.length > 0) {
 
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {

@@ -4,7 +4,7 @@ import { ApiService } from '../../../services/api.service';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';
 import { AlertService } from '../../../services/alert.service';
@@ -38,12 +38,12 @@ export class TransactionsComponent implements OnInit {
     this.transactionsService.branchCode = user.branchCode;
     this.transactionsService.role = user.role;
     activatedRoute.params.subscribe(params => {
-    if (!isNullOrUndefined(this.tableComponent)) {
+    if (this.tableComponent != null) {
       this.tableComponent.defaultValues();
     }
       this.routeParams = params.id;
       this.tableUrl = transactionsService.getRouteUrls(params.id);
-      if (!isNullOrUndefined(this.tableUrl) && this.tableUrl.coustom) {
+      if (this.tableUrl != null && this.tableUrl.coustom) {
         this.tableData = null;
         this.getTableData();
       }
@@ -61,15 +61,15 @@ export class TransactionsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         this.spinner.show();
         const deleteCompanyUrl = ['/', this.tableUrl.deleteUrl, result.item[this.tableUrl.primaryKey]].join('/');
         this.apiService.apiDeleteRequest(deleteCompanyUrl, result.item)
           .subscribe(
             response => {
               const res = response.body;
-              if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                if (!isNullOrUndefined(res.response)) {
+              if (res != null && res.status === StatusCodes.pass) {
+                if (res.response != null) {
                   this.tableComponent.defaultValues();
                   this.getTableData();
                   this.alertService.openSnackBar('Delected Record...', 'close', SnackBar.success);
@@ -93,7 +93,7 @@ export class TransactionsComponent implements OnInit {
         disableClose: true
       });
       dialogRef.afterClosed().subscribe(result => {
-        if (!isNullOrUndefined(result)) {
+        if (result != null) {
           this.spinner.show();
           if (result.action === 'Add') {
             const addCompanyUrl = ['/', this.tableUrl.registerUrl].join('/');
@@ -101,8 +101,8 @@ export class TransactionsComponent implements OnInit {
               .subscribe(
                 response => {
                   const res = response.body;
-                  if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                    if (!isNullOrUndefined(res.response)) {
+                  if (res != null && res.status === StatusCodes.pass) {
+                    if (res.response != null) {
                       this.tableComponent.defaultValues();
                       this.getTableData();
                       this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
@@ -117,8 +117,8 @@ export class TransactionsComponent implements OnInit {
                 response => {
                   const res = response.body;
                   this.spinner.hide();
-                  if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                    if (!isNullOrUndefined(res.response)) {
+                  if (res != null && res.status === StatusCodes.pass) {
+                    if (res.response != null) {
                       this.tableComponent.defaultValues();
                       this.getTableData();
                       this.alertService.openSnackBar('Record Updated...', 'close', SnackBar.success);
@@ -138,8 +138,8 @@ export class TransactionsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
               this.tableData = res.response[this.tableUrl.listName];
             }
           }

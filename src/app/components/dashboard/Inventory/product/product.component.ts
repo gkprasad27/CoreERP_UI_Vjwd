@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlertService } from '../../../../services/alert.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -83,7 +83,7 @@ export class ProductComponent implements OnInit {
       });
 
       this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (this.formData.item != null) {
         this.modelFormData.patchValue(this.formData.item);
         this.modelFormData.controls['productCode'].disable();
         this.getTaxGrouplist();
@@ -107,8 +107,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getSupplierGroup = res.response['SupplierGroupList'];
           }
@@ -123,9 +123,9 @@ export class ProductComponent implements OnInit {
           this.apiService.apiGetRequest(getTaxListUrl).subscribe(
             response => {
               const res = response.body;
-              if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                if (!isNullOrUndefined(res.response)) {
-                  if (!isNullOrUndefined(res.response['TaxList'])) {
+              if (res != null && res.status === StatusCodes.pass) {
+                if (res.response != null) {
+                  if (res.response['TaxList'] != null) {
                     this.modelFormData.patchValue({
                       cgst: res.response['TaxList'][0]['cgst'],
                       sgst: res.response['TaxList'][0]['sgst'],
@@ -147,8 +147,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getProductGroup = res.response['ProductGroupList'];
           }
@@ -163,8 +163,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getTaxApplicable = res.response['TaxApplicableList'];
           }
@@ -179,8 +179,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getProductPacking = res.response['ProductPackingList'];
           }
@@ -195,8 +195,8 @@ export class ProductComponent implements OnInit {
     .subscribe(
       response => {
       const res = response.body;
-      if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response)) {
+      if (res != null && res.status === StatusCodes.pass) {
+        if (res.response != null) {
           console.log(res);
           this.getTaxGroup = res.response['TaxGroupList'];
         }
@@ -211,8 +211,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getUnit = res.response['UnitList'];
           }
@@ -227,8 +227,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             console.log(res);
             this.getTaxStructureList = res.response['TaxStructureCode'];
           }

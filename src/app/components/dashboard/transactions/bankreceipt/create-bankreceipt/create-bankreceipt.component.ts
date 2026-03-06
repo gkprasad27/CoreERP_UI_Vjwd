@@ -4,7 +4,7 @@ import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -100,7 +100,7 @@ export class CreateBankreceiptComponent implements OnInit {
     this.getBankReceiptBranchesList();
     this.getBankRAccountLedgerList();
     this.activatedRoute.params.subscribe(params => {
-      if (!isNullOrUndefined(params.id1)) {
+      if (params.id1 != null) {
         this.routeUrl = params.id1;
         this.disableForm(params.id1);
         this.getBankReceiptDetailsList(params.id1);
@@ -110,7 +110,7 @@ export class CreateBankreceiptComponent implements OnInit {
         this.disableForm();
         this.addTableRow();
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!isNullOrUndefined(user.branchCode)) {
+        if (user?.branchCode != null) {
           this.branchFormData.patchValue({
             branchCode: user.branchCode,
             userId: user.seqId,
@@ -131,8 +131,8 @@ export class CreateBankreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(getBankReceiptDetailsListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response['BankReceiptDetails']) && res.response['BankReceiptDetails'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res?.response?.BankReceiptDetails?.length) {
             this.dataSource = new MatTableDataSource(res.response['BankReceiptDetails']);
             this.dataSource.paginator = this.paginator;
             this.spinner.hide();
@@ -142,7 +142,7 @@ export class CreateBankreceiptComponent implements OnInit {
   }
 
   disableForm(route?) {
-    if (!isNullOrUndefined(route)) {
+    if (route != null) {
       this.branchFormData.controls['voucherNo'].disable();
       this.branchFormData.controls['postingDate'].disable();
       this.branchFormData.controls['branchCode'].disable();
@@ -165,9 +165,9 @@ export class CreateBankreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(getBankReceiptBranchesListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList?.length > 0) {
               this.GetBranchesListArray = res.response['BranchesList'];
               this.spinner.hide();
             }
@@ -181,9 +181,9 @@ export class CreateBankreceiptComponent implements OnInit {
   //   this.apiService.apiGetRequest(getBRAccountLedgerListUrl).subscribe(
   //     response => {
   //       const res = response.body;
-  //       if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //         if (!isNullOrUndefined(res.response)) {
-  //           if (!isNullOrUndefined(res.response['BranchesList']) && res.response['BranchesList'].length) {
+  //       if (res != null && res.status === StatusCodes.pass) {
+  //         if (res.response != null) {
+  //           if (res?.response?.BranchesList?.length > 0) {
   //             this.GetBPAccountLedgerListArray = res.response['BranchesList'];
   //             this.spinner.hide();
   //           }
@@ -197,9 +197,9 @@ export class CreateBankreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(getBankRAccountLedgerListUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.AccountLedgerList?.length > 0) {
               this.GetBankPAccountLedgerListArray = res.response['AccountLedgerList'];
               this.spinner.hide();
             }
@@ -208,14 +208,14 @@ export class CreateBankreceiptComponent implements OnInit {
       });
   }
   getBRAccountLedgerList(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getBRAccountLedgerListUrl = ['/', this.apiConfigService.getBRAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getBRAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList']) && res.response['AccountLedgerList'].length) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList?.length > 0) {
                 this.GetBPAccountLedgerListArray = res.response['AccountLedgerList'];
                 //this.getCashPartyAccount();
               } else {
@@ -237,13 +237,13 @@ export class CreateBankreceiptComponent implements OnInit {
       }
     });
     this.branchFormData.patchValue({
-      bankLedgerName: !isNullOrUndefined(lname[0]) ? lname[0].text : null
+      bankLedgerName: lname?.[0] != null ? lname[0].text : null
     });
   }
 
   genarateVoucherNo(branch?) {
     let genarateVoucherNoUrl;
-    if (!isNullOrUndefined(branch)) {
+    if (branch != null) {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getBankReceiptVoucherNo, branch].join('/');
     } else {
       genarateVoucherNoUrl = ['/', this.apiConfigService.getBankReceiptVoucherNo, this.branchFormData.get('branchCode').value].join('/');
@@ -251,9 +251,9 @@ export class CreateBankreceiptComponent implements OnInit {
     this.apiService.apiGetRequest(genarateVoucherNoUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['BranchesList'])) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
+            if (res?.response?.BranchesList != null) {
               this.branchFormData.patchValue({
                 voucherNo: res.response['BranchesList']
               });
@@ -272,7 +272,7 @@ export class CreateBankreceiptComponent implements OnInit {
     });
     if (bname.length) {
       this.branchFormData.patchValue({
-        branchName: !isNullOrUndefined(bname[0]) ? bname[0].text : null
+        branchName: bname?.[0] != null ? bname[0].text : null
       });
     }
   }
@@ -286,7 +286,7 @@ export class CreateBankreceiptComponent implements OnInit {
     const tableObj = {
       toLedgerCode: '', toLedgerName: '', amount: '', delete: '', text: 'obj'
     };
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (this.dataSource != null) {
       this.dataSource.data.push(tableObj);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
     } else {
@@ -340,14 +340,14 @@ export class CreateBankreceiptComponent implements OnInit {
   }
 
   getAccountByAccountCode(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getBPAccountLedgerList, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -360,14 +360,14 @@ export class CreateBankreceiptComponent implements OnInit {
   }
 
   getAccountByAccountName(value) {
-    if (!isNullOrUndefined(value) && value != '') {
+    if (value != null && value !== '') {
       const getAccountLedgerListUrl = ['/', this.apiConfigService.getBRAccountLedgerListByName, value].join('/');
       this.apiService.apiGetRequest(getAccountLedgerListUrl).subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              if (!isNullOrUndefined(res.response['AccountLedgerList'])) {
+          if (res != null && res.status === StatusCodes.pass) {
+            if (res.response != null) {
+              if (res?.response?.AccountLedgerList != null) {
                 this.getAccountLedgerListArray = res.response['AccountLedgerList'];
                 this.spinner.hide();
               }
@@ -510,7 +510,7 @@ export class CreateBankreceiptComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (result != null) {
         // this.enableFileds();
         this.registerBankReceipt(tableData);
       }
@@ -536,8 +536,8 @@ export class CreateBankreceiptComponent implements OnInit {
     this.apiService.apiPostRequest(registerBankReceiptUrl, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (res != null && res.status === StatusCodes.pass) {
+          if (res.response != null) {
             this.alertService.openSnackBar('Bank Receipt Created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
