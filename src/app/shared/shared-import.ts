@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMatSelectSearchModule  } from 'ngx-mat-select-search';
@@ -38,12 +36,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
 
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -82,8 +80,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
   ],
   exports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,

@@ -153,7 +153,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             provide: APP_INITIALIZER,
             useFactory: (environment: RuntimeConfigService) => () => environment.loadRuntimeConfig(),
             multi: true,
-            deps: [RuntimeConfigService, HttpClientModule]
+            deps: [RuntimeConfigService, HttpClient]
         },
         {
             provide: HTTP_INTERCEPTORS,
