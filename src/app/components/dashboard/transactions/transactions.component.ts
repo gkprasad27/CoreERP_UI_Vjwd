@@ -3,7 +3,7 @@ import { ApiService } from '../../../services/api.service';
 
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';

@@ -5,8 +5,8 @@ import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
 
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';

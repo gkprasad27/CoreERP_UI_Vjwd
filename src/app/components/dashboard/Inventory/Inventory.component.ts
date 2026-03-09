@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnI
 import { ApiService } from '../../../services/api.service';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';

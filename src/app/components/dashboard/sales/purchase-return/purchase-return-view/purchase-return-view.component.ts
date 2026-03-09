@@ -5,7 +5,7 @@ import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
 
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';

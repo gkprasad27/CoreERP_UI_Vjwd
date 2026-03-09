@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit, OnChanges, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSelect } from '@angular/material/select';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatLegacySelect as MatSelect } from '@angular/material/legacy-select';
 
 import { FormGroup, UntypedFormControl, AbstractControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';

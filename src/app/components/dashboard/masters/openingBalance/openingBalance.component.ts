@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';

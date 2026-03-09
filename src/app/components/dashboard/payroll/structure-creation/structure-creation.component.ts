@@ -1,10 +1,10 @@
 import { Component, Inject, Optional, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { ApiConfigService } from '../../../../services/api-config.service';
 
 import { CommonService } from '../../../../services/common.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes } from '../../../../enums/common/common';

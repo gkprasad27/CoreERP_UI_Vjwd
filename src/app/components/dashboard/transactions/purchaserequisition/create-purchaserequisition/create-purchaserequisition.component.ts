@@ -5,8 +5,8 @@ import { ApiConfigService } from '../../../../../services/api-config.service';
 
 import { ApiService } from '../../../../../services/api.service';
 
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { SnackBar, StatusCodes } from '../../../../../enums/common/common';
 import { AlertService } from '../../../../../services/alert.service';
 import { Static } from '../../../../../enums/common/static';
