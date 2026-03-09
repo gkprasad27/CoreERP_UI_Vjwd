@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "coreERP:build"
+            "buildTarget": "coreERP:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "coreERP:build:production"
+              "buildTarget": "coreERP:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "coreERP:build"
+            "buildTarget": "coreERP:build"
           }
         },
         "test": {
