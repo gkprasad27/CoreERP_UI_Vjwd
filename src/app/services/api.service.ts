@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of  } from 'rxjs';
 
 import { tap, map, catchError } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { StatusCodes } from '../enums/common/common';
 import { AlertService } from './alert.service';
