@@ -3,7 +3,7 @@ import { ApiService } from '../../../services/api.service';
 
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog as MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MastersService } from './masters.service';
 
 import { NgxSpinnerService } from 'ngx-spinner';
