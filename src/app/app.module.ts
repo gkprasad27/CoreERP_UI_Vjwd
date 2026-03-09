@@ -83,6 +83,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GiftMasterComponent} from'./components/dashboard/masters/member-master/Giftmaster/giftmaster.component';
 import { AdditionalShareTransferComponent } from './components/dashboard/masters/member-master/AdditionalShareTransfer/AdditionalShareTransfer.component';
   import { from } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -144,6 +145,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        BrowserAnimationsModule,
     ],
     providers: [
         RuntimeConfigService,
