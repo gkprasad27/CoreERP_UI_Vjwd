@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'department',
-  templateUrl: './department.component.html',
-  styleUrls: ['./department.component.scss']
+    selector: 'department',
+    templateUrl: './department.component.html',
+    styleUrls: ['./department.component.scss'],
+    standalone: false
 })
 
 export class DepartmentComponent implements OnInit {

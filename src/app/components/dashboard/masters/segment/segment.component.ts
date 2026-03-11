@@ -15,9 +15,10 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-segment',
-  templateUrl: './segment.component.html',
-  styleUrls: ['./segment.component.scss']
+    selector: 'app-segment',
+    templateUrl: './segment.component.html',
+    styleUrls: ['./segment.component.scss'],
+    standalone: false
 })
 export class SegmentComponent implements OnInit {
 

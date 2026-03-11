@@ -17,9 +17,10 @@ interface Year {
 }
 
 @Component({
-  selector: 'app-salaryprocess',
-  templateUrl: './salaryprocess.component.html',
-  styleUrls: ['./salaryprocess.component.scss']
+    selector: 'app-salaryprocess',
+    templateUrl: './salaryprocess.component.html',
+    styleUrls: ['./salaryprocess.component.scss'],
+    standalone: false
 })
 export class SalaryProcessComponent implements OnInit {
 

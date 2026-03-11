@@ -16,13 +16,14 @@ var curValue = require("multilingual-number-to-words");
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 @Component({
-  selector: 'app-purchase-return-view',
-  templateUrl: './purchase-return-view.component.html',
-  styleUrls: ['./purchase-return-view.component.scss'],
-  providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
-  ]
+    selector: 'app-purchase-return-view',
+    templateUrl: './purchase-return-view.component.html',
+    styleUrls: ['./purchase-return-view.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class PurchaseReturnViewComponent implements OnInit {
 

@@ -11,9 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-taxgroup',
-  templateUrl: './taxgroup.component.html',
-  styleUrls: ['./taxgroup.component.scss']
+    selector: 'app-taxgroup',
+    templateUrl: './taxgroup.component.html',
+    styleUrls: ['./taxgroup.component.scss'],
+    standalone: false
 })
 
 export class TaxgroupsComponent implements OnInit {

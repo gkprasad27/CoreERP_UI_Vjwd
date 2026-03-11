@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-purchaserequisition',
-  templateUrl: './purchaserequisition.component.html',
-  styleUrls: ['./purchaserequisition.component.scss']
+    selector: 'app-purchaserequisition',
+    templateUrl: './purchaserequisition.component.html',
+    styleUrls: ['./purchaserequisition.component.scss'],
+    standalone: false
 })
 export class PurchaserequisitionComponent implements OnInit {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

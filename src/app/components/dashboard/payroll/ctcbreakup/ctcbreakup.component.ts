@@ -10,9 +10,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-ctcbreakup',
-  templateUrl: './ctcbreakup.component.html',
-  styleUrls: ['./ctcbreakup.component.scss']
+    selector: 'app-ctcbreakup',
+    templateUrl: './ctcbreakup.component.html',
+    styleUrls: ['./ctcbreakup.component.scss'],
+    standalone: false
 })
 export class CTCBreakupComponent implements OnInit {
   modelFormData: UntypedFormGroup;

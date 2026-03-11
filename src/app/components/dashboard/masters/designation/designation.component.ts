@@ -13,9 +13,10 @@ import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-designation',
-  templateUrl: './designation.component.html',
-  styleUrls: ['./designation.component.scss']
+    selector: 'app-designation',
+    templateUrl: './designation.component.html',
+    styleUrls: ['./designation.component.scss'],
+    standalone: false
 })
 export class DesignationComponent implements OnInit {
 

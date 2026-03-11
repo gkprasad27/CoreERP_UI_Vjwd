@@ -11,9 +11,10 @@ import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 import { SalesService } from './sales.service';
 @Component({
-  selector: 'app-sales',
-  templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+    selector: 'app-sales',
+    templateUrl: './sales.component.html',
+    styleUrls: ['./sales.component.scss'],
+    standalone: false
 })
 export class SalesComponent implements OnInit {
 

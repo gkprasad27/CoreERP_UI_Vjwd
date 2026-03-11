@@ -15,9 +15,10 @@ import { SaveItemComponent } from '../../../../reuse-components/save-item/save-i
 
 
 @Component({
-  selector: 'app-meterreading',
-  templateUrl: './meterreading.component.html',
-  styleUrls: ['./meterreading.component.scss']
+    selector: 'app-meterreading',
+    templateUrl: './meterreading.component.html',
+    styleUrls: ['./meterreading.component.scss'],
+    standalone: false
 })
 
 export class MeterReadingComponent  implements OnInit {

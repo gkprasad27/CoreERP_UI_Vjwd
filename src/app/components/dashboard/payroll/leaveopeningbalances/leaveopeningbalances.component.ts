@@ -13,9 +13,10 @@ import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-leaveopeningbalances',
-  templateUrl: './leaveopeningbalances.component.html',
-  styleUrls: ['./leaveopeningbalances.component.scss']
+    selector: 'app-leaveopeningbalances',
+    templateUrl: './leaveopeningbalances.component.html',
+    styleUrls: ['./leaveopeningbalances.component.scss'],
+    standalone: false
 })
 export class LeaveopeningbalancesComponent implements OnInit {
 

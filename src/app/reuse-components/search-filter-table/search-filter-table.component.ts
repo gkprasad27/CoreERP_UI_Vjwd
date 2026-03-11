@@ -7,9 +7,10 @@ import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-search-filter-table',
-  templateUrl: './search-filter-table.component.html',
-  styleUrls: ['./search-filter-table.component.scss']
+    selector: 'app-search-filter-table',
+    templateUrl: './search-filter-table.component.html',
+    styleUrls: ['./search-filter-table.component.scss'],
+    standalone: false
 })
 export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewInit {
 

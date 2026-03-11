@@ -14,10 +14,10 @@ import { AlertService } from '../../../../services/alert.service';
 import { Static } from '../../../../enums/common/static';
 
 @Component({
-  selector: 'app-permissionapproval',
-  templateUrl: './permissionapproval.component.html',
-  styleUrls: ['./permissionapproval.component.scss']
-
+    selector: 'app-permissionapproval',
+    templateUrl: './permissionapproval.component.html',
+    styleUrls: ['./permissionapproval.component.scss'],
+    standalone: false
 })
 
 export class PermissionApprovalsComponent implements OnInit {

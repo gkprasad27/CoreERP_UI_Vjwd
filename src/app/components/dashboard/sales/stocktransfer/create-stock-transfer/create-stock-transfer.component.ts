@@ -25,13 +25,14 @@ import { HttpParams } from '@angular/common/http';
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
 
 @Component({
-  selector: 'app-create-stock-transfer',
-  templateUrl: './create-stock-transfer.component.html',
-  styleUrls: ['./create-stock-transfer.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-  ]
+    selector: 'app-create-stock-transfer',
+    templateUrl: './create-stock-transfer.component.html',
+    styleUrls: ['./create-stock-transfer.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateStockTransferComponent implements OnInit {
   formData: UntypedFormGroup;

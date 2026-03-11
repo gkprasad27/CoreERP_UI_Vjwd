@@ -12,9 +12,10 @@ import { CommonService } from 'src/app/services/common.service';
 
 
 @Component({
-  selector: 'app-numberassignment',
-  templateUrl: './numberassignment.component.html',
-  styleUrls: ['./numberassignment.component.scss']
+    selector: 'app-numberassignment',
+    templateUrl: './numberassignment.component.html',
+    styleUrls: ['./numberassignment.component.scss'],
+    standalone: false
 })
 
 export class NumberAssignmentComponent implements OnInit {

@@ -13,9 +13,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-branches',
-  templateUrl: './branches.component.html',
-  styleUrls: ['./branches.component.scss']
+    selector: 'app-branches',
+    templateUrl: './branches.component.html',
+    styleUrls: ['./branches.component.scss'],
+    standalone: false
 })
 export class BranchesComponent implements OnInit {
 

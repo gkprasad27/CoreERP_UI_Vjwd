@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-cashreceipt',
-  templateUrl: './cashreceipt.component.html',
-  styleUrls: ['./cashreceipt.component.scss']
+    selector: 'app-cashreceipt',
+    templateUrl: './cashreceipt.component.html',
+    styleUrls: ['./cashreceipt.component.scss'],
+    standalone: false
 })
 export class CashReceiptComponent implements OnInit {
   // selectedDate = {start : moment().add(-1, 'day'), end: moment().add(0, 'day')};

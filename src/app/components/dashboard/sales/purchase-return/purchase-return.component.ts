@@ -14,9 +14,10 @@ import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 @Component({
-  selector: 'app-purchase-return',
-  templateUrl: './purchase-return.component.html',
-  styleUrls: ['./purchase-return.component.scss']
+    selector: 'app-purchase-return',
+    templateUrl: './purchase-return.component.html',
+    styleUrls: ['./purchase-return.component.scss'],
+    standalone: false
 })
 export class PurchaseReturnComponent implements OnInit {
 selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};

@@ -15,9 +15,10 @@ interface giftIsActive {
 }
 
 @Component({
-    selector:'gift-master',
-    templateUrl:'./giftmaster.component.html',
-    styleUrls:['giftmaster.component.scss']
+    selector: 'gift-master',
+    templateUrl: './giftmaster.component.html',
+    styleUrls: ['giftmaster.component.scss'],
+    standalone: false
 })
 export class GiftMasterComponent implements OnInit, OnChanges {
     modelFromData: UntypedFormGroup;

@@ -5,9 +5,10 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 @Component({
-  selector: 'app-sizes',
-  templateUrl: './sizes.component.html',
-  styleUrls: ['./sizes.component.scss']
+    selector: 'app-sizes',
+    templateUrl: './sizes.component.html',
+    styleUrls: ['./sizes.component.scss'],
+    standalone: false
 })
 
 export class SizesComponent implements OnInit {

@@ -18,9 +18,10 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 @Component({
-  selector: 'app-permissionrequest',
-  templateUrl: './permissionrequest.component.html',
-  styleUrls: ['./permissionrequest.component.scss']
+    selector: 'app-permissionrequest',
+    templateUrl: './permissionrequest.component.html',
+    styleUrls: ['./permissionrequest.component.scss'],
+    standalone: false
 })
 
 export class PermissionRequestComponent implements OnInit {

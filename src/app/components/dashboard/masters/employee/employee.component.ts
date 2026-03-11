@@ -22,9 +22,10 @@ interface BloodGroup
   viewValue: string;
 }
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+    selector: 'app-employee',
+    templateUrl: './employee.component.html',
+    styleUrls: ['./employee.component.scss'],
+    standalone: false
 })
 export class EmployeeComponent implements OnInit {
 

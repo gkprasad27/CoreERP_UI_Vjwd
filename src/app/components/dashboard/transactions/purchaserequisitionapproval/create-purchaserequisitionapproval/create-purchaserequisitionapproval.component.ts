@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-create-purchaserequisitionapproval',
-  templateUrl: './create-purchaserequisitionapproval.component.html',
-  styleUrls: ['./create-purchaserequisitionapproval.component.scss']
+    selector: 'app-create-purchaserequisitionapproval',
+    templateUrl: './create-purchaserequisitionapproval.component.html',
+    styleUrls: ['./create-purchaserequisitionapproval.component.scss'],
+    standalone: false
 })
 export class CreatePurchaseRequisitionapprovalComponent implements OnInit {
 

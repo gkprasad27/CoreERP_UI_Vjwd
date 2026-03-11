@@ -10,9 +10,10 @@ import { CommonService } from '../../services/common.service';
 
 
 @Component({
-  selector: 'app-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.scss']
+    selector: 'app-autocomplete',
+    templateUrl: './autocomplete.component.html',
+    styleUrls: ['./autocomplete.component.scss'],
+    standalone: false
 })
 export class AutocompleteComponent implements OnInit {
 

@@ -3,9 +3,10 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 @Component({
-  selector: 'app-accountsgroup',
-  templateUrl: './accountsgroup.component.html',
-  styleUrls: ['./accountsgroup.component.scss']
+    selector: 'app-accountsgroup',
+    templateUrl: './accountsgroup.component.html',
+    styleUrls: ['./accountsgroup.component.scss'],
+    standalone: false
 })
 
 export class AccountsGroupComponent  implements OnInit {

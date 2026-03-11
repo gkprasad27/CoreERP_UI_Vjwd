@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-bankpayment',
-  templateUrl: './bankpayment.component.html',
-  styleUrls: ['./bankpayment.component.scss']
+    selector: 'app-bankpayment',
+    templateUrl: './bankpayment.component.html',
+    styleUrls: ['./bankpayment.component.scss'],
+    standalone: false
 })
 export class BankPaymentComponent implements OnInit {
   selectedDate = {start : moment().add(-1, 'day'), end: moment().add(0, 'day')};

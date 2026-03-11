@@ -13,9 +13,10 @@ import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-division',
-  templateUrl: './division.component.html',
-  styleUrls: ['./division.component.scss']
+    selector: 'app-division',
+    templateUrl: './division.component.html',
+    styleUrls: ['./division.component.scss'],
+    standalone: false
 })
 export class DivisionComponent implements OnInit {
 

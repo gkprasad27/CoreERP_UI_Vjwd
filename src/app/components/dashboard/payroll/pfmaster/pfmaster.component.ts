@@ -21,9 +21,10 @@ interface Limit {
 }
 
 @Component({
-  selector: 'app-pfmaster',
-  templateUrl: './pfmaster.component.html',
-  styleUrls: ['./pfmaster.component.scss']
+    selector: 'app-pfmaster',
+    templateUrl: './pfmaster.component.html',
+    styleUrls: ['./pfmaster.component.scss'],
+    standalone: false
 })
 
 export class PFMasterComponent  implements OnInit {

@@ -2,9 +2,10 @@ import { Component, OnInit, Optional, Inject, AfterViewInit } from '@angular/cor
 import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-print',
-  templateUrl: './print.component.html',
-  styleUrls: ['./print.component.scss']
+    selector: 'app-print',
+    templateUrl: './print.component.html',
+    styleUrls: ['./print.component.scss'],
+    standalone: false
 })
 export class PrintComponent implements OnInit, AfterViewInit {
   invoiceHdr: any;

@@ -20,9 +20,10 @@ interface duration {
   viewValue: string;
 }
 @Component({
-  selector: 'app-componentmaster',
-  templateUrl: './componentmaster.component.html',
-  styleUrls: ['./componentmaster.component.scss']
+    selector: 'app-componentmaster',
+    templateUrl: './componentmaster.component.html',
+    styleUrls: ['./componentmaster.component.scss'],
+    standalone: false
 })
 
 export class ComponentMasterComponent  implements OnInit {

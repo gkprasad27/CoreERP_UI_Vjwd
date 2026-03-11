@@ -4,7 +4,8 @@ type IKNOWISNUMBER = any;
 type IKNOWISSTRING = any;
 
 @Directive({
-    selector: '[appFocusOnEnter]'
+    selector: '[appFocusOnEnter]',
+    standalone: false
 })
 export class FocusOnEnterDirective {
 

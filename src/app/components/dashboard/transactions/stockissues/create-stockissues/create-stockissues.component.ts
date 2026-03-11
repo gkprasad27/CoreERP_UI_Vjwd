@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-create-stockissues',
-  templateUrl: './create-stockissues.component.html',
-  styleUrls: ['./create-stockissues.component.scss']
+    selector: 'app-create-stockissues',
+    templateUrl: './create-stockissues.component.html',
+    styleUrls: ['./create-stockissues.component.scss'],
+    standalone: false
 })
 export class CreateStockissuesComponent implements OnInit {
 

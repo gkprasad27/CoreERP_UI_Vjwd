@@ -26,13 +26,14 @@ interface Transaction {
 }
 
 @Component({
-  selector: 'app-create-journalvoucher',
-  templateUrl: './create-journalvoucher.component.html',
-  styleUrls: ['./create-journalvoucher.component.scss'],
-  providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
-  ]
+    selector: 'app-create-journalvoucher',
+    templateUrl: './create-journalvoucher.component.html',
+    styleUrls: ['./create-journalvoucher.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateJournalvoucherComponent implements OnInit {
 

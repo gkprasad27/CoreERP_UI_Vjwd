@@ -20,13 +20,14 @@ import { SaveItemComponent } from '../../../../../reuse-components/save-item/sav
 import { MatSlideToggleChange as MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'app-purchase-create',
-  templateUrl: './purchase-create.component.html',
-  styleUrls: ['./purchase-create.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-  ]
+    selector: 'app-purchase-create',
+    templateUrl: './purchase-create.component.html',
+    styleUrls: ['./purchase-create.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class PurchaseCreateComponent implements OnInit {
   setFocus: any;

@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-journalvoucher',
-  templateUrl: './journalvoucher.component.html',
-  styleUrls: ['./journalvoucher.component.scss']
+    selector: 'app-journalvoucher',
+    templateUrl: './journalvoucher.component.html',
+    styleUrls: ['./journalvoucher.component.scss'],
+    standalone: false
 })
 export class JournalVoucherComponent implements OnInit {
   selectedDate = {start : moment().add(-1, 'day'), end: moment().add(0, 'day')};

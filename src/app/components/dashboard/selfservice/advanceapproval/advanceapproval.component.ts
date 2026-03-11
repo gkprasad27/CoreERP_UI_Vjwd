@@ -14,10 +14,10 @@ import { AlertService } from '../../../../services/alert.service';
 import { Static } from '../../../../enums/common/static';
 
 @Component({
-  selector: 'app-advanceapproval',
-  templateUrl: './advanceapproval.component.html',
-  styleUrls: ['./advanceapproval.component.scss']
-
+    selector: 'app-advanceapproval',
+    templateUrl: './advanceapproval.component.html',
+    styleUrls: ['./advanceapproval.component.scss'],
+    standalone: false
 })
 
 export class advanceApprovalComponent implements OnInit {

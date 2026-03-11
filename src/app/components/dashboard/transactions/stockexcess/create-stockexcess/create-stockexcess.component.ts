@@ -19,13 +19,14 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 
 @Component({
-  selector: 'app-create-stockexcess',
-  templateUrl: './create-stockexcess.component.html',
-  styleUrls: ['./create-stockexcess.component.scss'],
-  providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
-  ]
+    selector: 'app-create-stockexcess',
+    templateUrl: './create-stockexcess.component.html',
+    styleUrls: ['./create-stockexcess.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateStockExcessComponent implements OnInit {
 

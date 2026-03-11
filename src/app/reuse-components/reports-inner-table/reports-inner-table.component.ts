@@ -26,9 +26,10 @@ import { Workbook } from 'exceljs';
 import { DatePipe } from '@angular/common';
 import * as fs from 'file-saver';
 @Component({
-  selector: 'app-reports-inner-table',
-  templateUrl: './reports-inner-table.component.html',
-  styleUrls: ['./reports-inner-table.component.scss']
+    selector: 'app-reports-inner-table',
+    templateUrl: './reports-inner-table.component.html',
+    styleUrls: ['./reports-inner-table.component.scss'],
+    standalone: false
 })
 export class ReportsInnerTableComponent  {
 

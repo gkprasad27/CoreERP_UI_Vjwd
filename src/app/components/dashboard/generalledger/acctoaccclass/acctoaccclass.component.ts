@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from 'src/app/services/common.service';
 @Component({
-  selector: 'app-acctoaccclass',
-  templateUrl: './acctoaccclass.component.html',
-  styleUrls: ['./acctoaccclass.component.scss']
+    selector: 'app-acctoaccclass',
+    templateUrl: './acctoaccclass.component.html',
+    styleUrls: ['./acctoaccclass.component.scss'],
+    standalone: false
 })
 
 export class AccToAccClassComponent  implements OnInit {

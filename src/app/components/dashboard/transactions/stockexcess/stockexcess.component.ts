@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-stockexcess',
-  templateUrl: './stockexcess.component.html',
-  styleUrls: ['./stockexcess.component.scss']
+    selector: 'app-stockexcess',
+    templateUrl: './stockexcess.component.html',
+    styleUrls: ['./stockexcess.component.scss'],
+    standalone: false
 })
 export class StockExcessComponent implements OnInit {
   selectedDate = {start : moment().add(-1, 'day'), end: moment().add(0, 'day')};

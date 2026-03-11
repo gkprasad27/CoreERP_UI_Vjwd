@@ -5,9 +5,10 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 @Component({
-  selector: 'app-ptmaster',
-  templateUrl: './ptmaster.component.html',
-  styleUrls: ['./ptmaster.component.scss']
+    selector: 'app-ptmaster',
+    templateUrl: './ptmaster.component.html',
+    styleUrls: ['./ptmaster.component.scss'],
+    standalone: false
 })
 
 export class PTMasterComponent  implements OnInit {

@@ -11,9 +11,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-structure-creation',
-  templateUrl: './structure-creation.component.html',
-  styleUrls: ['./structure-creation.component.scss']
+    selector: 'app-structure-creation',
+    templateUrl: './structure-creation.component.html',
+    styleUrls: ['./structure-creation.component.scss'],
+    standalone: false
 })
 export class StructureCreationComponent implements OnInit {
 

@@ -16,9 +16,10 @@ import { CommonService } from '../../../../services/common.service';
 
 
 @Component({
-  selector: 'app-partner-creation',
-  templateUrl: './partner-creation.component.html',
-  styleUrls: ['./partner-creation.component.scss']
+    selector: 'app-partner-creation',
+    templateUrl: './partner-creation.component.html',
+    styleUrls: ['./partner-creation.component.scss'],
+    standalone: false
 })
 export class PartnerCreationComponent implements OnInit {
 

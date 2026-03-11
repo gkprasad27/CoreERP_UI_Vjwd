@@ -15,9 +15,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-profit-center',
-  templateUrl: './profit-center.component.html',
-  styleUrls: ['./profit-center.component.scss']
+    selector: 'app-profit-center',
+    templateUrl: './profit-center.component.html',
+    styleUrls: ['./profit-center.component.scss'],
+    standalone: false
 })
 export class ProfitCenterComponent implements OnInit {
 

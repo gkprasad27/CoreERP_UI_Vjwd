@@ -14,11 +14,11 @@ import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
 @Component({
-  selector: 'app-masters',
-  templateUrl: './masters.component.html',
-  styleUrls: ['./masters.component.scss'],
-  encapsulation: ViewEncapsulation.None
-
+    selector: 'app-masters',
+    templateUrl: './masters.component.html',
+    styleUrls: ['./masters.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class MastersComponent implements OnInit {
 

@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'vouchertypes',
-  templateUrl: './vouchertypes.component.html',
-  styleUrls: ['./vouchertypes.component.scss']
+    selector: 'vouchertypes',
+    templateUrl: './vouchertypes.component.html',
+    styleUrls: ['./vouchertypes.component.scss'],
+    standalone: false
 })
 
 export class VoucherTypesComponent  implements OnInit {

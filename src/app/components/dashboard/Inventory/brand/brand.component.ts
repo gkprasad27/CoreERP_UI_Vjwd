@@ -10,9 +10,10 @@ import { CommonService } from 'src/app/services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-brand',
-  templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.scss']
+    selector: 'app-brand',
+    templateUrl: './brand.component.html',
+    styleUrls: ['./brand.component.scss'],
+    standalone: false
 })
 
 export class BrandComponent implements OnInit {

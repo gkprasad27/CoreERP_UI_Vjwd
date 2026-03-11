@@ -4,9 +4,10 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-accountingclass',
-  templateUrl: './accountingclass.component.html',
-  styleUrls: ['./accountingclass.component.scss']
+    selector: 'app-accountingclass',
+    templateUrl: './accountingclass.component.html',
+    styleUrls: ['./accountingclass.component.scss'],
+    standalone: false
 })
 
 export class AccountingClassComponent implements OnInit {

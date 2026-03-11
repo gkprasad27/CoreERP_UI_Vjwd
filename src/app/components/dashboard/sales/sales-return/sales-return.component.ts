@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-sales-return',
-  templateUrl: './sales-return.component.html',
-  styleUrls: ['./sales-return.component.scss']
+    selector: 'app-sales-return',
+    templateUrl: './sales-return.component.html',
+    styleUrls: ['./sales-return.component.scss'],
+    standalone: false
 })
 export class SalesReturnComponent implements OnInit {
   selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};

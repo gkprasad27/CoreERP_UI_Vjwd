@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-create-stockreceipt',
-  templateUrl: './create-stockreceipt.component.html',
-  styleUrls: ['./create-stockreceipt.component.scss']
+    selector: 'app-create-stockreceipt',
+    templateUrl: './create-stockreceipt.component.html',
+    styleUrls: ['./create-stockreceipt.component.scss'],
+    standalone: false
 })
 export class CreateStockreceiptsComponent implements OnInit {
 

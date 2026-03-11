@@ -16,9 +16,10 @@ interface affectGrossProfit {
 }
 
 @Component({
-  selector: 'app-mshsdrates',
-  templateUrl: './mshsdrates.component.html',
-  styleUrls: ['./mshsdrates.component.scss']
+    selector: 'app-mshsdrates',
+    templateUrl: './mshsdrates.component.html',
+    styleUrls: ['./mshsdrates.component.scss'],
+    standalone: false
 })
 
 export class MSHSDRatesComponent  implements OnInit {

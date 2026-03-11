@@ -16,13 +16,14 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 
 @Component({
-  selector: 'app-ShareTransfer',
-  templateUrl: './ShareTransfer.component.html',
-  styleUrls: ['./ShareTransfer.component.scss'],
-  providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
-  ]
+    selector: 'app-ShareTransfer',
+    templateUrl: './ShareTransfer.component.html',
+    styleUrls: ['./ShareTransfer.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class ShareTransferComponent implements OnInit, OnChanges {
 

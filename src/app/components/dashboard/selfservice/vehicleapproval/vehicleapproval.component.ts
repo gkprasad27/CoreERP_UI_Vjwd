@@ -14,9 +14,10 @@ import { AlertService } from '../../../../services/alert.service';
 import { Static } from '../../../../enums/common/static';
 
 @Component({
-  selector: 'app-vehicleapproval',
-  templateUrl: './vehicleapproval.component.html',
-  styleUrls: ['./vehicleapproval.component.scss']
+    selector: 'app-vehicleapproval',
+    templateUrl: './vehicleapproval.component.html',
+    styleUrls: ['./vehicleapproval.component.scss'],
+    standalone: false
 })
 
 export class VehicleApprovalsComponent implements OnInit {

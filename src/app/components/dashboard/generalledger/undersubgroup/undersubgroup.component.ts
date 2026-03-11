@@ -16,9 +16,10 @@ interface affectGrossProfit {
 }
 
 @Component({
-  selector: 'app-undersubgroup',
-  templateUrl: './undersubgroup.component.html',
-  styleUrls: ['./undersubgroup.component.scss']
+    selector: 'app-undersubgroup',
+    templateUrl: './undersubgroup.component.html',
+    styleUrls: ['./undersubgroup.component.scss'],
+    standalone: false
 })
 
 export class UndersubGroupComponent implements OnInit {

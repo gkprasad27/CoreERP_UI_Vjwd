@@ -18,9 +18,10 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 @Component({
-  selector: 'app-vehiclerequisition',
-  templateUrl: './vehiclerequisition.component.html',
-  styleUrls: ['./vehiclerequisition.component.scss']
+    selector: 'app-vehiclerequisition',
+    templateUrl: './vehiclerequisition.component.html',
+    styleUrls: ['./vehiclerequisition.component.scss'],
+    standalone: false
 })
 
 export class VehicleRequisitionsComponent implements OnInit {

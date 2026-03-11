@@ -13,9 +13,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-partner-type',
-  templateUrl: './partner-type.component.html',
-  styleUrls: ['./partner-type.component.scss']
+    selector: 'app-partner-type',
+    templateUrl: './partner-type.component.html',
+    styleUrls: ['./partner-type.component.scss'],
+    standalone: false
 })
 export class PartnerTypeComponent implements OnInit {
 

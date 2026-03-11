@@ -21,13 +21,14 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { HostListener } from '@angular/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 @Component({
-  selector: 'app-create-bill',
-  templateUrl: './create-bill.component.html',
-  styleUrls: ['./create-bill.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-  ]
+    selector: 'app-create-bill',
+    templateUrl: './create-bill.component.html',
+    styleUrls: ['./create-bill.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateBillComponent implements OnInit {
 

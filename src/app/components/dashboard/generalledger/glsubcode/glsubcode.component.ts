@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'app-glsubcode',
-  templateUrl: './glsubcode.component.html',
-  styleUrls: ['./glsubcode.component.scss']
+    selector: 'app-glsubcode',
+    templateUrl: './glsubcode.component.html',
+    styleUrls: ['./glsubcode.component.scss'],
+    standalone: false
 })
 
 export class GlSubcodeComponent  implements OnInit {

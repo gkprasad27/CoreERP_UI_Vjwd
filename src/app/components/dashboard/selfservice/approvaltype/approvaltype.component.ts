@@ -22,9 +22,10 @@ interface ApprovalType {
 }
 
 @Component({
-  selector: 'app-approvaltype',
-  templateUrl: './approvaltype.component.html',
-  styleUrls: ['./approvaltype.component.scss']
+    selector: 'app-approvaltype',
+    templateUrl: './approvaltype.component.html',
+    styleUrls: ['./approvaltype.component.scss'],
+    standalone: false
 })
 
 export class ApprovalTypeComponent implements OnInit {

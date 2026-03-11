@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from 'src/app/services/common.service';
 @Component({
-  selector: 'app-cashacctobranches',
-  templateUrl: './cashacctobranches.component.html',
-  styleUrls: ['./cashacctobranches.component.scss']
+    selector: 'app-cashacctobranches',
+    templateUrl: './cashacctobranches.component.html',
+    styleUrls: ['./cashacctobranches.component.scss'],
+    standalone: false
 })
 
 export class CashAccToBranchesComponent  implements OnInit {

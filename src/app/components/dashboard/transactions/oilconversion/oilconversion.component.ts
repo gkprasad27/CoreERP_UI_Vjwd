@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-oilconversion',
-  templateUrl: './oilconversion.component.html',
-  styleUrls: ['./oilconversion.component.scss']
+    selector: 'app-oilconversion',
+    templateUrl: './oilconversion.component.html',
+    styleUrls: ['./oilconversion.component.scss'],
+    standalone: false
 })
 export class OilconversionComponent implements OnInit {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

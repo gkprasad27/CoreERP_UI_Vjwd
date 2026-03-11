@@ -14,11 +14,11 @@ import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
 @Component({
-  selector: 'app-payroll',
-  templateUrl: './payroll.component.html',
-  styleUrls: ['./payroll.component.scss'],
-  encapsulation: ViewEncapsulation.None
-
+    selector: 'app-payroll',
+    templateUrl: './payroll.component.html',
+    styleUrls: ['./payroll.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class PayrollComponent implements OnInit {
 

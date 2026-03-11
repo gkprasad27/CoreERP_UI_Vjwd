@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from 'src/app/services/common.service';
 @Component({
-  selector: 'app-subgroup',
-  templateUrl: './subgroup.component.html',
-  styleUrls: ['./subgroup.component.scss']
+    selector: 'app-subgroup',
+    templateUrl: './subgroup.component.html',
+    styleUrls: ['./subgroup.component.scss'],
+    standalone: false
 })
 
 export class SubGroupComponent  implements OnInit {

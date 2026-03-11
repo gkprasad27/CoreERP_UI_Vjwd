@@ -18,9 +18,10 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 @Component({
-  selector: 'app-advance',
-  templateUrl: './advance.component.html',
-  styleUrls: ['./advance.component.scss']
+    selector: 'app-advance',
+    templateUrl: './advance.component.html',
+    styleUrls: ['./advance.component.scss'],
+    standalone: false
 })
 
 export class AdvanceComponent implements OnInit {

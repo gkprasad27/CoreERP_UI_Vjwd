@@ -36,9 +36,10 @@ import { StatusCodes } from 'src/app/enums/common/common';
 import * as moment from 'moment';
 import { style } from '@angular/animations';
 @Component({
-  selector: 'app-report-table',
-  templateUrl: './report-table.component.html',
-  styleUrls: ['./report-table.component.scss']
+    selector: 'app-report-table',
+    templateUrl: './report-table.component.html',
+    styleUrls: ['./report-table.component.scss'],
+    standalone: false
 })
 export class ReportTableComponent implements OnInit, OnChanges {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

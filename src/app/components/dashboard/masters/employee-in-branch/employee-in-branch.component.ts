@@ -11,9 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 @Component({
-  selector: 'app-employee-in-branch',
-  templateUrl: './employee-in-branch.component.html',
-  styleUrls: ['./employee-in-branch.component.scss']
+    selector: 'app-employee-in-branch',
+    templateUrl: './employee-in-branch.component.html',
+    styleUrls: ['./employee-in-branch.component.scss'],
+    standalone: false
 })
 export class EmployeeInBranchComponent implements OnInit {
 

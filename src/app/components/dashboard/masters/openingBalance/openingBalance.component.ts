@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'openingBalance',
-  templateUrl: './openingBalance.component.html',
-  styleUrls: ['./openingBalance.component.scss']
+    selector: 'openingBalance',
+    templateUrl: './openingBalance.component.html',
+    styleUrls: ['./openingBalance.component.scss'],
+    standalone: false
 })
 
 export class OpeningBalanceComponent implements OnInit {

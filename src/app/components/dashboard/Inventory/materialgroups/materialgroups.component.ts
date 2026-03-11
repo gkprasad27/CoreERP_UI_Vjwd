@@ -12,9 +12,10 @@ import { CommonService } from 'src/app/services/common.service';
 
 
 @Component({
-  selector: 'app-materialgroups',
-  templateUrl: './materialgroups.component.html',
-  styleUrls: ['./materialgroups.component.scss']
+    selector: 'app-materialgroups',
+    templateUrl: './materialgroups.component.html',
+    styleUrls: ['./materialgroups.component.scss'],
+    standalone: false
 })
 
 export class MaterialGroupsComponent implements OnInit {

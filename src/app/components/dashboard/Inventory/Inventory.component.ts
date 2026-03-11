@@ -17,9 +17,9 @@ import { InventoryService } from './Inventory.service';
     selector: 'app-inventory',
     templateUrl: './inventory.component.html',
     styleUrls: ['./inventory.component.scss'],
-    encapsulation: ViewEncapsulation.None
-
-  })
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
+})
 export class InventoryComponent implements OnInit {
     tableData: any;
     addOrUpdateData: any;

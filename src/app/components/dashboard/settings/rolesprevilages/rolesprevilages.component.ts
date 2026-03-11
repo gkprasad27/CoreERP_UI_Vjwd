@@ -13,9 +13,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-rolesprevilages',
-  templateUrl: './rolesprevilages.component.html',
-  styleUrls: ['./rolesprevilages.component.scss']
+    selector: 'app-rolesprevilages',
+    templateUrl: './rolesprevilages.component.html',
+    styleUrls: ['./rolesprevilages.component.scss'],
+    standalone: false
 })
 export class RolesprevilagesComponent implements OnInit {
 

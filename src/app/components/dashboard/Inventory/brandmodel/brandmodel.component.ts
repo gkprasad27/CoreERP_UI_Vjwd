@@ -9,9 +9,10 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-brandmodel',
-  templateUrl: './brandmodel.component.html',
-  styleUrls: ['./brandmodel.component.scss']
+    selector: 'app-brandmodel',
+    templateUrl: './brandmodel.component.html',
+    styleUrls: ['./brandmodel.component.scss'],
+    standalone: false
 })
 
 export class BrandModelComponent implements OnInit {

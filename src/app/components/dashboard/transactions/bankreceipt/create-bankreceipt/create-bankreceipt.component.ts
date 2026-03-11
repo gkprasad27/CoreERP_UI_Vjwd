@@ -21,13 +21,14 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
 
 @Component({
-  selector: 'app-create-bankreceipt',
-  templateUrl: './create-bankreceipt.component.html',
-  styleUrls: ['./create-bankreceipt.component.scss'],
-  providers: [
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
-  ]
+    selector: 'app-create-bankreceipt',
+    templateUrl: './create-bankreceipt.component.html',
+    styleUrls: ['./create-bankreceipt.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateBankreceiptComponent implements OnInit {
 

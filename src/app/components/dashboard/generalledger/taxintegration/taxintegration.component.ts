@@ -10,9 +10,10 @@ import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'app-taxintegration',
-  templateUrl: './taxintegration.component.html',
-  styleUrls: ['./taxintegration.component.scss']
+    selector: 'app-taxintegration',
+    templateUrl: './taxintegration.component.html',
+    styleUrls: ['./taxintegration.component.scss'],
+    standalone: false
 })
 
 export class TaxIntegrationComponent  implements OnInit {

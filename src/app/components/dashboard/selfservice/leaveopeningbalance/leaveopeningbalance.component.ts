@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
-  selector: 'app-leaveopeningbalance',
-  templateUrl: './leaveopeningbalance.component.html',
-  styleUrls: ['./leaveopeningbalance.component.scss']
+    selector: 'app-leaveopeningbalance',
+    templateUrl: './leaveopeningbalance.component.html',
+    styleUrls: ['./leaveopeningbalance.component.scss'],
+    standalone: false
 })
 export class LeaveopeningbalanceComponent implements OnInit {
 

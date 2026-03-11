@@ -13,9 +13,10 @@ import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-leavetype',
-  templateUrl: './leavetype.component.html',
-  styleUrls: ['./leavetype.component.scss']
+    selector: 'app-leavetype',
+    templateUrl: './leavetype.component.html',
+    styleUrls: ['./leavetype.component.scss'],
+    standalone: false
 })
 export class LeavetypeComponent implements OnInit {
 

@@ -14,10 +14,10 @@ import { AlertService } from '../../../../services/alert.service';
 import { Static } from '../../../../enums/common/static';
 
 @Component({
-  selector: 'app-odapproval',
-  templateUrl: './odapproval.component.html',
-  styleUrls: ['./odapproval.component.scss']
-
+    selector: 'app-odapproval',
+    templateUrl: './odapproval.component.html',
+    styleUrls: ['./odapproval.component.scss'],
+    standalone: false
 })
 
 export class odApprovalComponent implements OnInit {

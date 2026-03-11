@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-create-stockshort',
-  templateUrl: './create-stockshort.component.html',
-  styleUrls: ['./create-stockshort.component.scss']
+    selector: 'app-create-stockshort',
+    templateUrl: './create-stockshort.component.html',
+    styleUrls: ['./create-stockshort.component.scss'],
+    standalone: false
 })
 export class CreateStockshortsComponent implements OnInit {
 

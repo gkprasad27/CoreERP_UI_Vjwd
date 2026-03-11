@@ -14,11 +14,11 @@ import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
 @Component({
-  selector: 'app-selfservice',
-  templateUrl: './selfservice.component.html',
-  styleUrls: ['./selfservice.component.scss'],
-  encapsulation: ViewEncapsulation.None
-
+    selector: 'app-selfservice',
+    templateUrl: './selfservice.component.html',
+    styleUrls: ['./selfservice.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class SelfserviceComponent implements OnInit {
 

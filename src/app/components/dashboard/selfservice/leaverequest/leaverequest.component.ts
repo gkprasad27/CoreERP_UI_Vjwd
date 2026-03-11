@@ -25,9 +25,10 @@ interface Session {
 //  viewValue: string;
 //}
 @Component({
-  selector: 'app-leaverequest',
-  templateUrl: './leaverequest.component.html',
-  styleUrls: ['./leaverequest.component.scss']
+    selector: 'app-leaverequest',
+    templateUrl: './leaverequest.component.html',
+    styleUrls: ['./leaverequest.component.scss'],
+    standalone: false
 })
 
 export class LeaveRequestComponent implements OnInit {

@@ -15,9 +15,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-tax-master',
-  templateUrl: './tax-master.component.html',
-  styleUrls: ['./tax-master.component.scss']
+    selector: 'app-tax-master',
+    templateUrl: './tax-master.component.html',
+    styleUrls: ['./tax-master.component.scss'],
+    standalone: false
 })
 export class TaxMasterComponent implements OnInit {
 

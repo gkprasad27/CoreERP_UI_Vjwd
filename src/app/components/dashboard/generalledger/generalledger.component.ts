@@ -16,8 +16,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
     selector: 'app-generalledger',
     templateUrl: './generalledger.component.html',
     styleUrls: ['./generalledger.component.scss'],
-    encapsulation: ViewEncapsulation.None
-  })
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
+})
   export class GeneralledgerComponent implements OnInit {
     tableData: any;
     tableUrl: any;

@@ -14,9 +14,10 @@ import { CommonService } from '../../../../../services/common.service';
 import { SnackBar } from '../../../../../enums/common/common';
 
 @Component({
-  selector: 'app-vehicle',
-  templateUrl: './vehicle.component.html',
-  styleUrls: ['./vehicle.component.scss']
+    selector: 'app-vehicle',
+    templateUrl: './vehicle.component.html',
+    styleUrls: ['./vehicle.component.scss'],
+    standalone: false
 })
 export class VehicleComponent implements OnInit, OnChanges {
 

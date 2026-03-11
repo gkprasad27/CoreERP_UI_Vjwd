@@ -22,9 +22,10 @@ interface Session {
 }
 
 @Component({
-  selector: 'app-packageconversion',
-  templateUrl: './packageconversion.component.html',
-  styleUrls: ['./packageconversion.component.scss']
+    selector: 'app-packageconversion',
+    templateUrl: './packageconversion.component.html',
+    styleUrls: ['./packageconversion.component.scss'],
+    standalone: false
 })
 
 export class PackageconversionComponent implements OnInit {

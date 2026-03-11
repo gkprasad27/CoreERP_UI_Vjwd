@@ -18,9 +18,10 @@ interface NumberType {
 }
 
 @Component({
-  selector: 'app-no-series',
-  templateUrl: './no-series.component.html',
-  styleUrls: ['./no-series.component.scss']
+    selector: 'app-no-series',
+    templateUrl: './no-series.component.html',
+    styleUrls: ['./no-series.component.scss'],
+    standalone: false
 })
 export class NoSeriesComponent implements OnInit {
     modelFormData: any;

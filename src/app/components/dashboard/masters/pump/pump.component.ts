@@ -11,9 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-pump',
-  templateUrl: './pump.component.html',
-  styleUrls: ['./pump.component.scss']
+    selector: 'app-pump',
+    templateUrl: './pump.component.html',
+    styleUrls: ['./pump.component.scss'],
+    standalone: false
 })
 
 export class PumpComponent implements OnInit {

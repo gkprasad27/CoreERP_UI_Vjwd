@@ -22,9 +22,10 @@ interface giftIssued {
 }
 
 @Component({
-  selector: 'app-member-master',
-  templateUrl: './member-master.component.html',
-  styleUrls: ['./member-master.component.scss']
+    selector: 'app-member-master',
+    templateUrl: './member-master.component.html',
+    styleUrls: ['./member-master.component.scss'],
+    standalone: false
 })
 export class MemberMasterComponent implements OnInit {
 

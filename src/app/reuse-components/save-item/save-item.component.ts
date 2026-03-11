@@ -2,9 +2,10 @@ import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-save-item',
-  templateUrl: './save-item.component.html',
-  styleUrls: ['./save-item.component.scss']
+    selector: 'app-save-item',
+    templateUrl: './save-item.component.html',
+    styleUrls: ['./save-item.component.scss'],
+    standalone: false
 })
 export class SaveItemComponent {
 

@@ -21,13 +21,14 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
 
 @Component({
-  selector: 'app-create-cashpayment',
-  templateUrl: './create-cashpayment.component.html',
-  styleUrls: ['./create-cashpayment.component.scss'],
-  providers: [
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-  ]
+    selector: 'app-create-cashpayment',
+    templateUrl: './create-cashpayment.component.html',
+    styleUrls: ['./create-cashpayment.component.scss'],
+    providers: [
+        { provide: DateAdapter, useClass: AppDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    ],
+    standalone: false
 })
 export class CreateCashpaymentComponent implements OnInit {
 

@@ -25,9 +25,10 @@ interface Session {
 //  viewValue: string;
 //}
 @Component({
-  selector: 'app-applyod',
-  templateUrl: './applyod.component.html',
-  styleUrls: ['./applyod.component.scss']
+    selector: 'app-applyod',
+    templateUrl: './applyod.component.html',
+    styleUrls: ['./applyod.component.scss'],
+    standalone: false
 })
 
 export class ApplyodComponent implements OnInit {

@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-create-oilconversion',
-  templateUrl: './create-oilconversion.component.html',
-  styleUrls: ['./create-oilconversion.component.scss']
+    selector: 'app-create-oilconversion',
+    templateUrl: './create-oilconversion.component.html',
+    styleUrls: ['./create-oilconversion.component.scss'],
+    standalone: false
 })
 export class CreateOilconversionsComponent implements OnInit {
 

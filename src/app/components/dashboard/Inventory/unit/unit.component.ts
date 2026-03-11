@@ -13,9 +13,10 @@ import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 
 @Component({
-  selector: 'app-unit',
-  templateUrl: './unit.component.html',
-  styleUrls: ['./unit.component.scss']
+    selector: 'app-unit',
+    templateUrl: './unit.component.html',
+    styleUrls: ['./unit.component.scss'],
+    standalone: false
 })
 export class UnitComponent implements OnInit {
 

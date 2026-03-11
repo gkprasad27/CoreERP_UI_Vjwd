@@ -15,9 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-stocktransfer',
-  templateUrl: './stocktransfer.component.html',
-  styleUrls: ['./stocktransfer.component.scss']
+    selector: 'app-stocktransfer',
+    templateUrl: './stocktransfer.component.html',
+    styleUrls: ['./stocktransfer.component.scss'],
+    standalone: false
 })
 export class StocktransferComponent implements OnInit {
   selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};
