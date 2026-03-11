@@ -33,7 +33,7 @@ import { ApiConfigService } from 'src/app/services/api-config.service';
 import { runInThisContext } from 'vm';
 import { ReportsService } from 'src/app/components/dashboard/reports/reports.service';
 import { StatusCodes } from 'src/app/enums/common/common';
-import * as moment from 'moment';
+import moment from 'moment';
 import { style } from '@angular/animations';
 @Component({
     selector: 'app-report-table',

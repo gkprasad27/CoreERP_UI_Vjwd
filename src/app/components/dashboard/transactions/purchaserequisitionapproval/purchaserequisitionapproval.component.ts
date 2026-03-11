@@ -12,7 +12,7 @@ import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
     selector: 'app-purchaserequisitionapproval',
