@@ -9,23 +9,35 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchCode.valid }">
           <input matInput placeholder=" {{'employeeInBranch.code' | translate }} " formControlName="branchCode" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.branchCode.errors" class="help-block">
-            <div *ngIf="formControls.branchCode.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.branchCode.errors) {
+            <mat-error class="help-block">
+              @if (formControls.branchCode.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.empCode.valid }">
           <input matInput placeholder="{{'employeeInBranch.empCode' | translate }}" formControlName="empCode" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.empCode.errors" class="help-block">
-            <div *ngIf="formControls.empCode.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.empCode.errors) {
+            <mat-error class="help-block">
+              @if (formControls.empCode.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.empName.valid }">
           <input matInput placeholder="{{'employeeInBranch.empName' | translate }}" formControlName="empName" appFocusOnEnter tabIndex="3">
-          <mat-error *ngIf="formControls.empName.errors" class="help-block">
-            <div *ngIf="formControls.empName.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.empName.errors) {
+            <mat-error class="help-block">
+              @if (formControls.empName.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
@@ -41,29 +53,29 @@
         </mat-form-field>
 
         <!-- <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employeeInBranch.ext1' | translate }}" formControlName="ext1" appFocusOnEnter tabIndex="4">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employeeInBranch.ext2' | translate }}" formControlName="ext2" appFocusOnEnter tabIndex="5">
-        </mat-form-field> -->
+        <input matInput placeholder="{{'employeeInBranch.ext1' | translate }}" formControlName="ext1" appFocusOnEnter tabIndex="4">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employeeInBranch.ext2' | translate }}" formControlName="ext2" appFocusOnEnter tabIndex="5">
+      </mat-form-field> -->
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employeeInBranch.active' | translate }}" formControlName="active" appFocusOnEnter tabIndex="10">
-        </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employeeInBranch.active' | translate }}" formControlName="active" appFocusOnEnter tabIndex="10">
+      </mat-form-field>
 
-      </div>
-      <mat-divider></mat-divider>
-    </form>
-  </mat-card-content>
+    </div>
+    <mat-divider></mat-divider>
+  </form>
+</mat-card-content>
 
-    <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
-      {{ 'COMMON.CANCEL' | translate }}
-    </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="15">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
-  </div>
+<div  class="form-element p-2 d-flex justify-content-end">
+  <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="15">
+
+    {{ 'COMMON.SAVE' | translate }}
+  </button>
+</div>
 </div>

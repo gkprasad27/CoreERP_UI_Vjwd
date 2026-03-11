@@ -9,104 +9,114 @@
       <div class="d--flex">
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'Leaverequest.empCode' | translate }}"
-                 (typeaheadOnSelect)="onSearchChange($event)"
-                 (input)="getProductByProductCode($event.target.value)"
-                 [typeahead]="getProductByProductCodeArray" typeaheadOptionField='id'
-                 formControlName="empCode" appFocusOnEnter tabIndex="1">
-        </mat-form-field>
+            (typeaheadOnSelect)="onSearchChange($event)"
+            (input)="getProductByProductCode($event.target.value)"
+            [typeahead]="getProductByProductCodeArray" typeaheadOptionField='id'
+            formControlName="empCode" appFocusOnEnter tabIndex="1">
+          </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder=" {{'Leaverequest.empName' | translate }} "
-                 formControlName="empName" [typeahead]="getProductByProductNameArray" typeaheadOptionField='text'
-                 appFocusOnEnter tabIndex="2">
+          <mat-form-field class="form-element">
+            <input matInput placeholder=" {{'Leaverequest.empName' | translate }} "
+              formControlName="empName" [typeahead]="getProductByProductNameArray" typeaheadOptionField='text'
+              appFocusOnEnter tabIndex="2">
 
-        </mat-form-field>
+            </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker1" placeholder="{{'Leaverequest.applDate' | translate }}"
-                 [formControl]="applDate">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="{{'Leaverequest.applDate' | translate }}"
+                [formControl]="applDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Leave Type</mat-label>
-          <mat-select placeholder="{{'Leaverequest.leaveCode' | translate }}" formControlName="leaveCode">
-            <mat-option *ngFor="let ptlist of LeaveTypeatList" [value]="ptlist.empCode">
-              {{ptlist.empCode}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-       
-
-        <mat-form-field>
-    <input matInput [matDatepicker]="picker2" placeholder="{{'Leaverequest.leaveFrom' | translate }}"
-           (dateChange)="orgValueChange()" formControlName="leaveFrom">
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Session</mat-label>
-          <mat-select formControlName="session1" placeholder="Session1" (selectionChange)="sessionevent();">
-            <mat-option *ngFor="let session of sessions" [value]="session.value">
-              {{session.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <!--<mat-form-field>
-          <input matInput [matDatepicker]="picker3" placeholder="{{'Leaverequest.leaveTo' | translate }}"
-                 formControlName="leaveTo" appFocusOnEnter tabIndex="4" (click)="picker3.open()" readonly>
-          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-          <mat-datepicker #picker3></mat-datepicker>
-        </mat-form-field>-->
-        <mat-form-field>
-    <input matInput [matDatepicker]="picker3" placeholder="{{'Leaverequest.leaveTo' | translate }}"
-           (dateChange)="leaveToValueChange()" formControlName="leaveTo">
-    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-    <mat-datepicker #picker3></mat-datepicker>
-  </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Session</mat-label>
-          <mat-select formControlName="session2" placeholder="Session2" (selectionChange)="sessionevent2();">
-            <mat-option *ngFor="let session of sessions" [value]="session.value">
-              {{session.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'Leaverequest.leaveDays' | translate }}" formControlName="leaveDays" readonly="readonly" type="number" appFocusOnEnter tabIndex="3">
-        </mat-form-field>
+              <mat-form-field>
+                <mat-label>Leave Type</mat-label>
+                <mat-select placeholder="{{'Leaverequest.leaveCode' | translate }}" formControlName="leaveCode">
+                  @for (ptlist of LeaveTypeatList; track ptlist) {
+                    <mat-option [value]="ptlist.empCode">
+                      {{ptlist.empCode}}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
 
 
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.reason.valid }">
-          <input matInput placeholder=" {{'Leaverequest.reason' | translate }}" formControlName="reason" appFocusOnEnter
-                 tabIndex="1">
-          <mat-error *ngIf="formControls.reason.errors" class="help-block">
-            <div *ngIf="formControls.reason.errors.required">Reason is required </div>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <mat-divider></mat-divider>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker2" placeholder="{{'Leaverequest.leaveFrom' | translate }}"
+                  (dateChange)="orgValueChange()" formControlName="leaveFrom">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
 
-      <div class="form-element p-2 d-flex justify-content-end">
-        <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
-          
-          {{ 'COMMON.CANCEL' | translate }}
-        </button>
-        <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
-          tabIndex="5">
-          
-          ApplyLeave
-        </button>
-      </div>
+                <mat-form-field>
+                  <mat-label>Session</mat-label>
+                  <mat-select formControlName="session1" placeholder="Session1" (selectionChange)="sessionevent();">
+                    @for (session of sessions; track session) {
+                      <mat-option [value]="session.value">
+                        {{session.viewValue}}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
 
-    </form>
+                <!--<mat-form-field>
+                <input matInput [matDatepicker]="picker3" placeholder="{{'Leaverequest.leaveTo' | translate }}"
+                  formControlName="leaveTo" appFocusOnEnter tabIndex="4" (click)="picker3.open()" readonly>
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>-->
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker3" placeholder="{{'Leaverequest.leaveTo' | translate }}"
+                    (dateChange)="leaveToValueChange()" formControlName="leaveTo">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
 
-  </mat-card-content>
-</div>
+                  <mat-form-field>
+                    <mat-label>Session</mat-label>
+                    <mat-select formControlName="session2" placeholder="Session2" (selectionChange)="sessionevent2();">
+                      @for (session of sessions; track session) {
+                        <mat-option [value]="session.value">
+                          {{session.viewValue}}
+                        </mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-element">
+                    <input matInput placeholder="{{'Leaverequest.leaveDays' | translate }}" formControlName="leaveDays" readonly="readonly" type="number" appFocusOnEnter tabIndex="3">
+                  </mat-form-field>
+
+
+
+                  <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.reason.valid }">
+                    <input matInput placeholder=" {{'Leaverequest.reason' | translate }}" formControlName="reason" appFocusOnEnter
+                      tabIndex="1">
+                      @if (formControls.reason.errors) {
+                        <mat-error class="help-block">
+                          @if (formControls.reason.errors.required) {
+                            <div>Reason is required </div>
+                          }
+                        </mat-error>
+                      }
+                    </mat-form-field>
+                  </div>
+                  <mat-divider></mat-divider>
+
+                  <div class="form-element p-2 d-flex justify-content-end">
+                    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+
+                      {{ 'COMMON.CANCEL' | translate }}
+                    </button>
+                    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+                      tabIndex="5">
+
+                      ApplyLeave
+                    </button>
+                  </div>
+
+                </form>
+
+              </mat-card-content>
+            </div>

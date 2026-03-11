@@ -1,33 +1,40 @@
 <!-- <mat-tab-group>
-    <mat-tab label="Apply Leave">
-        <app-leaverequest></app-leaverequest>
-    </mat-tab>
-    <mat-tab label="Leave History">
-        <app-leavetypes></app-leavetypes>
-    </mat-tab>
+<mat-tab label="Apply Leave">
+  <app-leaverequest></app-leaverequest>
+</mat-tab>
+<mat-tab label="Leave History">
+  <app-leavetypes></app-leavetypes>
+</mat-tab>
 </mat-tab-group> -->
 
-<div *ngIf="tableUrl">
-    <div *ngIf="tableUrl.coustom">
-        <app-table [tableData]="tableData" 
-            (addOrUpdateEvent)="addOrUpdateEvent($event)"></app-table>
-    </div>
-    
-    <div *ngIf="!tableUrl.coustom && routeParams == 'leaveApproval'">
-    <app-leaveapproval></app-leaveapproval>
-    </div>
-
-    <div *ngIf="!tableUrl.coustom && routeParams == 'CTCBreakup'">
+@if (tableUrl) {
+  <div>
+    @if (tableUrl.coustom) {
+      <div>
+        <app-table [tableData]="tableData"
+        (addOrUpdateEvent)="addOrUpdateEvent($event)"></app-table>
+      </div>
+    }
+    @if (!tableUrl.coustom && routeParams == 'leaveApproval') {
+      <div>
+        <app-leaveapproval></app-leaveapproval>
+      </div>
+    }
+    @if (!tableUrl.coustom && routeParams == 'CTCBreakup') {
+      <div>
         <app-ctcbreakup></app-ctcbreakup>
-        </div>
-
-        <div *ngIf="!tableUrl.coustom && routeParams == 'salaryprocess'">
-            <app-salaryprocess></app-salaryprocess>
-            </div>
-</div>
+      </div>
+    }
+    @if (!tableUrl.coustom && routeParams == 'salaryprocess') {
+      <div>
+        <app-salaryprocess></app-salaryprocess>
+      </div>
+    }
+  </div>
+}
 
 
 
 <!-- <div *ngIf="routeParams == 'CTCBreakup'">
-    <app-ctcbreakup></app-ctcbreakup>
+<app-ctcbreakup></app-ctcbreakup>
 </div> -->

@@ -10,9 +10,11 @@
         <mat-form-field>
           <mat-label>Inputproduct Code</mat-label>
           <mat-select placeholder="{{'packageconversion.inputproductCode' | translate }}" formControlName="inputproductCode"   (selectionChange)="getproductCodeList()" appFocusOnEnter tabIndex="4">
-            <mat-option *ngFor="let ptlist of inputcodeList" [value]="ptlist.id">
-              {{ptlist.id}}
-            </mat-option>
+            @for (ptlist of inputcodeList; track ptlist) {
+              <mat-option [value]="ptlist.id">
+                {{ptlist.id}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -23,9 +25,11 @@
         <mat-form-field>
           <mat-label>Outputproduct Code</mat-label>
           <mat-select formControlName="outputproductCode" placeholder="outputproductCode" (selectionChange)="getoutproductCodeList()" appFocusOnEnter tabIndex="8">
-            <mat-option *ngFor="let ptlist of inputcodeList" [value]="ptlist.id">
-              {{ptlist.id}}
-            </mat-option>
+            @for (ptlist of inputcodeList; track ptlist) {
+              <mat-option [value]="ptlist.id">
+                {{ptlist.id}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 

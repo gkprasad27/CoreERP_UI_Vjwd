@@ -10,36 +10,44 @@
         <mat-form-field>
           <mat-label>ApprovalType</mat-label>
           <mat-select formControlName="approvalType1" placeholder="approvalType1" >
-            <mat-option *ngFor="let aptype of aptypes" [value]="aptype.value">
-              {{aptype.viewValue}}
-            </mat-option>
+            @for (aptype of aptypes; track aptype) {
+              <mat-option [value]="aptype.value">
+                {{aptype.viewValue}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'approvaltype.branchCode' | translate }}</mat-label>
           <mat-select formControlName="department">
-            <mat-option *ngFor="let branch of branchesList" [value]="branch.id">
-              {{branch.text}}
-            </mat-option>
+            @for (branch of branchesList; track branch) {
+              <mat-option [value]="branch.id">
+                {{branch.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'approvaltype.company' | translate }}</mat-label>
           <mat-select formControlName="company">
-            <mat-option *ngFor="let comp of compiniesList" [value]="comp.id">
-              {{comp.text}}
-            </mat-option>
+            @for (comp of compiniesList; track comp) {
+              <mat-option [value]="comp.id">
+                {{comp.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'approvaltype.approvedBy' | translate }}</mat-label>
           <mat-select formControlName="approvedBy">
-            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
-              {{emp.text}}
-            </mat-option>
+            @for (emp of employeesList; track emp) {
+              <mat-option [value]="emp.id">
+                {{emp.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -53,7 +61,7 @@
           {{ 'COMMON.CANCEL' | translate }}
         </button>
         <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
-                tabIndex="5">
+          tabIndex="5">
 
           ApplyApprovalType
         </button>

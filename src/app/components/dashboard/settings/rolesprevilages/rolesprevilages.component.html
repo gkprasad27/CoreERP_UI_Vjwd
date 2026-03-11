@@ -12,18 +12,22 @@
         <mat-form-field>
           <mat-label>{{ 'rolePrevilages.role' | translate }}</mat-label>
           <mat-select formControlName="role"  (selectionChange)="onRuleChange($event)" appFocusOnEnter tabIndex="1">
-            <mat-option *ngFor="let role of roleArray" [value]="role.id">
-              {{ role.text }}
-            </mat-option>
+            @for (role of roleArray; track role) {
+              <mat-option [value]="role.id">
+                {{ role.text }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{ 'rolePrevilages.headerMenu' | translate }}</mat-label>
           <mat-select formControlName="parentMenu" (selectionChange)="selectedParentMenu();" appFocusOnEnter
             tabIndex="2">
-            <mat-option *ngFor="let pm of parentMenu" [value]="pm.id">
-              {{ pm.text }}
-            </mat-option>
+            @for (pm of parentMenu; track pm) {
+              <mat-option [value]="pm.id">
+                {{ pm.text }}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -92,9 +96,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
-    <div *ngIf="!dataSource"  class="d-flex justify-content-center align-items-center no_data_height">
-      <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
-    </div>
+    @if (!dataSource) {
+      <div  class="d-flex justify-content-center align-items-center no_data_height">
+        <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
+      </div>
+    }
 
     <mat-paginator [pageSizeOptions]="[8, 10, 20]" showFirstLastButtons></mat-paginator>
 

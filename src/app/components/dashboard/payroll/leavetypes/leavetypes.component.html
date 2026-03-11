@@ -9,17 +9,25 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.leaveCode.valid }">
           <input matInput placeholder="Leavecode" formControlName="leaveCode" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.leaveCode.errors" class="help-block">
-            <div *ngIf="formControls.leaveCode.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.leaveCode.errors) {
+            <mat-error class="help-block">
+              @if (formControls.leaveCode.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.leaveName.valid }">
           <input matInput placeholder="Name" formControlName="leaveName" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.leaveName.errors" class="help-block">
-            <div *ngIf="formControls.leaveName.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.leaveName.errors) {
+            <mat-error class="help-block">
+              @if (formControls.leaveName.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="form-element">
@@ -35,12 +43,12 @@
 
       <div class="form-element p-2 d-flex justify-content-end">
         <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
-          
+
           {{ 'COMMON.CANCEL' | translate }}
         </button>
         <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
           tabIndex="5">
-          
+
           {{ 'COMMON.SAVE' | translate }}
         </button>
       </div>

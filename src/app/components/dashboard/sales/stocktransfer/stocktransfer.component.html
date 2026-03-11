@@ -1,65 +1,65 @@
 <div class="pt-1">
-    <h5 >   {{ 'STOCKTRANSFER.TITLE' | translate }} </h5>
-  </div>
+  <h5 >   {{ 'STOCKTRANSFER.TITLE' | translate }} </h5>
+</div>
 
 
-  <mat-card>
-      <mat-card-content class="mt-2">
-        <form [formGroup]="dateForm" autocomplete="off">
-          <div class="d-flex justify-content-between">
-            <div class="d-flex p-2">
-              <div class="range-picker p-2">
-                <input
-                  type="text"
-                  ngxDaterangepickerMd
-                  startKey="start"
-                  endKey="end"
-                  placeholder="Choose date"
-                  formControlName="selected"
-                  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                  class="form-control"
-                />
-              </div>
-              <div class="p-2 pl-3 d-flex">
-                <button
-                  mat-raised-button
-                  class="button-color-bule text-white m-2"
-                  (click)="search()"
-                >
-
-                  {{ "COMMON.SEARCH" | translate }}
-                </button>
-                <button
-                  mat-raised-button
-                  class="button-color-red text-white m-2"
-                  (click)="reset()"
-                >
-
-                  {{ "COMMON.RESET" | translate }}
-                </button>
-              </div>
+<mat-card>
+  <mat-card-content class="mt-2">
+    <form [formGroup]="dateForm" autocomplete="off">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex p-2">
+          <div class="range-picker p-2">
+            <input
+              type="text"
+              ngxDaterangepickerMd
+              startKey="start"
+              endKey="end"
+              placeholder="Choose date"
+              formControlName="selected"
+              [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+              class="form-control"
+              />
             </div>
-            <div>
+            <div class="p-2 pl-3 d-flex">
               <button
                 mat-raised-button
                 class="button-color-bule text-white m-2"
-                [routerLink]="['createStockTransfer']"
-              >
-                {{ "STOCKTRANSFER.NEWSTOCK" | translate }}
+                (click)="search()"
+                >
+
+                {{ "COMMON.SEARCH" | translate }}
+              </button>
+              <button
+                mat-raised-button
+                class="button-color-red text-white m-2"
+                (click)="reset()"
+                >
+
+                {{ "COMMON.RESET" | translate }}
               </button>
             </div>
           </div>
-        </form>
+          <div>
+            <button
+              mat-raised-button
+              class="button-color-bule text-white m-2"
+              [routerLink]="['createStockTransfer']"
+              >
+              {{ "STOCKTRANSFER.NEWSTOCK" | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
 
-        <!-- <mat-card class="mt-2">
-        <mat-card-content> -->
+      <!-- <mat-card class="mt-2">
+      <mat-card-content> -->
 
         <div class="table">
           <table
             mat-table
             [dataSource]="dataSource"
             class="mat-elevation-z8 w-100"
-          >
+            >
 
             <ng-container matColumnDef="fromBranchCode">
               <th mat-header-cell *matHeaderCellDef>{{ "STOCKTRANSFER.FromBranchCode" | translate }}</th>
@@ -105,9 +105,11 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns" (dblclick)="openStock(row)"></tr>
           </table>
         </div>
-        <div *ngIf="!dataSource" class="d-flex justify-content-center p-2">
-          <strong> No records found </strong>
-        </div>
+        @if (!dataSource) {
+          <div class="d-flex justify-content-center p-2">
+            <strong> No records found </strong>
+          </div>
+        }
 
         <mat-paginator
           [pageSizeOptions]="[8, 10, 20]"
@@ -115,8 +117,8 @@
         ></mat-paginator>
 
       <!-- </mat-card-content>
-        </mat-card> -->
+    </mat-card> -->
 
-      </mat-card-content>
-  </mat-card>
+  </mat-card-content>
+</mat-card>
 

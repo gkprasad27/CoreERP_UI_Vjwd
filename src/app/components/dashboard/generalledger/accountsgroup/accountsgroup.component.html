@@ -7,20 +7,28 @@
 
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
 
-       <form [formGroup]="modelFormData" autocomplete="off">
-        <div class="d--flex">
+    <form [formGroup]="modelFormData" autocomplete="off">
+      <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.groupCode.valid }" >
           <input matInput placeholder="{{'accountsgroup.groupCode' | translate }}" disabled formControlName="groupCode" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.groupCode.errors" class="help-block">
-            <div *ngIf="formControls.groupCode.errors.required">Group Code is required </div>
-          </mat-error>
+          @if (formControls.groupCode.errors) {
+            <mat-error class="help-block">
+              @if (formControls.groupCode.errors.required) {
+                <div>Group Code is required </div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.groupName.valid }">
           <input matInput placeholder="{{'accountsgroup.groupName' | translate }}" formControlName="groupName" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.groupName.errors" class="help-block">
-            <div *ngIf="formControls.groupName.errors.required">Group Name is required</div>
-          </mat-error>
+          @if (formControls.groupName.errors) {
+            <mat-error class="help-block">
+              @if (formControls.groupName.errors.required) {
+                <div>Group Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field class="form-element" >
@@ -29,18 +37,18 @@
 
       </div>
       <mat-divider></mat-divider>
-      </form>
+    </form>
 
-    </mat-card-content>
+  </mat-card-content>
 
-    <div  class="form-element p-2 d-flex justify-content-end">
-      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-        
-        {{ 'COMMON.CANCEL' | translate }}
-      </button>
-          <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="4">
-            
-            {{ 'COMMON.SAVE' | translate }}
-           </button>
-    </div>
+  <div  class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="4">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
+</div>

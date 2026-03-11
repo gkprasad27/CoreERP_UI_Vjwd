@@ -1,7 +1,11 @@
-  <div *ngIf="paramId != 'membermaster'">
+@if (paramId != 'membermaster') {
+  <div>
     <app-table [tableData]="tableData" (addOrUpdateEvent)="addOrUpdateEvent($event)"></app-table>
-</div>
+  </div>
+}
 
-<div *ngIf="paramId == 'membermaster'">
+@if (paramId == 'membermaster') {
+  <div>
     <app-member-master [memberUrls]="tableUrl"></app-member-master>
-</div>
+  </div>
+}

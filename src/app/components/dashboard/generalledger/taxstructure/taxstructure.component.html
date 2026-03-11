@@ -19,30 +19,36 @@
         <mat-form-field>
           <mat-label>Tax Group</mat-label>
           <mat-select placeholder="{{'taxstructure.taxGroupName' | translate }}" formControlName="taxGroupName"  >
-            <mat-option *ngFor="let tglist of TaxGroupsList" [value]="tglist.text">
-              {{tglist.text}}
-            </mat-option>
+            @for (tglist of TaxGroupsList; track tglist) {
+              <mat-option [value]="tglist.text">
+                {{tglist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field>
 
           <mat-label>Purchase Account</mat-label>
           <mat-select placeholder="{{'taxstructure.purchaseAccount' | translate }}" formControlName="purchaseAccount" >
-            <mat-option *ngFor="let pglist of PSGroupsList" [value]="pglist.id">
-              {{pglist.id}}-{{pglist.text}}
-            </mat-option>
+            @for (pglist of PSGroupsList; track pglist) {
+              <mat-option [value]="pglist.id">
+                {{pglist.id}}-{{pglist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field>
 
           <mat-label>Sales Account</mat-label>
           <mat-select placeholder="{{'taxstructure.salesAccount' | translate }}" formControlName="salesAccount">
-            <mat-option *ngFor="let pglist of PSGroupsList" [value]="pglist.id">
-              {{pglist.id}}-{{pglist.text}}
-            </mat-option>
+            @for (pglist of PSGroupsList; track pglist) {
+              <mat-option [value]="pglist.id">
+                {{pglist.id}}-{{pglist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
-       
+
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker1" placeholder="{{'taxstructure.fromDate' | translate }}" formControlName="fromDate" >
@@ -75,7 +81,7 @@
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'taxstructure.totalGst' | translate }}"  formControlName="totalGst" appFocusOnEnter tabIndex="6">
         </mat-form-field>
-       
+
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'taxstructure.narration' | translate }}" formControlName="narration" appFocusOnEnter tabIndex="7">
         </mat-form-field>
@@ -88,15 +94,15 @@
 
   </mat-card-content>
 
-    <div  class="form-element p-2 d-flex justify-content-end">
+  <div  class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
+
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="8">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
+    <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="8">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
 
 </div>

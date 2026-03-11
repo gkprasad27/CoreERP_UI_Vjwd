@@ -1,72 +1,69 @@
 <!-- <div class="p-1">
-  <h5> {{ ( routeParam + '.title') | translate }} </h5>
+<h5> {{ ( routeParam + '.title') | translate }} </h5>
 </div> -->
 
-<mat-card *ngIf="routeParam == 'membermaster'">
+@if (routeParam == 'membermaster') {
+  <mat-card>
+    <div class="background-header-boarder">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group align-items-center pt-3 pb-3" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+          <mat-form-field class="pl-2 filter">
+            <input matInput placeholder="{{'membermaster.memberCode' | translate }}"
+              [(ngModel)]="searchMemberObj.invoiceNo">
+            </mat-form-field>
+            <mat-form-field class="pl-2 filter">
+              <input matInput placeholder="{{'membermaster.memberName' | translate }}" [(ngModel)]="searchMemberObj.Name">
+            </mat-form-field>
+            <mat-form-field class="pl-2 filter">
+              <input matInput placeholder="{{'membermaster.membervehicle' | translate }}" [(ngModel)]="searchMemberObj.Vehicle">
+            </mat-form-field>
+            <div>
+              <button class="button-color-bule text-white ml-2" mat-raised-button (click)="searchMember()">
+                <mat-icon>search</mat-icon> Search
+              </button>
+            </div>
+          </div>
+          <div>
+            <button class="button-color-bule text-white ml-2" mat-raised-button (click)="addMember()">
+              Add New Member
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  }
+
+  <mat-card>
+    <!-- <div class="background-header-boarder"> -->
+    <!-- <mat-card-title class="background-header-style">
+    {{ ( routeParam + '.title') | translate }}
+  </mat-card-title> -->
   <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center">
-
-      <div class="btn-group align-items-center pt-3 pb-3" dropdown #dropdown="bs-dropdown" [autoClose]="false">
-
-        <mat-form-field class="pl-2 filter">
-          <input matInput placeholder="{{'membermaster.memberCode' | translate }}"
-            [(ngModel)]="searchMemberObj.invoiceNo">
-        </mat-form-field>
-        <mat-form-field class="pl-2 filter">
-          <input matInput placeholder="{{'membermaster.memberName' | translate }}" [(ngModel)]="searchMemberObj.Name">
-        </mat-form-field>
-        <mat-form-field class="pl-2 filter">
-          <input matInput placeholder="{{'membermaster.membervehicle' | translate }}" [(ngModel)]="searchMemberObj.Vehicle">
-        </mat-form-field>
-        <div>
-          <button class="button-color-bule text-white ml-2" mat-raised-button (click)="searchMember()">
-            <mat-icon>search</mat-icon> Search
+    @if (routeParam != 'membermaster' && !isVehicle && !isSharetransfer && !isAdditionalSharetransfer) {
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="">
+          <button class="ml-2" mat-raised-button (click)="openDialog('Add')" [disabled]="user.canAdd">
+            <mat-icon>add</mat-icon> New
+          </button>
+          <button class="ml-2" mat-raised-button (click)="openDialog('Edit')" [disabled]="user.canEdit">
+            <mat-icon>edit</mat-icon> Edit
+          </button>
+          <button class="ml-2" mat-raised-button (click)="openDialog('Delete')" [disabled]="user.canDelete">
+            <mat-icon>delete</mat-icon> Delete
+          </button>
+          <button class="ml-2" mat-raised-button [disabled]="user.canDelete">
+            <mat-icon>print</mat-icon> Print
           </button>
         </div>
-
-      </div>
-      <div>
-        <button class="button-color-bule text-white ml-2" mat-raised-button (click)="addMember()">
-          Add New Member
-        </button>
-      </div>
-    </div>
-  </div>
-
-</mat-card>
-
-<mat-card>
-  <!-- <div class="background-header-boarder"> -->
-    <!-- <mat-card-title class="background-header-style">
-      {{ ( routeParam + '.title') | translate }}
-    </mat-card-title> -->
-  <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center" *ngIf="routeParam != 'membermaster' && !isVehicle && !isSharetransfer && !isAdditionalSharetransfer">
-      <div class="">
-        <button class="ml-2" mat-raised-button (click)="openDialog('Add')" [disabled]="user.canAdd">
-          <mat-icon>add</mat-icon> New
-        </button>
-        <button class="ml-2" mat-raised-button (click)="openDialog('Edit')" [disabled]="user.canEdit">
-          <mat-icon>edit</mat-icon> Edit
-        </button>
-        <button class="ml-2" mat-raised-button (click)="openDialog('Delete')" [disabled]="user.canDelete">
-          <mat-icon>delete</mat-icon> Delete
-        </button>
-        <button class="ml-2" mat-raised-button [disabled]="user.canDelete">
-          <mat-icon>print</mat-icon> Print
-        </button>
-      </div>
-      <div class="btn-group align-items-center" dropdown #dropdown="bs-dropdown" [autoClose]="false">
-
+        <div class="btn-group align-items-center" dropdown #dropdown="bs-dropdown" [autoClose]="false">
           <mat-form-field class="pl-2 filter" [floatLabel]="'never'">
             <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
           </mat-form-field>
           <div class="">
             <button dropdownToggle mat-raised-button class="dropdown-toggle ml-2" (click)="filterData()">
-               Columns
+              Columns
             </button>
           </div>
-
           <div id="dropdown-triggers-manual" *dropdownMenu class="dropdown-menu" role="menu"
             aria-labelledby="button-triggers-manual">
             <div class="dropdown--width d-flex">
@@ -74,33 +71,37 @@
                 #multiSelect>
                 <ngx-mat-select-search (toggleAll)="toggleSelectAll($event)" [formControl]="tableMultiFilterCtrl">
                 </ngx-mat-select-search>
-                <mat-option *ngFor="let bank of filteredTableMulti | async; let i = index" [value]="bank">
-                  <mat-checkbox [checked]="bank.hide" (change)="checkboxCheck(i)">
-                    {{ ( routeParam + '.' +  bank.label) | translate }}
-                  </mat-checkbox>
-                </mat-option>
+                @for (bank of filteredTableMulti | async; track bank; let i = $index) {
+                  <mat-option [value]="bank">
+                    <mat-checkbox [checked]="bank.hide" (change)="checkboxCheck(i)">
+                      {{ ( routeParam + '.' +  bank.label) | translate }}
+                    </mat-checkbox>
+                  </mat-option>
+                }
               </mat-select>
               <div class="p-2 d-flex">
                 <button mat-raised-button class="button-color-bule text-white ml-1"
                   (click)="saveChanges(); dropdown.hide();"> Save
                 </button>
                 <button mat-raised-button class="ml-1 button-color-red text-white"
-                  (click)="cancleChanges(); dropdown.hide()"> Close </button>
-
+                (click)="cancleChanges(); dropdown.hide()"> Close </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
+    }
 
-      <div *ngIf="showDataNotFound" class="d-flex justify-content-center">
+    @if (showDataNotFound) {
+      <div class="d-flex justify-content-center">
         <span> No Data in Table </span>
       </div>
+    }
 
-      <div class="table">
-        <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytable>
-          <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
+    <div class="table">
+      <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytable>
+        @for (column of getDisplayedColumns(); track column) {
+          <ng-container [matColumnDef]="column">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <strong> {{ ( routeParam + '.' +  column) | translate }} </strong>
             </th>
@@ -109,15 +110,18 @@
               {{ element[column] }}
             </td>
           </ng-container>
-          <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-          <tr mat-row  *matRowDef="let row; columns: getDisplayedColumns(); let i = index"
-            (dblclick)="openDialog('Edit', row)"  [ngStyle]="{'background-color':row.backgroundColor}"></tr>        
-        </table>
-      </div>
-      <div *ngIf="!dataSource" class="d-flex justify-content-center p-2">
+        }
+        <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+        <tr mat-row  *matRowDef="let row; columns: getDisplayedColumns(); let i = index"
+        (dblclick)="openDialog('Edit', row)"  [ngStyle]="{'background-color':row.backgroundColor}"></tr>
+      </table>
+    </div>
+    @if (!dataSource) {
+      <div class="d-flex justify-content-center p-2">
         <strong> No records found </strong>
       </div>
-      <mat-paginator [pageSizeOptions]="[8 ,10, 15]" showFirstLastButtons></mat-paginator>
-    </div>
-  <!-- </div> -->
+    }
+    <mat-paginator [pageSizeOptions]="[8 ,10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+<!-- </div> -->
 </mat-card>

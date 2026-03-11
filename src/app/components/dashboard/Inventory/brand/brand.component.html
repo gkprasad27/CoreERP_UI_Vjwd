@@ -5,31 +5,41 @@
     <mat-icon class="p-2  cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
-   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'brand.code' | translate }}" disabled formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required Min-2 Letters</div>
-          </mat-error>
+          @if (formControls.code.errors) {
+            <mat-error class="help-block">
+              @if (formControls.code.errors.required) {
+                <div>Code is required Min-2 Letters</div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.brandName.valid }">
           <input matInput placeholder="{{'brand.brandName' | translate }}" formControlName="brandName" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.brandName.errors" class="help-block">
-            <div *ngIf="formControls.brandName.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.brandName.errors) {
+            <mat-error class="help-block">
+              @if (formControls.brandName.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
-       
+
         <mat-form-field>
           <mat-label>{{'brand.compCode' | translate }}</mat-label>
           <mat-select formControlName="compCode">
-            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
-              {{comp.text}}
-            </mat-option>
+            @for (comp of companyList; track comp) {
+              <mat-option [value]="comp.id">
+                {{comp.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -60,12 +70,12 @@
 
   <div  class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
+
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="7">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
+    <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="7">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
 </div>

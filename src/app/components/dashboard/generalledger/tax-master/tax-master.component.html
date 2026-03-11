@@ -9,9 +9,13 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'taxMaster.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.code.errors) {
+            <mat-error class="help-block">
+              @if (formControls.code.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
@@ -39,9 +43,11 @@
         <mat-form-field>
           <mat-label [translate]="'taxMaster.taxType'"></mat-label>
           <mat-select formControlName="taxType" >
-            <mat-option *ngFor="let taxtypelist of taxtypeList" [value]="taxtypelist.id">
-              {{taxtypelist.text}}
-            </mat-option>
+            @for (taxtypelist of taxtypeList; track taxtypelist) {
+              <mat-option [value]="taxtypelist.id">
+                {{taxtypelist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -55,16 +61,16 @@
       </div>
       <mat-divider></mat-divider>
 
-        <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
-      {{ 'COMMON.CANCEL' | translate }}
-    </button>
+      <div  class="form-element p-2 d-flex justify-content-end">
+        <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+
+          {{ 'COMMON.CANCEL' | translate }}
+        </button>
         <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="10">
-          
+
           {{ 'COMMON.SAVE' | translate }}
-         </button>
-  </div>
+        </button>
+      </div>
 
     </form>
 

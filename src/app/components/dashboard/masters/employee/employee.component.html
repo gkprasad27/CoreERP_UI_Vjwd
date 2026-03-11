@@ -9,29 +9,39 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.employeeCode.valid }">
           <input matInput placeholder=" {{'employee.employeeCode' | translate }} " formControlName="employeeCode" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.employeeCode.errors" class="help-block">
-            <div *ngIf="formControls.employeeCode.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.employeeCode.errors) {
+            <mat-error class="help-block">
+              @if (formControls.employeeCode.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.employeeName.valid }">
           <input matInput placeholder="{{'employee.employeeName' | translate }}" formControlName="employeeName" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.employeeName.errors" class="help-block">
-            <div *ngIf="formControls.employeeName.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.employeeName.errors) {
+            <mat-error class="help-block">
+              @if (formControls.employeeName.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
           <mat-label [translate]="'employee.branchCode'"></mat-label>
           <mat-select formControlName="branchCode">
-            <mat-option *ngFor="let branch of branchesList" [value]="branch.branchCode">
-              {{branch.branchCode}}
-            </mat-option>
+            @for (branch of branchesList; track branch) {
+              <mat-option [value]="branch.branchCode">
+                {{branch.branchCode}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
-        
+
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'employee.designationId' | translate }}" formControlName="designationId" appFocusOnEnter tabIndex="3">
         </mat-form-field>
@@ -49,9 +59,11 @@
         <mat-form-field>
           <mat-label [translate]="'employee.gender'"></mat-label>
           <mat-select formControlName="gender">
-            <mat-option *ngFor="let gen of gender" [value]="gen.value">
-              {{gen.viewValue}}
-            </mat-option>
+            @for (gen of gender; track gen) {
+              <mat-option [value]="gen.value">
+                {{gen.viewValue}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -91,13 +103,15 @@
         <mat-form-field>
           <mat-label [translate]="'employee.bloodGroup'"></mat-label>
           <mat-select formControlName="bloodGroup">
-            <mat-option *ngFor="let blood of blood" [value]="blood.value">
-              {{blood.viewValue}}
-            </mat-option>
+            @for (blood of blood; track blood) {
+              <mat-option [value]="blood.value">
+                {{blood.viewValue}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
-        
+
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'employee.passportNo' | translate }}" formControlName="passportNo" appFocusOnEnter tabIndex="15">
         </mat-form-field>
@@ -140,46 +154,46 @@
           <input matInput placeholder="{{'employee.esiNumber' | translate }}" formControlName="esiNumber" appFocusOnEnter tabIndex="25">
         </mat-form-field>
         <!-- <mat-form-field>
-          <input matInput [matDatepicker]="picker6" placeholder="{{'employee.extraDate' | translate }}" formControlName="extraDate" appFocusOnEnter tabIndex="26">
-          <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-          <mat-datepicker #picker6></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employee.extra1' | translate }}" formControlName="extra1" appFocusOnEnter tabIndex="26">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employee.extra2' | translate }}" formControlName="extra2" appFocusOnEnter tabIndex="27">
-        </mat-form-field> -->
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employee.defaultPackageId' | translate }}" formControlName="defaultPackageId" appFocusOnEnter tabIndex="28">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employee.aadharNumber' | translate }}" formControlName="aadharNumber" appFocusOnEnter tabIndex="29">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'employee.recomendedBy' | translate }}"
-                 (input)="getEmployeeCode($event.target.value)"
-                     [typeahead]="getEmployeeCodeList" typeaheadOptionField='id'
-                 formControlName="recomendedBy" appFocusOnEnter tabIndex="30">
+        <input matInput [matDatepicker]="picker6" placeholder="{{'employee.extraDate' | translate }}" formControlName="extraDate" appFocusOnEnter tabIndex="26">
+        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+        <mat-datepicker #picker6></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employee.extra1' | translate }}" formControlName="extra1" appFocusOnEnter tabIndex="26">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employee.extra2' | translate }}" formControlName="extra2" appFocusOnEnter tabIndex="27">
+      </mat-form-field> -->
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employee.defaultPackageId' | translate }}" formControlName="defaultPackageId" appFocusOnEnter tabIndex="28">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employee.aadharNumber' | translate }}" formControlName="aadharNumber" appFocusOnEnter tabIndex="29">
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput placeholder="{{'employee.recomendedBy' | translate }}"
+          (input)="getEmployeeCode($event.target.value)"
+          [typeahead]="getEmployeeCodeList" typeaheadOptionField='id'
+          formControlName="recomendedBy" appFocusOnEnter tabIndex="30">
         </mat-form-field>
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'employee.approvedBy' | translate }}"
-                 (input)="getEmployeeCode($event.target.value)"
-                     [typeahead]="getEmployeeCodeList" typeaheadOptionField='id'
-                 formControlName="approvedBy" appFocusOnEnter tabIndex="30">
-        </mat-form-field>
-      </div>
-      <mat-divider></mat-divider>
-    </form>
-  </mat-card-content>
+            (input)="getEmployeeCode($event.target.value)"
+            [typeahead]="getEmployeeCodeList" typeaheadOptionField='id'
+            formControlName="approvedBy" appFocusOnEnter tabIndex="30">
+          </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+      </form>
+    </mat-card-content>
     <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
-      {{ 'COMMON.CANCEL' | translate }}
-    </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="25">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
+      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+      <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="25">
+
+        {{ 'COMMON.SAVE' | translate }}
+      </button>
+    </div>
   </div>
-</div>

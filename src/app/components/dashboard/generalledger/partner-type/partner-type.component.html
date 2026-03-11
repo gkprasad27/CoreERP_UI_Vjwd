@@ -9,26 +9,36 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'partnerType.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.code.errors) {
+            <mat-error class="help-block">
+              @if (formControls.code.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'partnerType.description' | translate }}" formControlName="description" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.description.errors) {
+            <mat-error class="help-block">
+              @if (formControls.description.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
 
         <mat-form-field>
           <mat-label [translate]="'partnerType.accountType'"></mat-label>
           <mat-select  #langSelect formControlName="accountType">
-            <mat-option *ngFor="let actlist of accounttypelist" [value]="actlist.id">
-              {{actlist.text}}
-            </mat-option>
+            @for (actlist of accounttypelist; track actlist) {
+              <mat-option [value]="actlist.id">
+                {{actlist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -41,14 +51,14 @@
     </form>
 
   </mat-card-content>
-    <div  class="form-element p-2 d-flex justify-content-end">
+  <div  class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
+
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="4">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
+    <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="4">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
 </div>

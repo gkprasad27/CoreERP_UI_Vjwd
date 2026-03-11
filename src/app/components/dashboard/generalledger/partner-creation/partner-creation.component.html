@@ -9,34 +9,46 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'partnerCreation.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required </div>
-          </mat-error>
+          @if (formControls.code.errors) {
+            <mat-error class="help-block">
+              @if (formControls.code.errors.required) {
+                <div>Code is required </div>
+              }
+            </mat-error>
+          }
 
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
           <input matInput placeholder="{{'partnerCreation.name' | translate }}" formControlName="name" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.name.errors" class="help-block">
-            <div *ngIf="formControls.name.errors.required">Name is required</div>
-          </mat-error>
+          @if (formControls.name.errors) {
+            <mat-error class="help-block">
+              @if (formControls.name.errors.required) {
+                <div>Name is required</div>
+              }
+            </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field>
           <mat-label [translate]="'partnerCreation.branchCode'"></mat-label>
           <mat-select formControlName="branchCode" >
-            <mat-option *ngFor="let branch of branchesList" [value]="branch.id">
-              {{branch.text}}
-            </mat-option>
+            @for (branch of branchesList; track branch) {
+              <mat-option [value]="branch.id">
+                {{branch.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label [translate]="'partnerCreation.compCode'"></mat-label>
           <mat-select formControlName="compCode" >
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyId">
-              {{comp.companyName}}
-            </mat-option>
+            @for (comp of companyList; track comp) {
+              <mat-option [value]="comp.companyId">
+                {{comp.companyName}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -68,18 +80,22 @@
         <mat-form-field>
           <mat-label [translate]="'partnerCreation.nacture'"></mat-label>
           <mat-select formControlName="nacture" >
-            <mat-option *ngFor="let naturelist of getNatureList" [value]="naturelist.id">
-              {{naturelist.text}}
-            </mat-option>
+            @for (naturelist of getNatureList; track naturelist) {
+              <mat-option [value]="naturelist.id">
+                {{naturelist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label [translate]="'partnerCreation.partnertype'"></mat-label>
           <mat-select formControlName="partnertype" >
-            <mat-option *ngFor="let partnertype of partnerTypeList" [value]="partnertype.code">
-              {{partnertype.text}}
-            </mat-option>
+            @for (partnertype of partnerTypeList; track partnertype) {
+              <mat-option [value]="partnertype.code">
+                {{partnertype.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -114,9 +130,11 @@
         <mat-form-field>
           <mat-label [translate]="'partnerCreation.balanceType'"></mat-label>
           <mat-select formControlName="balanceType">
-            <mat-option *ngFor="let btlist of balanceTypeList" [value]="btlist.id">
-              {{btlist.text}}
-            </mat-option>
+            @for (btlist of balanceTypeList; track btlist) {
+              <mat-option [value]="btlist.id">
+                {{btlist.text}}
+              </mat-option>
+            }
           </mat-select>
         </mat-form-field>
 
@@ -129,14 +147,14 @@
       <mat-divider></mat-divider>
     </form>
   </mat-card-content>
-    <div  class="form-element p-2 d-flex justify-content-end">
+  <div  class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
-      
+
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="20">
-          
-          {{ 'COMMON.SAVE' | translate }}
-         </button>
+    <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="20">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
 </div>

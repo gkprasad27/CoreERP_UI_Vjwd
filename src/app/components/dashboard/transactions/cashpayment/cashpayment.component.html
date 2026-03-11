@@ -4,12 +4,12 @@
 
 
 <mat-card>
-    <mat-card-content class="mt-2">
-      <form [formGroup]="dateForm" autocomplete="off">
-        <div class="d-flex justify-content-between">
-          <div class="d-flex">
-            <div class="range-picker p-2">
-               <input type="text" ngxDaterangepickerMd startKey="start" [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}" endKey="end" placeholder="Choose date"
+  <mat-card-content class="mt-2">
+    <form [formGroup]="dateForm" autocomplete="off">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex">
+          <div class="range-picker p-2">
+            <input type="text" ngxDaterangepickerMd startKey="start" [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}" endKey="end" placeholder="Choose date"
               formControlName="selected" class="form-control" />
             </div>
             <div>
@@ -20,67 +20,69 @@
                   formControlName="voucherNo"
                   appFocusOnEnter
                   tabIndex="2"
-                />
-              </mat-form-field>
+                  />
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="form-element" style="margin-left: 20px">
+                  <mat-label>{{ 'cashpayment.branchName' | translate }}</mat-label>
+                  <mat-select formControlName="branchCode" appFocusOnEnter tabIndex="3">
+                    @for (branch of GetBranchesListArray; track branch) {
+                      <mat-option [value]="branch.id">
+                        {{ branch.id }} - {{branch.text}}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="p-2 pl-3 d-flex">
+                <button
+                  mat-raised-button
+                  class="button-color-bule text-white m-2"
+                  (click)="search()"
+                  >
+
+                  {{ "COMMON.SEARCH" | translate }}
+                </button>
+                <button
+                  mat-raised-button
+                  class="button-color-red text-white m-2"
+                  (click)="reset()"
+                  >
+
+                  {{ "COMMON.RESET" | translate }}
+                </button>
+              </div>
             </div>
             <div>
-              <mat-form-field class="form-element" style="margin-left: 20px">
-                <mat-label>{{ 'cashpayment.branchName' | translate }}</mat-label>
-                <mat-select formControlName="branchCode" appFocusOnEnter tabIndex="3">
-                    <mat-option *ngFor="let branch of GetBranchesListArray" [value]="branch.id">
-                      {{ branch.id }} - {{branch.text}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            </div>
-            <div class="p-2 pl-3 d-flex">
               <button
                 mat-raised-button
                 class="button-color-bule text-white m-2"
-                (click)="search()"
-              >
-                
-                {{ "COMMON.SEARCH" | translate }}
-              </button>
-              <button
-                mat-raised-button
-                class="button-color-red text-white m-2"
-                (click)="reset()"
-              >
-                
-                {{ "COMMON.RESET" | translate }}
+                [routerLink]="['createCashpayment']"
+                >
+                {{ "cashpayment.newcashpayment" | translate }}
               </button>
             </div>
           </div>
-          <div>
-            <button
-              mat-raised-button
-              class="button-color-bule text-white m-2"
-              [routerLink]="['createCashpayment']"
-            >
-              {{ "cashpayment.newcashpayment" | translate }}
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
 
-      <!-- <mat-card class="mt-2">
-      <mat-card-content> -->
+        <!-- <mat-card class="mt-2">
+        <mat-card-content> -->
 
-      <div class="table">
-        <table
-          mat-table
-          [dataSource]="dataSource"
-          class="mat-elevation-z8 w-100"
-        >
-          <!-- <ng-container matColumnDef="slNo">
-            <th mat-header-cell *matHeaderCellDef>Sl No</th>
-            <td mat-cell *matCellDef="let element">
-              {{ dataSource.filteredData.indexOf(element) + 1 }}
-            </td>
-          </ng-container> -->
+          <div class="table">
+            <table
+              mat-table
+              [dataSource]="dataSource"
+              class="mat-elevation-z8 w-100"
+              >
+              <!-- <ng-container matColumnDef="slNo">
+              <th mat-header-cell *matHeaderCellDef>Sl No</th>
+              <td mat-cell *matCellDef="let element">
+                {{ dataSource.filteredData.indexOf(element) + 1 }}
+              </td>
+            </ng-container> -->
 
-          <!-- <ng-container matColumnDef="cashPaymentMasterId">
+            <!-- <ng-container matColumnDef="cashPaymentMasterId">
             <th mat-header-cell *matHeaderCellDef>{{ "cashpayment.cashPaymentMasterId" | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.cashPaymentMasterId }}</td>
           </ng-container> -->
@@ -129,14 +131,16 @@
             <th mat-header-cell *matHeaderCellDef>{{ "cashpayment.shiftId" | translate }}</th>
             <td mat-cell *matCellDef="let element">{{ element.shiftId }}</td>
           </ng-container>
-          
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns" (dblclick)="openSale(row)"></tr>
         </table>
       </div>
-      <div *ngIf="!dataSource" class="d-flex justify-content-center p-2">
-        <strong> No records found </strong>
-      </div>
+      @if (!dataSource) {
+        <div class="d-flex justify-content-center p-2">
+          <strong> No records found </strong>
+        </div>
+      }
 
       <mat-paginator
         [pageSizeOptions]="[8, 10, 20]"
@@ -144,8 +148,8 @@
       ></mat-paginator>
 
     <!-- </mat-card-content>
-      </mat-card> -->
+  </mat-card> -->
 
-    </mat-card-content>
+</mat-card-content>
 </mat-card>
 

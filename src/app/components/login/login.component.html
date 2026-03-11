@@ -9,30 +9,40 @@
 
       <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.username.valid }">
         <input matInput placeholder="{{'LOGIN.USERNAME' | translate }}" formControlName="username">
-        <mat-error *ngIf="isSubmitted && formControls.username.errors" class="help-block">
-          <div *ngIf="formControls.username.errors.required">Username is required </div>
-        </mat-error>
+        @if (isSubmitted && formControls.username.errors) {
+          <mat-error class="help-block">
+            @if (formControls.username.errors.required) {
+              <div>Username is required </div>
+            }
+          </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.password.valid }">
         <input matInput placeholder="{{'LOGIN.PASSWORD' | translate }}" formControlName="password">
-        <mat-error *ngIf="isSubmitted && formControls.password.errors" class="help-block">
-          <div *ngIf="formControls.password.errors.required">Password is required</div>
-        </mat-error>
+        @if (isSubmitted && formControls.password.errors) {
+          <mat-error class="help-block">
+            @if (formControls.password.errors.required) {
+              <div>Password is required</div>
+            }
+          </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field>
         <mat-label [translate]="'COMMON.LANGUAGEPREFERENCE'"></mat-label>
         <mat-select (selectionChange)="setLang(langSelect.value)" #langSelect>
-          <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">
-            {{lang}}
-          </mat-option>
+          @for (lang of translate.getLangs(); track lang) {
+            <mat-option [value]="lang">
+              {{lang}}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
 
       <div class="form-element">
         <button mat-raised-button class="background--color text-white mat-raised-button" type="submit">
-          
+
           {{ 'LOGIN.LOGIN' | translate}}
         </button>
       </div>
