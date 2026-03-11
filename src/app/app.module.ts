@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SharedImportModule } from './shared/shared-import';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { NavbarComponent, TableComponent, DeleteItemComponent, ReportTableComponent, ReportsInnerTableComponent, SearchFilterTableComponent, PrintComponent, PrintPetrolComponent, SaveItemComponent, AutocompleteComponent } from './reuse-components/index';
 import {
@@ -61,7 +62,7 @@ import {
 } from './components/dashboard/settings/index';
 
 import { RuntimeConfigService } from './services/runtime-config.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -87,6 +88,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
+}
+
+export function initializeApp(runtimeConfig: RuntimeConfigService) {
+  return () => runtimeConfig.loadRuntimeConfig();
 }
 
 @NgModule({
@@ -135,6 +140,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     imports: [
         AppRoutingModule,
         SharedImportModule,
+        HttpClientModule,
         NgxDaterangepickerMd.forRoot(),
         BsDropdownModule.forRoot(),
         TypeaheadModule.forRoot(),
@@ -145,15 +151,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        BrowserModule,
         BrowserAnimationsModule,
     ],
     providers: [
         RuntimeConfigService,
         {
             provide: APP_INITIALIZER,
-            useFactory: (environment: RuntimeConfigService) => () => environment.loadRuntimeConfig(),
+            useFactory: initializeApp,
             multi: true,
-            deps: [RuntimeConfigService, HttpClient]
+            deps: [RuntimeConfigService]
         },
         {
             provide: HTTP_INTERCEPTORS,
