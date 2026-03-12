@@ -3,11 +3,15 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-accountingclass',
     templateUrl: './accountingclass.component.html',
     styleUrls: ['./accountingclass.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class AccountingClassComponent implements OnInit {

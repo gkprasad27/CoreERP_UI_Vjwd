@@ -15,12 +15,16 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-@Component({
+@Component({ 
     selector: 'app-create-stockshort',
     templateUrl: './create-stockshort.component.html',
     styleUrls: ['./create-stockshort.component.scss'],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TypeaheadModule]
 })
 export class CreateStockshortsComponent implements OnInit {
 

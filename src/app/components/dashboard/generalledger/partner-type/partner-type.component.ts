@@ -12,11 +12,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-partner-type',
     templateUrl: './partner-type.component.html',
     styleUrls: ['./partner-type.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class PartnerTypeComponent implements OnInit {
 

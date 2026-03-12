@@ -13,12 +13,17 @@ import { TableComponent } from '../../../reuse-components/table/table.component'
 import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { MemberMasterComponent } from './member-master/member-master.component';
+
+@Component({ 
     selector: 'app-masters',
     templateUrl: './masters.component.html',
     styleUrls: ['./masters.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent, DeleteItemComponent, MemberMasterComponent]
 })
 export class MastersComponent implements OnInit {
 

@@ -35,11 +35,17 @@ import { ReportsService } from 'src/app/components/dashboard/reports/reports.ser
 import { StatusCodes } from 'src/app/enums/common/common';
 import moment from 'moment';
 import { style } from '@angular/animations';
-@Component({
-    selector: 'app-report-table',
-    templateUrl: './report-table.component.html',
-    styleUrls: ['./report-table.component.scss'],
-    standalone: false
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+
+@Component({ 
+  selector: 'app-report-table',
+  templateUrl: './report-table.component.html',
+  styleUrls: ['./report-table.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TypeaheadModule, NgxDaterangepickerMd]
 })
 export class ReportTableComponent implements OnInit, OnChanges {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

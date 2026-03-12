@@ -5,6 +5,8 @@ import { CommonService } from '../../../../services/common.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Month {
   value: string;
@@ -16,11 +18,16 @@ interface Year {
   viewValue: string;
 }
 
-@Component({
+@Component({ 
     selector: 'app-salaryprocess',
     templateUrl: './salaryprocess.component.html',
     styleUrls: ['./salaryprocess.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+      /* material + forms + translate for this component */
+      SharedImportModule,
+      TranslateModule
+    ]
 })
 export class SalaryProcessComponent implements OnInit {
 

@@ -8,12 +8,15 @@ import { ApiService } from '../../services/api.service';
 import { StatusCodes } from '../../enums/common/common';
 import { CommonService } from '../../services/common.service';
 
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
-@Component({
+@Component({ 
     selector: 'app-autocomplete',
     templateUrl: './autocomplete.component.html',
     styleUrls: ['./autocomplete.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class AutocompleteComponent implements OnInit {
 

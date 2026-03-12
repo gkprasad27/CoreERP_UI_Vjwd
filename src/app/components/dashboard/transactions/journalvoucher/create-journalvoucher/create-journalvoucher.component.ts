@@ -19,21 +19,26 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 interface Transaction {
   value: string;
   viewValue: string;
 }
 
-@Component({
+@Component({ 
     selector: 'app-create-journalvoucher',
     templateUrl: './create-journalvoucher.component.html',
     styleUrls: ['./create-journalvoucher.component.scss'],
-    providers: [
-        { provide: DateAdapter, useClass: AppDateAdapter },
-        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-    ],
-    standalone: false
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TextFieldModule, TypeaheadModule]
 })
 export class CreateJournalvoucherComponent implements OnInit {
 

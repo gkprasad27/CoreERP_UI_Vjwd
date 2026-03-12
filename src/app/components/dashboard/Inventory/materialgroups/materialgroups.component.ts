@@ -11,11 +11,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from 'src/app/services/common.service';
 
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-materialgroups',
     templateUrl: './materialgroups.component.html',
     styleUrls: ['./materialgroups.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class MaterialGroupsComponent implements OnInit {

@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../../services/common.service';
 import { ApiConfigService } from '../../../../../services/api-config.service';
@@ -16,11 +20,12 @@ import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-@Component({
-    selector: 'app-create-stockissues',
-    templateUrl: './create-stockissues.component.html',
-    styleUrls: ['./create-stockissues.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-create-stockissues',
+  templateUrl: './create-stockissues.component.html',
+  styleUrls: ['./create-stockissues.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TextFieldModule, TypeaheadModule]
 })
 export class CreateStockissuesComponent implements OnInit {
 

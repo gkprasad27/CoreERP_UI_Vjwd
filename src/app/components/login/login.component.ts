@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Static } from '../../enums/common/static';
 import { SnackBar, StatusCodes } from '../../enums/common/common';
@@ -13,12 +15,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { CommonService } from '../../services/common.service';
 
-
-@Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class LoginComponent implements OnInit {
 

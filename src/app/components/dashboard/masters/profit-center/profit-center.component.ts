@@ -14,11 +14,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-profit-center',
     templateUrl: './profit-center.component.html',
     styleUrls: ['./profit-center.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class ProfitCenterComponent implements OnInit {
 

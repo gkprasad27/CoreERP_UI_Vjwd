@@ -17,16 +17,21 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-@Component({
+@Component({ 
     selector: 'app-create-stockexcess',
     templateUrl: './create-stockexcess.component.html',
     styleUrls: ['./create-stockexcess.component.scss'],
-    providers: [
-        { provide: DateAdapter, useClass: AppDateAdapter },
-        { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
-    ],
-    standalone: false
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TextFieldModule, TypeaheadModule]
 })
 export class CreateStockExcessComponent implements OnInit {
 

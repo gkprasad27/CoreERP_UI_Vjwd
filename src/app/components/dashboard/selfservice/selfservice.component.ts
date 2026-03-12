@@ -10,15 +10,39 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { TableComponent } from '../../../reuse-components/table/table.component';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';
+import { odApprovalComponent } from './odapproval/odapproval.component';
+import { advanceApprovalComponent } from './advanceapproval/advanceapproval.component';
+import { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
+import { PermissionRequestComponent } from './permissionrequest/permissionrequest.component';
+import { VehicleApprovalsComponent } from './vehicleapproval/vehicleapproval.component';
+import { CTCBreakupComponent } from '../payroll/ctcbreakup/ctcbreakup.component';
+import { SalaryProcessComponent } from '../payroll/salaryproces/salaryprocess.component';
 import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
-@Component({
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-selfservice',
     templateUrl: './selfservice.component.html',
     styleUrls: ['./selfservice.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [
+      SharedImportModule,
+      TableComponent,
+      LeaveApprovalComponent,
+      odApprovalComponent,
+      advanceApprovalComponent,
+      PermissionApprovalsComponent,
+      PermissionRequestComponent,
+      VehicleApprovalsComponent,
+      CTCBreakupComponent,
+      SalaryProcessComponent,
+      TranslateModule
+    ]
 })
 export class SelfserviceComponent implements OnInit {
 

@@ -17,7 +17,10 @@ import { PrintComponent } from '../../../../../reuse-components/print/print.comp
 var curValue = require("multilingual-number-to-words");
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-sales-return-view',
     templateUrl: './sales-return-view.component.html',
     styleUrls: ['./sales-return-view.component.scss'],
@@ -25,7 +28,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class SalesReturnViewComponent implements OnInit {
 

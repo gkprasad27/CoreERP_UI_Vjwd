@@ -10,11 +10,15 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-structure-creation',
     templateUrl: './structure-creation.component.html',
     styleUrls: ['./structure-creation.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class StructureCreationComponent implements OnInit {
 

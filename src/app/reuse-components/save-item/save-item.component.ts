@@ -1,11 +1,14 @@
 import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
-@Component({
+@Component({ 
     selector: 'app-save-item',
     templateUrl: './save-item.component.html',
     styleUrls: ['./save-item.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class SaveItemComponent {
 

@@ -10,15 +10,18 @@ import { DeleteItemComponent } from '../../../reuse-components/delete-item/delet
 import { TableComponent } from '../../../reuse-components/table/table.component';
 import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
-import { } from './Inventory.service'
-import { InventoryService } from './Inventory.service';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { InventoryService } from './inventory.service';
+
+@Component({ 
     selector: 'app-inventory',
     templateUrl: './inventory.component.html',
     styleUrls: ['./inventory.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent, DeleteItemComponent]
 })
 export class InventoryComponent implements OnInit {
     tableData: any;

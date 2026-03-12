@@ -15,13 +15,16 @@ import { DatePipe, formatDate } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 
-@Component({
-    selector: 'app-vehiclerequisition',
-    templateUrl: './vehiclerequisition.component.html',
-    styleUrls: ['./vehiclerequisition.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-vehiclerequisition',
+  templateUrl: './vehiclerequisition.component.html',
+  styleUrls: ['./vehiclerequisition.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class VehicleRequisitionsComponent implements OnInit {

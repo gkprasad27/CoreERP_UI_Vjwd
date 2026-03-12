@@ -228,7 +228,7 @@
         <button class="ml-2" mat-raised-button (click)="exportToPdf()">
           <mat-icon>picture_as_pdf</mat-icon> Pdf
         </button>
-        <div class="btn-group d-flex" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+        <div class="btn-group d-flex">
           <mat-form-field class="pl-2">
             <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
           </mat-form-field>
@@ -248,10 +248,9 @@
             </mat-select>
             <div class="p-2 d-flex">
               <button mat-raised-button class="button-color-bule text-white ml-1"
-                (click)="saveChanges(); dropdown.hide();"> Save
+                (click)="saveChanges();"> Save
               </button>
-              <button mat-raised-button class="ml-1 button-color-red text-white"
-                (click)="dropdown.hide()"> Close </button>
+              <button mat-raised-button class="ml-1 button-color-red text-white"> Close </button>
 
             </div>
           </div>

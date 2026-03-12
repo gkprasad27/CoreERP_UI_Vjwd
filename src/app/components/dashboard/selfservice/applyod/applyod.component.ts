@@ -15,6 +15,8 @@ import { DatePipe, formatDate } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Session {
   value: string;
@@ -24,11 +26,13 @@ interface Session {
 //  value: string;
 //  viewValue: string;
 //}
-@Component({
-    selector: 'app-applyod',
-    templateUrl: './applyod.component.html',
-    styleUrls: ['./applyod.component.scss'],
-    standalone: false
+
+@Component({ 
+  selector: 'app-applyod',
+  templateUrl: './applyod.component.html',
+  styleUrls: ['./applyod.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class ApplyodComponent implements OnInit {

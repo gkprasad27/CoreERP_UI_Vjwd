@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { RolesprevilagesComponent } from './rolesprevilages/rolesprevilages.component';
 
-@Component({
-    selector: 'app-settings',
-    templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.scss'],
-    standalone: false
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, RolesprevilagesComponent]
 })
 export class SettingsComponent implements OnInit {
 

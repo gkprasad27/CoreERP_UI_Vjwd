@@ -1,11 +1,15 @@
 import { Component, OnInit, Optional, Inject, AfterViewInit } from '@angular/core';
 import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({ 
     selector: 'app-print',
     templateUrl: './printPetrol.component.html',
     styleUrls: ['./printPetrol.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule],
 })
 export class PrintPetrolComponent implements OnInit, AfterViewInit {
   invoiceHdr: any;

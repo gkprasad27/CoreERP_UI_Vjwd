@@ -9,11 +9,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'department',
     templateUrl: './department.component.html',
     styleUrls: ['./department.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class DepartmentComponent implements OnInit {

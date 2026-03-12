@@ -4,11 +4,15 @@ import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-ptmaster',
     templateUrl: './ptmaster.component.html',
     styleUrls: ['./ptmaster.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class PTMasterComponent  implements OnInit {

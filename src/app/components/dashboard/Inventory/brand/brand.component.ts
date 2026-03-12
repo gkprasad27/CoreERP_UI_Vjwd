@@ -9,11 +9,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { CommonService } from 'src/app/services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-brand',
     templateUrl: './brand.component.html',
     styleUrls: ['./brand.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class BrandComponent implements OnInit {

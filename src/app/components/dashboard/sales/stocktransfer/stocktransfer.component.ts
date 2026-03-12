@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
@@ -14,11 +17,12 @@ import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 
-@Component({
+@Component({ 
     selector: 'app-stocktransfer',
     templateUrl: './stocktransfer.component.html',
-    styleUrls: ['./stocktransfer.component.scss'],
-    standalone: false
+  styleUrls: ['./stocktransfer.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, DatePipe]
 })
 export class StocktransferComponent implements OnInit {
   selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};

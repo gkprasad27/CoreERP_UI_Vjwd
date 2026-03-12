@@ -15,17 +15,20 @@ import { DatePipe, formatDate } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface ApprovalType {
   value: string;
   viewValue: string;
 }
 
-@Component({
-    selector: 'app-approvaltype',
-    templateUrl: './approvaltype.component.html',
-    styleUrls: ['./approvaltype.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-approvaltype',
+  templateUrl: './approvaltype.component.html',
+  styleUrls: ['./approvaltype.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class ApprovalTypeComponent implements OnInit {

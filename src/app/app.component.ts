@@ -1,13 +1,17 @@
 import { Component, Inject, AfterViewInit } from '@angular/core';
 import { CommonService } from './services/common.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { RuntimeConfigService } from './services/runtime-config.service';
 
-@Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { NavbarComponent } from './reuse-components/navbar/navbar.component';
+
+@Component({ 
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, NavbarComponent]
 })
 export class AppComponent implements AfterViewInit{
   showNavbar : any;

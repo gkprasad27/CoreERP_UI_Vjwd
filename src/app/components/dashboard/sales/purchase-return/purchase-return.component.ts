@@ -13,11 +13,15 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-purchase-return',
     templateUrl: './purchase-return.component.html',
     styleUrls: ['./purchase-return.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class PurchaseReturnComponent implements OnInit {
 selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};

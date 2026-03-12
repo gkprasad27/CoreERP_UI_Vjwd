@@ -24,11 +24,15 @@ interface Session {
 //  value: string;
 //  viewValue: string;
 //}
-@Component({
-    selector: 'app-leaverequest',
-    templateUrl: './leaverequest.component.html',
-    styleUrls: ['./leaverequest.component.scss'],
-    standalone: false
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({ 
+  selector: 'app-leaverequest',
+  templateUrl: './leaverequest.component.html',
+  styleUrls: ['./leaverequest.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class LeaveRequestComponent implements OnInit {

@@ -9,11 +9,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from '../../../../services/common.service';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({ 
     selector: 'openingBalance',
     templateUrl: './openingBalance.component.html',
     styleUrls: ['./openingBalance.component.scss'],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class OpeningBalanceComponent implements OnInit {
@@ -23,9 +27,9 @@ export class OpeningBalanceComponent implements OnInit {
   formData: any;
   voucherClass: any;
   compList: any;
-  GetBranchesListArray:[];
-  GetPaymentListArray:any;
-  GetBankPAccountLedgerListArray:[];
+  GetBranchesListArray: any[] = [];
+  GetPaymentListArray: any[] = [];
+  GetBankPAccountLedgerListArray: any[] = [];
 
   constructor(
     private alertService: AlertService,

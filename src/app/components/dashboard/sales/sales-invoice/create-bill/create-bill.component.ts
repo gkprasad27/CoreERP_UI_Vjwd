@@ -20,7 +20,10 @@ var curValue = require("multilingual-number-to-words");
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { HostListener } from '@angular/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-create-bill',
     templateUrl: './create-bill.component.html',
     styleUrls: ['./create-bill.component.scss'],
@@ -28,7 +31,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class CreateBillComponent implements OnInit {
 

@@ -14,6 +14,8 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { DatePipe, formatDate } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 interface Session {
@@ -21,11 +23,12 @@ interface Session {
   viewValue: string;
 }
 
-@Component({
-    selector: 'app-packageconversion',
-    templateUrl: './packageconversion.component.html',
-    styleUrls: ['./packageconversion.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-packageconversion',
+  templateUrl: './packageconversion.component.html',
+  styleUrls: ['./packageconversion.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class PackageconversionComponent implements OnInit {

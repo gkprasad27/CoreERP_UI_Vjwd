@@ -1,7 +1,7 @@
-@import "_reuse.scss";
+@use "reuse";
 
 body {
-  background-color: $background-color !important;
+  background-color: reuse.$background-color !important;
 }
 
 .mat-card {
@@ -9,7 +9,7 @@ body {
 }
 
 .background--color {
-  background-color: $color-blue !important;
+  background-color: reuse.$color-blue !important;
 }
 
 
@@ -40,10 +40,10 @@ body {
 
 .ng--valid {
   & .mat-form-field-label {
-    color: $color-green !important;
+    color: reuse.$color-green !important;
   }
   & .mat-form-field-ripple {
-    background-color: $color-green !important;
+    background-color: reuse.$color-green !important;
   }
 }
 
@@ -52,19 +52,19 @@ body {
 }
 
 .style-success {
-  background: $color-green;
+  background:  reuse.$color-green;
 }
 
 .style-error {
-  background: $color-red;
+  background:  reuse.$color-red;
 }
 
 .style-warning {
-  background: $color-yellow;
+  background:  reuse.$color-yellow;
 }
 
 .style-normal {
-  background: $color-gray;
+  background:  reuse.$color-gray;
 }
 
 .background-header-boarder {
@@ -85,11 +85,11 @@ body {
 }
 
 .button-color-bule {
-  background-color: $color-blue !important;
+  background-color:  reuse.$color-blue !important;
 }
 
 .button-color-red {
-  background-color: $color-red !important;
+  background-color:  reuse.$color-red !important;
 }
 
 mat-form-field {
@@ -106,8 +106,8 @@ mat-form-field {
       height: 40px !important;
       cursor: pointer;
       & th {
-        background-color: $color-blue;
-        color: $color-white;
+        background-color:  reuse.$color-blue;
+        color:  reuse.$color-white;
         vertical-align: middle;
         border: none !important;
       }
@@ -121,7 +121,7 @@ mat-form-field {
       background-color: #f9f9f9;
     }
     & tr:nth-child(odd) {
-      background-color: $color-white;
+      background-color:  reuse.$color-white;
     }
     & tr:nth-child(even):hover {
       background-color: #f9f6f6;
@@ -160,8 +160,8 @@ mat-option  {
 .boader--color {
   padding: .30rem 1.25rem;
   margin-bottom: 0;
-  background-color: $color-poptitle;
-  color: $color-white;
+  background-color:  reuse.$color-poptitle;
+  color:  reuse.$color-white;
 }
 
 .custom-dialog-container {

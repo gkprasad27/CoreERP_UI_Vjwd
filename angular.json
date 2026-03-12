@@ -20,12 +20,20 @@
             "outputPath": {
               "base": "dist/coreERP"
             },
+            "allowedCommonJsDependencies": [
+              "bootstrap"
+            ],
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"
             ],
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+              "aot": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "src"
+                ]
+              },
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -33,12 +41,9 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
-            ],
+            "scripts": [],
             "browser": "src/main.ts"
           },
           "configurations": {
@@ -100,12 +105,9 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": []
           }
         },
         "e2e": {

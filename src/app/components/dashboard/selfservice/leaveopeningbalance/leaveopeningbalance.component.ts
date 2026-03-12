@@ -12,13 +12,16 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
 
-@Component({
-    selector: 'app-leaveopeningbalance',
-    templateUrl: './leaveopeningbalance.component.html',
-    styleUrls: ['./leaveopeningbalance.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-leaveopeningbalance',
+  templateUrl: './leaveopeningbalance.component.html',
+  styleUrls: ['./leaveopeningbalance.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class LeaveopeningbalanceComponent implements OnInit {
 

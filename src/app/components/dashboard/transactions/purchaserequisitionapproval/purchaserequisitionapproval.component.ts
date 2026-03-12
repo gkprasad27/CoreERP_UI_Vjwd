@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 
@@ -14,11 +16,12 @@ import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 
-@Component({
-    selector: 'app-purchaserequisitionapproval',
-    templateUrl: './purchaserequisitionapproval.component.html',
-    styleUrls: ['./purchaserequisitionapproval.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-purchaserequisitionapproval',
+  templateUrl: './purchaserequisitionapproval.component.html',
+  styleUrls: ['./purchaserequisitionapproval.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class PurchaserequisitionapprovalComponent implements OnInit {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

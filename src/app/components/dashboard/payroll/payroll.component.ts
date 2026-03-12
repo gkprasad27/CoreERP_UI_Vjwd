@@ -13,12 +13,19 @@ import { TableComponent } from '../../../reuse-components/table/table.component'
 import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { SalaryProcessComponent } from './salaryproces/salaryprocess.component';
+import { CTCBreakupComponent } from './ctcbreakup/ctcbreakup.component';
+import { LeaveApprovalComponent } from '../selfservice';
+
+@Component({ 
     selector: 'app-payroll',
     templateUrl: './payroll.component.html',
     styleUrls: ['./payroll.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, SalaryProcessComponent, CTCBreakupComponent, LeaveApprovalComponent, TableComponent ]
 })
 export class PayrollComponent implements OnInit {
 

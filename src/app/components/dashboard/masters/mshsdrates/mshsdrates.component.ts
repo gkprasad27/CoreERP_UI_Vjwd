@@ -15,11 +15,15 @@ interface affectGrossProfit {
   viewValue: string;
 }
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-mshsdrates',
     templateUrl: './mshsdrates.component.html',
     styleUrls: ['./mshsdrates.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class MSHSDRatesComponent  implements OnInit {

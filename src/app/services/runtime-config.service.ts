@@ -4,9 +4,12 @@ import { RuntimeSettings } from '../models/common/RuntimeSettings';
 import { Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RuntimeConfigService {
-  runtimeConfig: any = null; 
+  // provide a safe default so other services can read .serverUrl during bootstrap
+  runtimeConfig: any = { serverUrl: '' };
   tableColumnsData: any;
 
 constructor(private injector: Injector, private httpClient: HttpClient) { }

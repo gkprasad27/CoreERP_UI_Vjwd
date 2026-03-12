@@ -19,11 +19,15 @@ interface duration {
   value: string;
   viewValue: string;
 }
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-componentmaster',
     templateUrl: './componentmaster.component.html',
     styleUrls: ['./componentmaster.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class ComponentMasterComponent  implements OnInit {

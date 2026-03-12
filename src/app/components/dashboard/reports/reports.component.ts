@@ -13,11 +13,15 @@ import { ReportTableComponent } from '../../../reuse-components/report-table/rep
 import { AlertService } from '../../../services/alert.service';
 import { SnackBar } from '../../../enums/common/common';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-reports',
     templateUrl: './reports.component.html',
     styleUrls: ['./reports.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, ReportTableComponent]
 })
 export class ReportsComponent implements OnInit {
 

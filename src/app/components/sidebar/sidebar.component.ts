@@ -1,22 +1,23 @@
 import {Component, HostBinding, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
-
-
-@Component({
+@Component({ 
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    animations: [
+  animations: [
         trigger('indicatorRotate', [
             state('collapsed', style({ transform: 'rotate(0deg)' })),
             state('expanded', style({ transform: 'rotate(180deg)' })),
             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4,0.0,0.2,1)')),
         ])
     ],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class SidebarComponent implements OnInit {
 

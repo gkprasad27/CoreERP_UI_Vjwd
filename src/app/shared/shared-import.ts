@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgxMatSelectSearchModule  } from 'ngx-mat-select-search';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,15 +41,21 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
 
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxMatSelectSearchModule,
+    TypeaheadModule,
+    BsDropdownModule,
+    NgxDaterangepickerMd,
+    TranslateModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -76,13 +87,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
+  TextFieldModule,
+    TypeaheadModule,
+    BsDropdownModule,
+    NgxDaterangepickerMd,
+    TranslateModule,
   ],
   exports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxMatSelectSearchModule,
+  TypeaheadModule,
+  BsDropdownModule,
+  NgxDaterangepickerMd,
+  TranslateModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -114,6 +135,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
+    TextFieldModule,
   ]
 
 })

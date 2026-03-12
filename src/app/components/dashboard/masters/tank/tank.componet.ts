@@ -10,11 +10,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { CommonService } from '../../../../services/common.service';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-tank',
     templateUrl: './tank.component.html',
     styleUrls: ['./tank.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class TanksComponent implements OnInit {

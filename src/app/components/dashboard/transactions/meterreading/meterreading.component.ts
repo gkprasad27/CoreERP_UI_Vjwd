@@ -1,6 +1,9 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef,  MAT_DIALOG_DATA,MatDialog } from '@angular/material/dialog';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { SaveItemComponent } from '../../../../reuse-components/save-item/save-item.component';
 
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
@@ -10,15 +13,19 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
 import { userInfo } from 'os';
-import { SaveItemComponent } from '../../../../reuse-components/save-item/save-item.component';
 
 
-
-@Component({
+@Component({ 
     selector: 'app-meterreading',
     templateUrl: './meterreading.component.html',
     styleUrls: ['./meterreading.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+      /* common shared imports for material, forms, etc. */
+      SharedImportModule,
+      TranslateModule,
+      SaveItemComponent
+    ]
 })
 
 export class MeterReadingComponent  implements OnInit {

@@ -11,11 +11,15 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from 'src/app/services/common.service';
 
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-numberassignment',
     templateUrl: './numberassignment.component.html',
     styleUrls: ['./numberassignment.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class NumberAssignmentComponent implements OnInit {

@@ -14,11 +14,16 @@ interface giftIsActive {
   viewValue: string;
 }
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { TableComponent } from 'src/app/reuse-components/table/table.component';
+
+@Component({ 
     selector: 'gift-master',
     templateUrl: './giftmaster.component.html',
     styleUrls: ['giftmaster.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent]
 })
 export class GiftMasterComponent implements OnInit, OnChanges {
     modelFromData: UntypedFormGroup;

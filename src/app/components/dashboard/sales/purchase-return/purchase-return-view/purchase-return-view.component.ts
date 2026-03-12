@@ -15,7 +15,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 var curValue = require("multilingual-number-to-words");
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-purchase-return-view',
     templateUrl: './purchase-return-view.component.html',
     styleUrls: ['./purchase-return-view.component.scss'],
@@ -23,7 +26,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class PurchaseReturnViewComponent implements OnInit {
 

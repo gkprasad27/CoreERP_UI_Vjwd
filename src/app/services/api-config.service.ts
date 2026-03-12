@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import { RuntimeConfigService } from './runtime-config.service';
 
 
-const user = JSON.parse(localStorage.getItem('user'))
+// guard parsing localStorage user (may be null)
+const user = (() => {
+  try {
+    return JSON.parse(localStorage.getItem('user') || 'null');
+  } catch {
+    return null;
+  }
+})();
 
 @Injectable({
    providedIn: 'root'

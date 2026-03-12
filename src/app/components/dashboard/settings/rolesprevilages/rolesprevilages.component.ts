@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,11 +14,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { CommonService } from '../../../../services/common.service';
 
-@Component({
-    selector: 'app-rolesprevilages',
-    templateUrl: './rolesprevilages.component.html',
-    styleUrls: ['./rolesprevilages.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-rolesprevilages',
+  templateUrl: './rolesprevilages.component.html',
+  styleUrls: ['./rolesprevilages.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class RolesprevilagesComponent implements OnInit {
 

@@ -21,11 +21,18 @@ interface giftIssued {
   viewValue: string;
 }
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { AdditionalShareTransferComponent } from './AdditionalShareTransfer/AdditionalShareTransfer.component';
+import { ShareTransferComponent } from './ShareTransfer/ShareTransfer.component';
+import { GiftMasterComponent } from './Giftmaster/giftmaster.component';
+
+@Component({ 
     selector: 'app-member-master',
     templateUrl: './member-master.component.html',
     styleUrls: ['./member-master.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent, AdditionalShareTransferComponent, ShareTransferComponent, GiftMasterComponent, VehicleComponent, DeleteItemComponent]
 })
 export class MemberMasterComponent implements OnInit {
 

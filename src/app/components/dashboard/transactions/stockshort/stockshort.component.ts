@@ -12,13 +12,16 @@ import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 import moment from 'moment';
 
-@Component({
+@Component({ 
     selector: 'app-stockshort',
     templateUrl: './stockshort.component.html',
     styleUrls: ['./stockshort.component.scss'],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class StockshortComponent  implements OnInit {
   selectedDate = { start: moment().add(-1, 'day'), end: moment().add(0, 'day') };

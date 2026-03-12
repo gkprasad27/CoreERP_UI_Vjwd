@@ -21,11 +21,15 @@ interface BloodGroup
   value: string;
   viewValue: string;
 }
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-employee',
     templateUrl: './employee.component.html',
     styleUrls: ['./employee.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class EmployeeComponent implements OnInit {
 

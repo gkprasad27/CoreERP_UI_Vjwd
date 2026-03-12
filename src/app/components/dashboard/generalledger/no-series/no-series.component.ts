@@ -17,11 +17,15 @@ interface NumberType {
   viewValue: string;
 }
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-no-series',
     templateUrl: './no-series.component.html',
     styleUrls: ['./no-series.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class NoSeriesComponent implements OnInit {
     modelFormData: any;

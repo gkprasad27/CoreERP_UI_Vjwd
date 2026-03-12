@@ -9,11 +9,15 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 
 import { CommonService } from 'src/app/services/common.service';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-cashacctobranches',
     templateUrl: './cashacctobranches.component.html',
     styleUrls: ['./cashacctobranches.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class CashAccToBranchesComponent  implements OnInit {

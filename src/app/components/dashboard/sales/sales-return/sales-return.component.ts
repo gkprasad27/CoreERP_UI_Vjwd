@@ -14,11 +14,15 @@ import { AlertService } from '../../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import moment from 'moment';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-sales-return',
     templateUrl: './sales-return.component.html',
     styleUrls: ['./sales-return.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class SalesReturnComponent implements OnInit {
   selectedDate = {start : moment().add(0, 'day'), end: moment().add(0, 'day')};

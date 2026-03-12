@@ -25,11 +25,15 @@ import autoTable from 'jspdf-autotable';
 import { Workbook } from 'exceljs';
 import { DatePipe } from '@angular/common';
 import * as fs from 'file-saver';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({ 
     selector: 'app-reports-inner-table',
     templateUrl: './reports-inner-table.component.html',
     styleUrls: ['./reports-inner-table.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class ReportsInnerTableComponent  {
 

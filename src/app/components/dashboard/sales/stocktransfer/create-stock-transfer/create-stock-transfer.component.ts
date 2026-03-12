@@ -23,16 +23,19 @@ import autoTable from 'jspdf-autotable';
 import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
-@Component({
+@Component({ 
     selector: 'app-create-stock-transfer',
     templateUrl: './create-stock-transfer.component.html',
     styleUrls: ['./create-stock-transfer.component.scss'],
-    providers: [
+  providers: [
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, SaveItemComponent, DatePipe]
 })
 export class CreateStockTransferComponent implements OnInit {
   formData: UntypedFormGroup;

@@ -20,11 +20,15 @@ interface Limit {
   viewValue: string;
 }
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-pfmaster',
     templateUrl: './pfmaster.component.html',
     styleUrls: ['./pfmaster.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 
 export class PFMasterComponent  implements OnInit {

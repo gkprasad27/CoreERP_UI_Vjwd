@@ -15,7 +15,11 @@ import { SnackBar } from '../../../../../enums/common/common';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/format-datepicker';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { TableComponent } from 'src/app/reuse-components/table/table.component';
+
+@Component({ 
     selector: 'app-AdditionalShareTransfer',
     templateUrl: './AdditionalShareTransfer.component.html',
     styleUrls: ['./AdditionalShareTransfer.component.scss'],
@@ -23,7 +27,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent]
 })
 export class AdditionalShareTransferComponent implements OnInit, OnChanges {
 

@@ -5,7 +5,8 @@ type IKNOWISSTRING = any;
 
 @Directive({
     selector: '[appFocusOnEnter]',
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class FocusOnEnterDirective {
 

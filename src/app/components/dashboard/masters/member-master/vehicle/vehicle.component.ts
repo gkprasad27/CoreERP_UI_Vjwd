@@ -13,11 +13,16 @@ import { StatusCodes } from '../../../../../enums/common/common';
 import { CommonService } from '../../../../../services/common.service';
 import { SnackBar } from '../../../../../enums/common/common';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+import { TableComponent } from 'src/app/reuse-components';
+
+@Component({ 
     selector: 'app-vehicle',
     templateUrl: './vehicle.component.html',
     styleUrls: ['./vehicle.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent]
 })
 export class VehicleComponent implements OnInit, OnChanges {
 

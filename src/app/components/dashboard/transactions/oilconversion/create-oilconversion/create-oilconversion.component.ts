@@ -15,12 +15,17 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-@Component({
-    selector: 'app-create-oilconversion',
-    templateUrl: './create-oilconversion.component.html',
-    styleUrls: ['./create-oilconversion.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-create-oilconversion',
+  templateUrl: './create-oilconversion.component.html',
+  styleUrls: ['./create-oilconversion.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule, TextFieldModule, TypeaheadModule]
 })
 export class CreateOilconversionsComponent implements OnInit {
 

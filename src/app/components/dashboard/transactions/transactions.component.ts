@@ -4,6 +4,20 @@ import { ApiService } from '../../../services/api.service';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+import { CashPaymentComponent } from './cashpayment/cashpayment.component';
+import { CashReceiptComponent } from './cashreceipt/cashreceipt.component';
+import { BankPaymentComponent } from './bankpayment/bankpayment.component';
+import { BankReceiptComponent } from './bankreceipt/bankreceipt.component';
+import { JournalVoucherComponent } from './journalvoucher/journalvoucher.component';
+import { StockissuesComponent } from './stockissues/stockissues.component';
+import { PurchaserequisitionComponent } from './purchaserequisition/purchaserequisition.component';
+import { PurchaserequisitionapprovalComponent } from './purchaserequisitionapproval/purchaserequisitionapproval.component';
+import { StockreceiptsComponent } from './stockreceipt/stockreceipt.component';
+import { StockshortComponent } from './stockshort/stockshort.component';
+import { OilconversionComponent } from './oilconversion/oilconversion.component';
+import { StockExcessComponent } from './stockexcess/stockexcess.component';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';
@@ -12,11 +26,29 @@ import { SnackBar } from '../../../enums/common/common';
 import { TransactionsService } from './transactions.service';
 import { TableComponent } from '../../../reuse-components/table/table.component';
 
-@Component({
-    selector: 'app-transactions',
-    templateUrl: './transactions.component.html',
-    styleUrls: ['./transactions.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-transactions',
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.scss'],
+  standalone: true,
+  imports: [
+    DeleteItemComponent,
+    TableComponent,
+    SharedImportModule,
+    TranslateModule,
+    CashPaymentComponent,
+    CashReceiptComponent,
+    BankPaymentComponent,
+    BankReceiptComponent,
+    JournalVoucherComponent,
+    StockissuesComponent,
+    PurchaserequisitionComponent,
+    PurchaserequisitionapprovalComponent,
+    StockreceiptsComponent,
+    StockshortComponent,
+    OilconversionComponent,
+    StockExcessComponent
+  ]
 })
 export class TransactionsComponent implements OnInit {
 

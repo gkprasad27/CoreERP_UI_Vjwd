@@ -19,7 +19,10 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../../directives/form
 import { SaveItemComponent } from '../../../../../reuse-components/save-item/save-item.component';
 import { MatSlideToggleChange as MatSlideToggleChange } from '@angular/material/slide-toggle';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-purchase-create',
     templateUrl: './purchase-create.component.html',
     styleUrls: ['./purchase-create.component.scss'],
@@ -27,7 +30,8 @@ import { MatSlideToggleChange as MatSlideToggleChange } from '@angular/material/
         { provide: DateAdapter, useClass: AppDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
     ],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class PurchaseCreateComponent implements OnInit {
   setFocus: any;

@@ -12,12 +12,15 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../../../../services/api.service';
 import { AlertService } from '../../../../services/alert.service';
 import { Static } from '../../../../enums/common/static';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
-@Component({
-    selector: 'app-permissionapproval',
-    templateUrl: './permissionapproval.component.html',
-    styleUrls: ['./permissionapproval.component.scss'],
-    standalone: false
+@Component({ 
+  selector: 'app-permissionapproval',
+  templateUrl: './permissionapproval.component.html',
+  styleUrls: ['./permissionapproval.component.scss'],
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 
 export class PermissionApprovalsComponent implements OnInit {

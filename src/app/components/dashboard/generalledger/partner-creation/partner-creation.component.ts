@@ -15,11 +15,15 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-partner-creation',
     templateUrl: './partner-creation.component.html',
     styleUrls: ['./partner-creation.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class PartnerCreationComponent implements OnInit {
 

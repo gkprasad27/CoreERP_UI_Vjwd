@@ -12,12 +12,16 @@ import { GeneralledgerService } from './generalledger.service';
 import { CommonService } from '../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core'; 
+
+@Component({ 
     selector: 'app-generalledger',
     templateUrl: './generalledger.component.html',
     styleUrls: ['./generalledger.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule, TableComponent, DeleteItemComponent]
 })
   export class GeneralledgerComponent implements OnInit {
     tableData: any;

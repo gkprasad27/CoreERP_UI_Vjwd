@@ -5,12 +5,15 @@ import { MatSelect } from '@angular/material/select';
 import { FormGroup, UntypedFormControl, AbstractControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
 
-@Component({
+@Component({ 
     selector: 'app-search-filter-table',
     templateUrl: './search-filter-table.component.html',
     styleUrls: ['./search-filter-table.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [SharedImportModule, TranslateModule]
 })
 export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewInit {
 

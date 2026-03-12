@@ -16,11 +16,15 @@ import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
-@Component({
+import { SharedImportModule } from 'src/app/shared/shared-import';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({ 
     selector: 'app-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
-    standalone: false
+  standalone: true,
+  imports: [SharedImportModule, TranslateModule]
 })
 export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
